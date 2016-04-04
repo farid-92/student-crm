@@ -33,3 +33,8 @@ gem 'semantic-ui-sass'
 gem 'font-awesome-rails'
 
 gem 'paperclip', '~> 4.3'
+
+
+# Для распечатки договора
+gem 'prawn'
+gem 'numbers_and_words'

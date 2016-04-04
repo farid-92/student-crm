@@ -36,6 +36,21 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
 
+    @group = 'RoR-группа 1'
+    @course = 'Ruby on Rails'
+    @practical_time = 500
+    @theoretical_time = 780
+    @educational_cost = 135000
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = ContractPdf.new(@user, view_context, @course, @practical_time, @theoretical_time, @educational_cost)
+        send_data pdf.render, filename:
+            "договор #{@user.created_at.strftime("%d.%m.%Y")}.pdf",
+                  type: "application/pdf", disposition: "inline"
+      end
+    end
+
   end
 
   def destroy

@@ -18,8 +18,11 @@
       <%= render 'shared/user_show_profile' %>
 
       <div class="panel-footer">
-               <div class = 'ui primary button'><span class="fa fa-file-pdf-o"> Договор</span></div>
-               <div class = 'ui default button'><span class="fa fa-send-o"> Переотправить инструкции</span></div>
+          <%= link_to (user_path(@user.id) + ".pdf"), class: 'ui primary button' do %>
+              <span class="fa fa-file-pdf-o"></span>
+              &nbsp;Договор
+          <% end %>
+          <div class = 'ui default button'><span class="fa fa-send-o"> Переотправить инструкции</span></div>
       </div>
 
     </div>
