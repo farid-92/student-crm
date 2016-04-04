@@ -1,0 +1,24 @@
+<% if user_signed_in? %>
+<div class="admin-mark-up">
+  <div class="ui inverted top fixed menu main-menu">
+    <div class="header item">
+      <span class="fa fa-university"></span>
+      &nbsp;IT Attractor Plus
+    </div>
+
+    <div class="right menu">
+          <div class="header item">
+            <span>Добро пожаловать,&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <%= link_to '#' do %>
+                <%= current_user.name.capitalize %>&nbsp;&nbsp;
+                <span class="fa fa-edit"></span>
+            <% end %>
+          </div>
+        <%= link_to destroy_user_session_path, method: :delete , class: 'item' do %>
+            <span class="fa fa-sign-out"></span>
+            &nbsp;&nbsp;Выйти
+        <% end %>
+    </div>
+  </div>
+</div>
+<% end %>

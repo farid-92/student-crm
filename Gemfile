@@ -12,6 +12,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
   gem 'byebug'
@@ -24,3 +25,11 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
+gem 'faker'
+
+gem 'bootstrap-sass', '~> 3.3.5'
+gem 'bootstrap-datepicker-rails'
+gem 'semantic-ui-sass'
+gem 'font-awesome-rails'
+
+gem 'paperclip', '~> 4.3'

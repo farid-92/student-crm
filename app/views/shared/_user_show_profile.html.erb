@@ -1,0 +1,74 @@
+<div class="panel-body">
+  <div class="row">
+    <div class="col-md-4 col-lg-4" align="center">
+      <%= image_tag @user.image.url(:medium), class: 'img-circle img-responsive' %>
+    </div>
+
+    <div class=" col-md-8 col-lg-8 ">
+
+      <table class="table table-student-information">
+        <tbody>
+
+        <tr>
+          <td>Курс:</td>
+          <td>
+            Курс
+          </td>
+        </tr>
+
+        <tr>
+          <td>Группа: </td>
+          <td>
+            Группа
+          </td>
+        </tr>
+
+        <tr>
+          <td>Skype: </td>
+          <td><%= @user.skype %></td>
+        </tr>
+
+        <tr>
+          <td>E-mail:</td>
+          <td><%= @user.email %></td>
+        </tr>
+
+        <tr>
+          <td>Телефоны:</td>
+          <td>
+            <div class="first-phone">
+              <%= @user.first_phone %>
+            </div>
+            <div class="second-phone">
+              <%= @user.second_phone %>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Дата рождения: </td>
+          <td><%= @user.birthdate.strftime("%d/%m/%Y") %></td>
+        </tr>
+
+        <tr>
+          <td>Пол: </td>
+          <td><%= @user.gender %></td>
+        </tr>
+
+        <tr>
+          <td>Дата регистрации</td>
+          <td><%= @user.created_at.strftime("%d/%m/%Y") %></td>
+        </tr>
+
+        <tr>
+          <td>Авторизация</td>
+          <td>
+            Роль
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

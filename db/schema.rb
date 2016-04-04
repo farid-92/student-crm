@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160402102133) do
+ActiveRecord::Schema.define(version: 20160404110536) do
 
   create_table "attendances", force: :cascade do |t|
     t.integer  "student_id"
@@ -73,18 +73,18 @@ ActiveRecord::Schema.define(version: 20160402102133) do
   add_index "periods", ["course_element_id"], name: "index_periods_on_course_element_id"
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                       default: "", null: false
+    t.string   "encrypted_password",          default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",               default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.string   "name"
     t.string   "surname"
     t.string   "gender"
@@ -96,6 +96,14 @@ ActiveRecord::Schema.define(version: 20160402102133) do
     t.string   "passport_inn"
     t.date     "issue_date"
     t.string   "issued_by"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.string   "passport_photo_file_name"
+    t.string   "passport_photo_content_type"
+    t.integer  "passport_photo_file_size"
+    t.datetime "passport_photo_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

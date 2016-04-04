@@ -1,0 +1,87 @@
+<div class="student-registration clearfix">
+  <%= form_for @user, html: {class: 'ui form'} do |f| %>
+      <h6 class="ui dividing header">Личная информация</h6>
+      <div class="four fields">
+        <div class="field <%= 'error' if @user.errors[:name].any? %>">
+          <%= f.label :name %>
+          <%= f.text_field :name, placeholder: 'Имя' %>
+          <span><%= render 'shared/field_errors', object: @user, field_name: :name  %></span>
+        </div>
+        <div class="field <%= 'error' if @user.errors[:surname].any? %>">
+          <%= f.label :surname %>
+          <%= f.text_field :surname, placeholder: 'Фамилия' %>
+          <span><%= render 'shared/field_errors', object: @user, field_name: :surname %></span>
+        </div>
+        <div class="field <%= 'error' if @user.errors[:email].any? %>">
+          <%= f.label :email %>
+          <%= f.text_field :email, placeholder: 'Имеил' %>
+          <span><%= render 'shared/field_errors', object: @user, field_name: :email %></span>
+        </div>
+        <div class="field <%= 'error' if @user.errors[:skype].any? %>">
+          <%= f.label :skype  %>
+          <%= f.text_field :skype, placeholder: 'Скайп' %>
+          <span><%= render 'shared/field_errors', object: @user, field_name: :skype %></span>
+        </div>
+      </div>
+      <div class="fields">
+        <div class="field birth_date">
+          <%= f.label :birthdate %>
+          <%= f.date_select :birthdate, {start_year: 1980, end_year: Date.today.year - 10, order: [:day, :month, :year]} , {class: 'ui search dropdown' } %>
+        </div>
+        <div class="gender field">
+          <%= f.label :gender %>
+          <%= f.select :gender, ['Мужской','Женский'], {}, class: 'ui dropdown' %>
+        </div>
+        <div class="field <%= 'error' if @user.errors[:first_phone].any? %>">
+          <%= f.label :first_phone %>
+          <%= f.text_field :first_phone, placeholder: 'Первый телефон' %>
+          <span><%= render 'shared/field_errors', object: @user, field_name: :first_phone %></span>
+        </div>
+        <div class="field <%= 'error' if @user.errors[:second_phone].any? %>">
+          <%= f.label :second_phone %>
+          <%= f.text_field :second_phone, placeholder: 'Второй телефон' %>
+          <span><%= render 'shared/field_errors', object: @user, field_name: :second_phone %></span>
+        </div>
+      </div>
+      <h6 class="ui dividing header">Паспортные данные</h6>
+      <div class="inline fields">
+        <div class="field <%= 'error' if @user.errors[:passport_id].any? %>">
+          <%= f.text_field :passport_id, placeholder: 'Номер паспорта' %>
+          <span><%= render 'shared/field_errors', object: @user, field_name: :passport_id %></span>
+        </div>
+        <div class="field <%= 'error' if @user.errors[:issued_by].any? %>">
+          <%= f.text_field :issued_by, placeholder: 'Кем выдан' %>
+          <span><%= render 'shared/field_errors', object: @user, field_name: :issued_by %></span>
+        </div>
+        <div class="field <%= 'error' if @user.errors[:passport_inn].any? %>">
+          <%= f.text_field :passport_inn, placeholder: 'ИНН' %>
+          <span><%= render 'shared/field_errors', object: @user, field_name: :passport_inn %></span>
+        </div>
+        <div class="issue">
+          <%= f.label :issue_date %>
+          <%= f.date_select :issue_date, {start_year: 1970, end_year: Date.today.year - 10, order: [:day, :month, :year]} , {class: 'ui search dropdown' } %>
+        </div>
+      </div>
+      <h6 class="ui dividing header">Распределение</h6>
+      <div class="inline fields">
+      </div>
+
+      <h6 class="ui dividing header">Прикрепление</h6>
+      <div class="inline fields">
+        <div class="field">
+          <%= f.label :avatar %>
+          <%= f.file_field :avatar %>
+          <span><%= render 'shared/field_errors', object: @user, field_name: :avatar %></span>
+        </div>
+        <div class="field">
+          <%= f.label :passport_photo %>
+          <%= f.file_field :passport_photo %>
+          <span><%= render 'shared/field_errors', object: @user, field_name: :passport_photo %></span>
+        </div>
+      </div>
+      <h6 class="ui dividing header"></h6>
+      <div class="margin-left-20">
+        <%= f.submit yield(:submit_btn), class: 'ui primary button active' %>
+      </div>
+  <% end %>
+</div>

@@ -1,0 +1,70 @@
+.student-registration, .ui-form-width {
+  h6 {
+    font-size: 13px;
+  }
+
+  .ui.selection.dropdown {
+    min-width: 20px!important;
+  }
+  .ui.form .field > .selection.dropdown {
+    width: auto;
+  }
+  .margin-left-20 {
+    margin-left: 20px;
+  }
+}
+.page-header {
+  h5 {
+    font-size: 32px;
+    font-weight: 200;
+  }
+}
+
+//SHOW-VIEW
+.edit-profile {
+  margin-bottom: 13px;
+}
+
+.students-filter {
+
+  .courses-filter, .groups-filter  {
+    float: left;
+    margin-right: 15px;
+    margin-bottom: 15px;
+  }
+  .search {
+    float: right;
+  }
+}
+
+
+.show-student {
+  overflow: hidden;
+}
+.list-btn {
+  a {
+    color: white;
+  }
+  a:hover {
+    color: white;
+  }
+}
+
+//INDEX
+.student-list {
+  clear: both;
+}
+.student-list, .student-index {
+
+  .fa-pencil, .fa-upload {
+    color: black;
+  }
+
+  a {
+    color: blueviolet;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}
+

@@ -1,0 +1,30 @@
+<div class="page-header">
+      <div class="ui breadcrumb">
+        <div class="active section"><%= link_to 'Все курсы', root_path %></div>
+        <div class="divider"> / </div>
+        <div class="active section"><%= @user.surname.capitalize + ' ' + @user.name.capitalize %></div>
+        <div class="divider"> / </div>
+      </div>
+
+  <h2 class="text-center">Данные о пользователе</h2>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-xs-offset-0 col-sm-offset-0 toppad">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @user.surname.capitalize %>&nbsp;<%= @user.name.capitalize %></h3>
+      </div>
+
+      <%= render 'shared/user_show_profile' %>
+
+      <div class="panel-footer">
+               <div class = 'ui primary button'><span class="fa fa-file-pdf-o"> Договор</span></div>
+               <div class = 'ui default button'><span class="fa fa-send-o"> Переотправить инструкции</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <%= render 'shared/user_passport_data' %>
+
+</div>

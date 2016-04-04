@@ -6,9 +6,17 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= controller_name %> <%= action_name %>">
 
-<%= yield %>
-
+<%=	 render 'shared/navbar' %>
+<div class="container-fluid padding-bottom-80 padding-top-60">
+    <%= flash_messages %>
+  <%= yield %>
+</div>
 </body>
+
+<script>
+  clearFlashOnReady();
+</script>
+
 </html>
