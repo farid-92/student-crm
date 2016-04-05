@@ -3,3 +3,12 @@
 @import "custom";
 @import 'font-awesome';
 @import "bootstrap-datepicker";
+
+.birth_date, .issue{
+  width: 20% ;
+}
+.birth_date select.ui.dropdown, .issue select.ui.dropdown{
+  display: inline-block;
+  width: 25%;
+  text-align: center;
+}
