@@ -7,7 +7,20 @@ class User < ActiveRecord::Base
   validates :name, presence: true, length: {maximum: 250}
   validates :surname, presence: true, length: {maximum: 250}
   validates :gender, presence: true
-  validates :email, presence: true
+
+  validates :first_phone, presence: true
+  my_regex = /\A(\+996)([0-9]{9})\z/
+  validates_format_of :first_phone,
+                      :with => my_regex,
+                      message: "Phone must be like +996xxxYYYYYY, where xxx - your operator's code and YYYYYY - your phone number"
+
+  validates_format_of :second_phone,
+                      :with => my_regex,
+                      :allow_blank => true,
+                      message: "Phone must be like +996xxxYYYYYY, where xxx - your operator's code and YYYYYY - your phone number"
+
+
+
 
   has_attached_file :photo,
                     styles: { medium: '300x300>', thumb: '100x100>'},

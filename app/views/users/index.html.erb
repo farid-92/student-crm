@@ -4,6 +4,7 @@
 <br />
 <table class="table table-striped">
   <tr>
+    <th class="align-center">№</th>
     <th>ФИО</th>
     <th><span class="fa fa-phone"></span> Основной телефон</th>
     <th><span class="fa fa-mail-forward"></span> E-mail</th>
@@ -14,8 +15,10 @@
 
   </tr>
 
+  <% counter = 0 %>
   <% @users.each do |user| %>
       <tr>
+        <td class="align-center"><%= counter += 1 %></td>
         <td><%= link_to user.name, user_path(user) %></td>
         <td><%= user.first_phone %></td>
         <td><%= user.email %></td>
