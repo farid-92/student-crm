@@ -15,4 +15,9 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :photo,
                                     content_type: ['image/jpeg', 'image/gif', 'image/png']
 
+
+  def full_name
+    "#{surname} #{name}"
+  end
+
 end

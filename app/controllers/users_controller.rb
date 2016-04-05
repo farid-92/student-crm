@@ -9,10 +9,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    generated_password = '12345678'
+    generated_password = Devise.friendly_token.first(8)
     @user.password = generated_password
     if @user.save
       flash[:notice] = 'Студент успешно добавлен'
+      UserMailer.password_email(@user, generated_password).deliver_now
+
       redirect_to users_path
     else
       render 'new'
@@ -27,6 +29,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update(user_params)
+      flash[:notice] = 'Данные успешно отредактированы!'
       redirect_to users_path
     else
       render 'edit'
