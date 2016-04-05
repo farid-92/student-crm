@@ -15,9 +15,20 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :photo,
                                     content_type: ['image/jpeg', 'image/gif', 'image/png']
 
+  has_attached_file :passport_photo,
+                    :path => ':rails_root/public/system/:attachment/:id/:style/:basename.:extension',
+                    :url => '/system/:attachment/:id'
+
+  validates_attachment_content_type :passport_photo, content_type: %w{
+    application/zip
+    image/jpeg
+    image/gif
+    image/png
+  }
+
 
   def full_name
-    "#{surname} #{name}"
+    "#{surname.capitalize} #{name.capitalize}"
   end
 
 end

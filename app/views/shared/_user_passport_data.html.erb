@@ -39,12 +39,19 @@
             </tr>
 
             <% unless current_user.nil? %>
-                <tr>
-                  <td>Фото паспорта:</td>
-                  <td>
-                    <span>Нет пасспорта</span>
-                  </td>
-                </tr>
+                    <tr>
+                      <td>Фото паспорта:</td>
+                      <td>
+                        <% if @user.passport_photo.path.nil? %>
+                            <span>Нет пасспорта</span>
+                        <% else %>
+                            <%= link_to download_passport_path(@user.id), class: 'btn btn-primary btn-sm' do  %>
+                                <span class="fa fa-download"></span>
+                                Скачать архив
+                            <% end %>
+                        <% end %>
+                      </td>
+                    </tr>
             <% end %>
 
             </tbody>

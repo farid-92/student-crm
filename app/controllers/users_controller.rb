@@ -62,6 +62,12 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  def download_passport
+    user = User.find(params[:id])
+    send_file(user.passport_photo.path)
+  end
+
+
   private
 
   def user_params
