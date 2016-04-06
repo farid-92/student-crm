@@ -34,6 +34,10 @@ gem 'font-awesome-rails'
 
 gem 'paperclip', '~> 4.3'
 
+# для работы с excel файлами и xml запросами
+gem 'roo', '~> 2.1.0'
+gem 'dropzonejs-rails'
+
 
 # Для распечатки договора
 gem 'prawn'
