@@ -1,0 +1,13 @@
+<% provide(:create, 'Создать рассылку') %>
+<div class="page-header">
+  <div class="ui breadcrumb">
+    <%= link_to 'Рассылки', short_message_services_path(resource_id: 1) %>
+    <div class="divider"> / </div>
+    <div class="active section">Создание рассылки</div>
+    <div class="divider"> / </div>
+  </div>
+  <h5 class="text-center">
+    Создание рассылки
+  </h5>
+</div>
+<%= render 'short_message_services/sms_form' %>

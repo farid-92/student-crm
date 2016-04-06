@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   get 'select_objects/select_students/:id' => 'select_objects#select_students', as: 'select_students'
   get 'sms_deliveries/new_from_contact_list/:id' => 'sms_deliveries#new_from_contact_list', as: 'sms_new_from_contact_list'
   get 'sms_deliveries/resend_message/:id' => 'sms_deliveries#resend_message', as: 'sms_resend'
+# SMSs
+  get 'messages' => 'sms_deliveries#message_index', as: 'show_messages_index'
+  get 'send_sms/:id' => 'sms_deliveries#send_sms', as: 'send_sms'
 
 
   get 'download_pasport/:id' => 'users#download_passport', as: 'download_passport'

@@ -1,0 +1,58 @@
+<h5 class="ui dividing header">Создание рассылки</h5>
+<div class="new-contact-list">
+  <%= link_to new_sms_delivery_path, class: 'btn btn-default', id: 'new-sms-delivery' do %>
+    <span class="fa fa-plus-circle"></span>
+    Добавить рассылку
+  <% end %>
+</div>
+<% if @messages.blank? %>
+  <div class="notification margin-top-30">
+    <i>Добавьте рассылку</i>
+  </div>
+<% else %>
+  <h5 class="ui dividing header">Рассылки</h5>
+  <table class="ui selectable celled table">
+    <thead>
+    <tr>
+      <th>Название</th>
+      <th>Лист получателей</th>
+      <th>Сообщение</th>
+      <th>Дата и время отправки</th>
+      <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @messages.each do |sms_delivery| %>
+      <tr>
+        <td><%= sms_delivery.title.capitalize %></td>
+        <td><%= sms_delivery.contact_list.title.capitalize %></td>
+        <td><%= sms_delivery.message %></td>
+        <td><%= sms_delivery.delivery_time.strftime('%Y-%m-%d-%H-%M') %></td>
+        <td>
+          <div class="delivery-control-btns">
+            <%= link_to edit_short_message_service_path(sms_delivery), class: 'btn btn-sm btn-default' do %>
+              <span class="fa fa-edit"></span>     Редактировать
+            <% end %>
+            <%= link_to send_sms_path(sms_delivery), class: 'btn btn-sm btn-primary send-now-btn', id: sms_delivery.id do %>
+              <span class="fa fa-send-o"></span>     Отправить сейчас
+            <% end %>
+            <%= link_to short_message_service_path(sms_delivery), method: :delete, data: {confirm: 'are you sure?'}, class: 'btn btn-sm btn-danger' do %>
+              <span class="fa fa-remove"></span>     Удалить
+            <% end %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
+<% if ContactList.all.blank? || Sender.all.blank? %>
+<script>
+  $('#new-sms-delivery').addClass('disabled');
+</script>
+<% end %>
+<script>
+  $('.send-now-btn').click(function(){
+    $(this).addClass('disabled');
+  });
+</script>

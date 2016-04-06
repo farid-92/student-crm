@@ -1,0 +1,49 @@
+<div class="page-header">
+  <div class="ui breadcrumb">
+    <div class="active section" id="sms-breadcrumbs">Рассылки</div>
+    <div class="divider"> / </div>
+  </div>
+  <div class="course-wrapper">
+    <h5 class="text-center" id="sms-header">Рассылки</h5>
+  </div>
+</div>
+<div id="context5">
+  <div class="ui secondary menu">
+    <%= link_to 'Рассылки', show_messages_index_path, class: 'item', data: {tab: 'sms-delivery'}, remote: true, id: 'sms-link' %>
+    <%= link_to 'Получатели', contact_lists_path, class: 'item', data: {tab: 'contact-list'}, remote: true, id: 'contact-list-link' %>
+    <%= link_to 'Отправители', senders_path, class: 'item', data: {tab: 'senders'}, remote: true, id: 'senders-link' %>
+  </div>
+  <div class="ui tab" data-tab="sms-delivery" id="sms-tab">
+    <%= render 'sms_deliveries/sms_delivery_list' %>
+  </div>
+  <div class="ui tab" data-tab="contact-list" id="contact-list-tab">
+    <%= render 'contact_lists/contact_lists' %>
+  </div>
+  <div class="ui tab" data-tab="senders" id="senders-tab">
+    <%= render 'senders/senders' %>
+  </div>
+</div>
+<script>
+  $('#context5 .menu .item').tab({
+        context: 'parent'
+      });
+</script>
+<% if @resource == '1' %>
+<script>
+  $('#sms-link, #sms-tab').addClass('active');
+  $('#sms-breadcrumbs').html('Рассылки');
+  $('#sms-header').html('Рассылки');
+</script>
+<% elsif @resource == '2' %>
+<script>
+  $('#contact-list-link, #contact-list-tab').addClass('active');
+  $('#sms-breadcrumbs').html('Получатели');
+  $('#sms-header').html('Получатели');
+</script>
+<% elsif @resource == '3' %>
+  <script>
+    $('#senders-link, #senders-tab').addClass('active');
+    $('#sms-breadcrumbs').html('Отправители');
+    $('#sms-header').html('Отправители');
+  </script>
+<% end %>
