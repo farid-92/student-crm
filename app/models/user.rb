@@ -4,6 +4,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :recipient_depositories
+  has_many :contact_lists, through: :recipient_depositories
+
+  has_one :contact, dependent: :destroy
+  accepts_nested_attributes_for :contact
+
+
   validates :name, presence: true, length: {maximum: 250}
   validates :surname, presence: true, length: {maximum: 250}
   validates :gender, presence: true
