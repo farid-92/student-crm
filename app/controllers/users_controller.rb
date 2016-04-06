@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @user.password = generated_password
     if @user.save
       flash[:notice] = 'Студент успешно добавлен'
-      UserMailer.password_email(@user, generated_password).deliver_now
+     # UserMailer.password_email(@user, generated_password).deliver_now
 
       redirect_to users_path
     else

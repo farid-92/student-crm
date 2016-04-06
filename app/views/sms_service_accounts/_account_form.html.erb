@@ -1,0 +1,19 @@
+<div class="sms-login-form">
+  <%= form_for @account, html: { class: 'ui large form' } do |f| %>
+    <div class="field <%= 'error' if @account.errors[:login].any? %>">
+      <%= f.label :login %>
+      <%= f.text_field :login, placeholder: 'Введите логин' %>
+      <%= render 'shared/field_errors', object: @account, field_name: :login %>
+    </div>
+    <div class="field <%= 'error' if @account.errors[:password].any? %>">
+      <%= f.label :password %>
+      <%= f.password_field :password, placeholder: 'Введите пароль' %>
+      <%= render 'shared/field_errors', object: @account, field_name: :password %>
+    </div>
+    <div class="margin-left-30">
+      <%= button_tag(type: 'submit', class: 'ui medium primary button') do %>
+        <span class="fa fa-user-plus"></span>    Добавить
+      <% end %>
+    </div>
+  <% end %>
+</div>

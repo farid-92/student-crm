@@ -1,0 +1,12 @@
+<div class="page-header">
+  <div class="ui breadcrumb">
+    <%= link_to 'Рассылки', sms_deliveries_url %>
+    <div class="divider"> / </div>
+    <%= link_to 'Список аккаунтов', sms_service_accounts_path %>
+    <div class="divider"> / </div>
+    <div class="active section">Редактирование логина </div>
+    <div class="divider"> / </div>
+  </div>
+  <h5 class="text-center">Редактированиеление логина </h5>
+</div>
+<%= render 'sms_service_accounts/account_form' %>

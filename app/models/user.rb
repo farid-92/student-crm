@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validates :surname, presence: true, length: {maximum: 250}
   validates :gender, presence: true
 
-  validates :phone1, presence: true
+  validates :first_phone, presence: true
   my_regex = /\A(\+996)([0-9]{9})\z/
   validates_format_of :first_phone,
                       :with => my_regex,

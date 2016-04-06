@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160406074613) do
+ActiveRecord::Schema.define(version: 20160406083807) do
 
   create_table "attendances", force: :cascade do |t|
     t.integer  "student_id"
@@ -30,17 +30,6 @@ ActiveRecord::Schema.define(version: 20160406074613) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end
-
-  create_table "contacts", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "first_phone"
-    t.string   "second_phone"
-    t.string   "skype"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "contacts", ["user_id"], name: "index_contacts_on_user_id"
 
   create_table "course_elements", force: :cascade do |t|
     t.integer  "course_id"
@@ -137,7 +126,10 @@ ActiveRecord::Schema.define(version: 20160406074613) do
     t.string   "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
+
+  add_index "sms_service_accounts", ["user_id"], name: "index_sms_service_accounts_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                       default: "", null: false
