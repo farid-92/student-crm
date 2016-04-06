@@ -1,5 +1,17 @@
+<div class="page-header">
+  <div class="ui breadcrumb">
+    <div class="active section">Все курсы</div>
+    <div class="divider"> / </div>
+  </div>
+  <div class="course-wrapper">
+    <h5 class="text-center">Управление</h5>
+  </div>
+</div>
 <div class="row">
-  <%= link_to "Добавить пользователя", new_user_path, class:'btn btn-primary' %>
+  <%= link_to new_user_path, class: 'btn btn-default', id: 'new-user' do %>
+      <span class="fa fa-plus-circle"></span>
+      Новый пользователь
+  <% end %>
 </div>
 <br />
 <table class="table table-striped">
@@ -11,7 +23,7 @@
     <th><span class="fa fa-skype"></span> Skype</th>
     <th><span class="fa fa-group"></span> Группа</th>
     <th><span class="fa fa-info-circle"></span> Курс</th>
-    <th><span class="fa fa-cog"></span> Действия</th>
+    <th class="align-center action"><span class="fa fa-cog"></span> Действия</th>
 
   </tr>
 

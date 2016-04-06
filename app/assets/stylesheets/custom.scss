@@ -23,19 +23,9 @@ body {
 .fields .min-width-250 {
   min-width: 250px!important;
 }
-.flash-message {
-  margin-top: 10px;
-}
-.error-messages {
-  margin: 0;
-  padding: 0;
-  li {
-    list-style: none;
-    color: red;
-  }
-}
 .container-fluid {
   min-width: 1180px;
+  width: 95%;
 }
 .margin-bottom-30 {
   margin-bottom: 30px;
@@ -404,3 +394,11 @@ body {
   padding-top: 60px;
 }
 
+
+.ui-form-width {
+  width: 700px;
+  margin: 0 auto;
+}
+.action{
+  width: 220px;
+}

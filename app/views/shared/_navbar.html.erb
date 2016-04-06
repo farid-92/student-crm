@@ -5,14 +5,18 @@
       <span class="fa fa-university"></span>
       &nbsp;IT Attractor Plus
     </div>
+    <%= link_to users_path, class: 'item' do %>
+        <span class="fa fa-diamond"></span>
+        &nbsp;Управление
+    <% end %>
 
     <div class="right menu">
           <div class="header item">
             <span>Добро пожаловать,&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <%= link_to '#' do %>
-                <%= current_user.name.capitalize %>&nbsp;&nbsp;
-                <span class="fa fa-edit"></span>
-            <% end %>
+              <%= link_to edit_user_registration_path(@user) do %>
+                  <%= current_user.name.capitalize %>&nbsp;&nbsp;
+                  <span class="fa fa-edit"></span>
+              <% end %>
           </div>
         <%= link_to destroy_user_session_path, method: :delete , class: 'item' do %>
             <span class="fa fa-sign-out"></span>
