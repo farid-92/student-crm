@@ -1,0 +1,2 @@
+class CustomListsController < ApplicationController
+end
