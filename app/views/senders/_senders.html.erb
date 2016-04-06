@@ -1,0 +1,55 @@
+<h5 class="ui dividing header">Создание логина и отправителя</h5>
+<div class="creation-btns">
+  <div class="new-sender">
+    <%= link_to new_sender_path, class: "btn btn-default #{"disabled" if @accounts.empty?}" do %>
+      <span class="fa fa-plus-circle"></span>
+      Добавить отправителя
+    <% end %>
+  </div>
+  <div class="service-login">
+    <%= link_to sms_service_accounts_path, class: 'btn btn-default' do %>
+      <span class="fa fa-user"></span>   Логин
+    <% end %>
+  </div>
+</div>
+<% if @accounts.blank? %>
+  <div class="notification margin-top-30">
+    <i>Добавьте логин</i>
+  </div>
+<% else %>
+  <h5 class="ui dividing header">Отправители</h5>
+  <table class="ui three column selectable celled table">
+    <thead>
+    <tr>
+      <th>Отправитель</th>
+      <th>Логин</th>
+      <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @accounts.each do |account| %>
+      <% if account.senders.exists? %>
+        <% account.senders.each do |sender| %>
+          <tr>
+            <td><%= sender.name %></td>
+            <td><%= sender.sms_service_account.login %></td>
+            <td>
+              <%= link_to edit_sender_path(sender), class: 'btn btn-default btn-sm' do %>
+                <span class="fa fa-edit"></span>  Редактировать
+              <% end %>
+              <%= link_to sender_path(sender), method: :delete, data: {confirm: 'Вы уверены?'}, class: 'btn btn-danger btn-sm' do %>
+                <span class="fa fa-remove"></span>  Удалить
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td><%= 'Отсутсвует ' %></td>
+          <td><%= account.login %></td>
+        </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>

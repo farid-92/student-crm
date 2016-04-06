@@ -1,0 +1,29 @@
+<% provide(:create, 'Создать отправителя') %>
+<div class="page-header">
+  <div class="ui breadcrumb">
+    <%= link_to 'Отправители', sms_deliveries_url(resource_id: 3) %>
+    <div class="divider"> / </div>
+    <div class="active section">Создание отправителя</div>
+    <div class="divider"> / </div>
+  </div>
+  <h5 class="text-center">
+    Создание отправителя
+  </h5>
+</div>
+<div class="sms-login-form">
+  <%= form_for @sender, html: { class: 'ui large form' } do |f| %>
+    <div class="field <%= 'error' if @sender.errors[:name].any? %>">
+      <%= f.label :name %>
+      <%= f.text_field :name, placeholder: 'Введите имя отправителя' %>
+      <%= render 'shared/field_errors', object: @sender, field_name: :name %>
+    </div>
+    <div class="field <%= 'error' if @sender.errors[:sms_service_account_id].any? %>">
+      <%= f.label :sms_service_account_id %>
+      <%= f.collection_select :sms_service_account_id, SmsServiceAccount.all, :id, :login, {prompt: 'Выберите аккаунт'}, {class: 'ui fluid dropdown'} %>
+      <%= render 'shared/field_errors', object: @sender, field_name: :sms_service_account_id %>
+    </div>
+    <div class="margin-left-30">
+      <%= f.submit yield(:create), class: 'ui primary button' %>
+    </div>
+  <% end %>
+</div>

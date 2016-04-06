@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :contact_lists,
             :sms_deliveries,
             :sms_service_accounts
-  resources :senders, only: [:new, :create]
+  resources :senders
 
   resources :custom_lists do
     collection {post :import}
