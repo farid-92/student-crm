@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404110536) do
+ActiveRecord::Schema.define(version: 20160406073642) do
 
   create_table "attendances", force: :cascade do |t|
     t.integer  "student_id"
@@ -23,6 +23,24 @@ ActiveRecord::Schema.define(version: 20160404110536) do
 
   add_index "attendances", ["period_id"], name: "index_attendances_on_period_id"
   add_index "attendances", ["student_id"], name: "index_attendances_on_student_id"
+
+  create_table "contact_lists", force: :cascade do |t|
+    t.string   "title"
+    t.boolean  "temp",       default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "first_phone"
+    t.string   "second_phone"
+    t.string   "skype"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "contacts", ["user_id"], name: "index_contacts_on_user_id"
 
   create_table "course_elements", force: :cascade do |t|
     t.integer  "course_id"
@@ -41,6 +59,15 @@ ActiveRecord::Schema.define(version: 20160404110536) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "custom_lists", force: :cascade do |t|
+    t.string   "first_phone"
+    t.integer  "contact_list_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "custom_lists", ["contact_list_id"], name: "index_custom_lists_on_contact_list_id"
 
   create_table "group_memberships", force: :cascade do |t|
     t.integer  "group_id"
@@ -71,6 +98,37 @@ ActiveRecord::Schema.define(version: 20160404110536) do
   end
 
   add_index "periods", ["course_element_id"], name: "index_periods_on_course_element_id"
+
+  create_table "recipient_depositories", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "contact_list_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "recipient_depositories", ["contact_list_id"], name: "index_recipient_depositories_on_contact_list_id"
+  add_index "recipient_depositories", ["user_id"], name: "index_recipient_depositories_on_user_id"
+
+  create_table "sms_deliveries", force: :cascade do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "sender_id"
+    t.integer  "contact_list_id"
+    t.boolean  "status",          default: false
+    t.datetime "delivery_time"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "sms_deliveries", ["contact_list_id"], name: "index_sms_deliveries_on_contact_list_id"
+  add_index "sms_deliveries", ["sender_id"], name: "index_sms_deliveries_on_sender_id"
+
+  create_table "sms_service_accounts", force: :cascade do |t|
+    t.string   "login"
+    t.string   "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                       default: "", null: false
