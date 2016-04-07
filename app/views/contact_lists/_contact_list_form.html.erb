@@ -6,9 +6,9 @@
       <%= render 'shared/field_errors', object: @contact_list, field_name: :title %>
     </div>
     <div class="field <%= 'error' if @contact_list.errors[:users].any? %>">
-      <%= f.label :users_ids %>
-      <%= f.collection_select :users_ids, User.all, :id, :full_name, { prompt: 'Выберите студентов'}, {multiple: true, class: 'ui fluid dropdown search', id: 'contact-list-student_ids' } %>
-      <%= render 'shared/field_errors', object: @contact_list, field_name: :students %>
+      <%= f.label :user_ids %>
+      <%= f.collection_select :user_ids, User.all, :id, :full_name, { prompt: 'Выберите студентов'}, {multiple: true, class: 'ui fluid dropdown search', id: 'contact-list-student_ids' } %>
+      <%= render 'shared/field_errors', object: @contact_list, field_name: :users %>
     </div>
     <div class="margin-left-30">
       <%= f.submit yield(:create), class: 'ui primary button' %>
