@@ -13,15 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require semantic-ui
 //= require bootstrap
+//= require semantic-ui
 //= require bootstrap-datepicker/core
 //= require_tree .
 
 
 //this function calls alert close method to close an alert
 function clearFlash() {
-        $(".message").hide();
+    $(".alert").alert('close');
 }
 //this function calls clearFlash method after 3 seconds
 var clearFlashOnReady = function () {

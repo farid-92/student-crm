@@ -34,6 +34,9 @@ class ContactListsController < ApplicationController
     end
 
   end
+  def show
+    @contact_list = ContactList.find(params[:id])
+  end
 
   def destroy
     @contact_list = ContactList.find(params[:id])
@@ -46,6 +49,6 @@ class ContactListsController < ApplicationController
   private
 
   def get_contact_list_params
-    params.require(:contact_list).permit(:title, :users_ids => [])
+    params.require(:contact_list).permit(:title, :user_ids => [])
   end
 end

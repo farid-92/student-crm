@@ -5,6 +5,7 @@
     Добавить получателей
   <% end %>
 </div>
+<%= puts @contact_lists %>
 <% if @contact_lists.blank? %>
   <div class="notification margin-top-30">
     <i>Добавьте получателей</i>
@@ -21,7 +22,7 @@
     <tbody>
     <% @contact_lists.each do |contact_list| %>
       <tr>
-        <td><%= contact_list.title %></td>
+        <td><%= link_to contact_list.title, contact_list_path(contact_list) %></td>
         <td>
           <%= link_to edit_contact_list_path(contact_list), class: 'btn btn-sm btn-default' do %>
           <span class="fa fa-edit"></span>     Редактировать

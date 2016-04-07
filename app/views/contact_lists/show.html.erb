@@ -1,0 +1,35 @@
+<div class="page-header">
+  <div class="ui breadcrumb">
+    <%= link_to 'Получатели', sms_deliveries_url(resource_id: 2) %>
+    <div class="divider"> / </div>
+    <div class="active section">Список получателей</div>
+    <div class="divider"> / </div>
+  </div>
+  <h5 class="text-center">
+    Список получателей
+  </h5>
+</div>
+
+<div class="col-sm-6">
+
+  <div class="panel panel-default">
+    <%= link_to edit_contact_list_path(@contact_list), class: 'right' do %>
+        <span class="fa fa-pencil fa-fw"></span>
+    <% end %>
+    <div class="panel-body">
+      <table class="table">
+        <% @contact_list.users.each do |user| %>
+            <tr>
+              <td class="col-sm-3"><%= user.full_name %></td>
+              <td class="col-sm-2">
+                <%= user.first_phone %>
+              </td>
+              <td class="col-sm-1">
+
+              </td>
+            </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

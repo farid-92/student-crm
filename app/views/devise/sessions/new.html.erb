@@ -8,11 +8,11 @@
         <h3>Войдите под своим аккаунтом</h3>
       </div>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <div class="field profile-icon-wrapper">
+          <div class="form-group profile-icon-wrapper">
             <%= image_tag 'registration_new/icon-username@2x.png', class: 'profile-icon' %>
             <%= f.email_field :email, class: 'form-control input-lg', placeholder: 'Почта', autocomplete: 'off' %>
           </div>
-          <div class="field profile-icon-wrapper">
+          <div class="form-group profile-icon-wrapper">
             <%= image_tag 'registration_new/icon-password@2x.png', class: 'lock-icon' %>
             <%= f.password_field :password, class: 'form-control input-lg', placeholder: 'Пароль' %>
           </div>
@@ -20,14 +20,13 @@
             <% if devise_mapping.rememberable? %>
                 <div class="field">
                   <%= f.check_box :remember_me %>
-                  <%= f.label :remember_me,'Запомнить меня' %>
+                  <%= f.label :remember_me %>
                 </div>
             <% end %>
           </div>
           <div class="form-group">
-            <%= f.submit 'Войти в систему', class: 'ui primary button' %>
+            <%= f.submit 'Войти в систему', class: 'btn btn-primary btn-lg' %>
           </div>
-
       <% end %>
     </div>
   </div>
