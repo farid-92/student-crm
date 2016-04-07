@@ -27,6 +27,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'faker'
 
+gem 'bootstrap-sass', '~> 3.3.5'
 gem 'bootstrap-datepicker-rails'
 gem 'semantic-ui-sass'
 gem 'font-awesome-rails'
