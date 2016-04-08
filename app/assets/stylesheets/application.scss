@@ -4,12 +4,18 @@
 @import "custom";
 @import 'font-awesome';
 @import "sms_deliveries";
+@import "dropzone/dropzone";
 
-//.birth_date, .issue{
-//  width: 20% ;
-//}
-//.birth_date select.ui.dropdown, .issue select.ui.dropdown{
-//  display: inline-block;
+.birth_date{
+  width: 18% ;
+}
+.ui.form .field.birth_date > .selection.dropdown,
+.ui.form .fields .issue > .selection.dropdown{
+  width: 100px;
+  min-width: 6em;
+
+}
+
+//.field .birth_date .ui.dropdown, .fields .issue .ui.dropdown{
 //  width: 25%;
-//  text-align: center;
 //}

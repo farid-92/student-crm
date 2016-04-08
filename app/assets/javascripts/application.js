@@ -16,6 +16,7 @@
 //= require bootstrap
 //= require semantic-ui
 //= require bootstrap-datepicker/core
+//= require dropzone
 //= require_tree .
 
 

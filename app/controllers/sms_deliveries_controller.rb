@@ -1,13 +1,13 @@
 class SmsDeliveriesController < ApplicationController
   def new
-    @sms = ShortMessageService.new
+    @sms = SmsDelivery.new
   end
 
   def create
-    @sms = ShortMessageService.new(get_sms_params)
+    @sms = SmsDelivery.new(get_sms_params)
     @sms.delivery_time = Time.now + 3.minutes
     if @sms.save
-      flash[:danger] = 'Рассылка будет отправлена через 3 минуты'
+      flash[:success] = 'Рассылка будет отправлена через 3 минуты'
       send_message(@sms)
     else
       render 'new'
@@ -15,31 +15,33 @@ class SmsDeliveriesController < ApplicationController
   end
 
   def edit
-    @sms = ShortMessageService.find(params[:id])
+    @sms = SmsDelivery.find(params[:id])
   end
 
   def update
-    @sms = ShortMessageService.find(params[:id])
+    @sms = SmsDelivery.find(params[:id])
 
-    if params[:resend].blank?
+    # if params[:resend].blank?
+      @sms.delivery_time = Time.now + 3.minutes
       if @sms.update(get_sms_params)
+
         flash[:success] = 'Вы успешно отредактировали рассылку'
 
-        redirect_to short_message_services_url(resource_id: 1)
+        redirect_to sms_deliveries_url(resource_id: 1)
         return
       else
         render 'edit' and return
       end
-    else
-      @sms.delivery_time = Time.now + 3.minutes
-      if @sms.update(get_sms_params)
-        flash[:danger] = 'Рассылка будет отправлена через 3 минуты'
-
-        send_message(@sms)
-      else
-        render 'edit'
-      end
-    end
+    # else
+    #   @sms.delivery_time = Time.now + 3.minutes
+    #   if @sms.update(get_sms_params)
+    #     flash[:danger] = 'Рассылка будет отправлена через 3 минуты'
+    #
+    #     send_message(@sms)
+    #   else
+    #     render 'edit'
+    #   end
+    # end
   end
 
   def index
@@ -58,7 +60,7 @@ class SmsDeliveriesController < ApplicationController
     @sms.destroy
     flash[:success] = 'Вы удалили рассылку'
 
-    redirect_to short_message_services_url(resource_id: 1)
+    redirect_to sms_deliveries_url(resource_id: 1)
   end
 
   def send_sms
@@ -71,7 +73,7 @@ class SmsDeliveriesController < ApplicationController
   private
 
   def get_sms_params
-    params.require(:short_message_service).permit(:title, :message, :sender_id, :contact_list_id)
+    params.require(:sms_delivery).permit(:title, :content, :sender_id, :contact_list_id)
   end
 
   def send_message(object)
@@ -144,7 +146,7 @@ class SmsDeliveriesController < ApplicationController
         xml.pwd(object.sender.sms_service_account.password)
         xml.id(rand_string)
         xml.sender(object.sender.name)
-        xml.text_ object.message
+        xml.text_ object.content
         xml.time object.delivery_time.strftime('%Y%m%d%H%M%S')
         xml.phones {
 
@@ -172,4 +174,17 @@ class SmsDeliveriesController < ApplicationController
       }
     end
   end
+
+  def parse_report(xml)
+    xml_doc = Nokogiri::XML(xml.body)
+    xml_doc.remove_namespaces!
+    doc = xml_doc.xpath('//phone')
+    hash = {}
+    doc.each do |phone|
+      hash[phone.xpath('number').text] = phone.xpath('report').text
+    end
+    hash
+  end
+
+
 end

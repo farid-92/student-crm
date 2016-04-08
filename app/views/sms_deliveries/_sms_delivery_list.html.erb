@@ -26,17 +26,17 @@
       <tr>
         <td><%= sms_delivery.title.capitalize %></td>
         <td><%= sms_delivery.contact_list.title.capitalize %></td>
-        <td><%= sms_delivery.message %></td>
+        <td><%= sms_delivery.content %></td>
         <td><%= sms_delivery.delivery_time.strftime('%Y-%m-%d-%H-%M') %></td>
         <td>
           <div class="delivery-control-btns">
-            <%= link_to edit_short_message_service_path(sms_delivery), class: 'btn btn-sm btn-default' do %>
+            <%= link_to edit_sms_delivery_url(sms_delivery), class: 'btn btn-sm btn-default' do %>
               <span class="fa fa-edit"></span>     Редактировать
             <% end %>
             <%= link_to send_sms_path(sms_delivery), class: 'btn btn-sm btn-primary send-now-btn', id: sms_delivery.id do %>
               <span class="fa fa-send-o"></span>     Отправить сейчас
             <% end %>
-            <%= link_to short_message_service_path(sms_delivery), method: :delete, data: {confirm: 'are you sure?'}, class: 'btn btn-sm btn-danger' do %>
+            <%= link_to sms_delivery_path(sms_delivery), method: :delete, data: {confirm: 'are you sure?'}, class: 'btn btn-sm btn-danger' do %>
               <span class="fa fa-remove"></span>     Удалить
             <% end %>
           </div>
