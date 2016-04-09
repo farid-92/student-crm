@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20160406083807) do
   end
 
   create_table "custom_lists", force: :cascade do |t|
-    t.string   "first_phone"
+    t.string   "phone"
     t.integer  "contact_list_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false

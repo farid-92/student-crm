@@ -36,6 +36,7 @@ class ContactListsController < ApplicationController
   end
   def show
     @contact_list = ContactList.find(params[:id])
+    @custom_list = CustomList.where(contact_list_id: params[:id])
   end
 
   def destroy

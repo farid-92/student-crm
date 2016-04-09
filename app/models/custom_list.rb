@@ -13,7 +13,7 @@ class CustomList < ActiveRecord::Base
     return contact_list
   end
 
-  def open_spreadsheet(file)
+  def self.open_spreadsheet(file)
     case File.extname(file.original_filename)
       when '.xlsx' then Roo::Excelx.new(file.path, packed: nil, file_warning: :ignore)
       # when '.xls' then Roo::Excel.new(file.path, packed: nil, file_warning: :ignore)

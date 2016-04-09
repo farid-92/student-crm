@@ -18,16 +18,22 @@
     <% end %>
     <div class="panel-body">
       <table class="table">
-        <% @contact_list.users.each do |user| %>
-            <tr>
-              <td class="col-sm-3"><%= user.full_name %></td>
-              <td class="col-sm-2">
-                <%= user.first_phone %>
-              </td>
-              <td class="col-sm-1">
+        <% if @custom_list.empty? %>
+          <% @contact_list.users.each do |user| %>
+              <tr>
+                <td class="col-sm-3"><%= user.full_name %></td>
+                <td class="col-sm-2">
+                  <%= user.first_phone %>
+                </td>
+                <td class="col-sm-1">
 
-              </td>
-            </tr>
+                </td>
+              </tr>
+          <% end %>
+        <% else %>
+            <% @custom_list.each do |number| %>
+                  <%= number.phone %> <br>
+            <%end %>
         <% end %>
       </table>
     </div>
