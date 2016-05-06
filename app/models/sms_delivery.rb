@@ -1,4 +1,6 @@
 class SmsDelivery < ActiveRecord::Base
+  include SmsHandler
+
   belongs_to :contact_list
   belongs_to :sender
 
