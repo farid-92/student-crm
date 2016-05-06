@@ -42,3 +42,5 @@ gem 'dropzonejs-rails'
 # Для распечатки договора
 gem 'prawn'
 gem 'numbers_and_words'
+
+gem 'whenever', :require => false
