@@ -22,6 +22,15 @@ group :development do
   gem 'web-console', '~> 2.0'
 end
 
+group :test do
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
+  gem 'capybara'
+  gem 'rspec'
+  gem 'selenium-webdriver'
+end
+
+
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
@@ -43,4 +52,5 @@ gem 'dropzonejs-rails'
 gem 'prawn'
 gem 'numbers_and_words'
 
+# Cron job
 gem 'whenever', :require => false
