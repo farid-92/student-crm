@@ -44,15 +44,12 @@
         <td><%= user.skype %></td>
         <td>Группа</td>
         <td>Курс</td>
-        <td>
-          <%= link_to edit_user_path(user), class: 'btn btn-default btn-sm' do %>
-              <span class="fa fa-edit"></span>
-              Редактировать
-          <% end %>
-          <%= link_to user_path(user), class: 'btn btn-danger btn-sm',
+        <td class="align-center">
+
+          <%= link_to user_path(user),
                       data: {confirm: 'Вы действительно хотите удалить этого пользователя?'}, method: :delete do %>
-              <span class="fa fa-remove"></span>
-              Удалить
+              <span class="fa fa-trash"></span>
+
           <% end %>
 
         </td>
