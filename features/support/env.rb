@@ -57,3 +57,21 @@ end
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
 Capybara.default_driver = :selenium
+
+begin
+  require 'database_cleaner'
+  require 'database_cleaner/cucumber'
+  DatabaseCleaner.strategy = :truncation
+
+rescue NameError
+  raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
+end
+
+Before do
+  DatabaseCleaner.start
+  load "#{Rails.root}/db/test_seeds.rb"
+end
+
+After do |scenario|
+  DatabaseCleaner.clean
+end
