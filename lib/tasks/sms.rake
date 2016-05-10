@@ -3,11 +3,14 @@ namespace :sms do
 
   task :send => :environment do
     SmsDelivery.where(status:false).each do |message|
-
       if message.delivery_time <= Time.now
         message.send_message
+        puts Time.now
+        puts 'I am working ! ! !'
+      else
+        puts Time.now
+        puts 'I am NOT working ! ! !'
       end
-
     end
   end
 
