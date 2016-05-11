@@ -30,7 +30,7 @@
         </div>
         <div class="gender field">
           <%= f.label :gender %>
-          <%= f.select :gender, ['Мужской','Женский'], {}, class: 'ui dropdown' %>
+          <%= f.select :gender, ['Мужчина','Женщина'], {}, class: 'ui dropdown' %>
         </div>
         <div class="field <%= 'error' if @user.errors[:first_phone].any? %>">
           <%= f.label :first_phone %>

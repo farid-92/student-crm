@@ -2,11 +2,10 @@
 password = '12345678'
 admin = User.create!(name: 'Фарид',
                      surname: 'Бабазов',
-                     gender: 'Мужчина',
                      skype: 'farid.babazov',
                      email: 'admin@gmail.com',
                      birthdate: '06.11.1992',
-                     gender: 'мужской',
+                     gender: 'Мужчина',
                      first_phone: '+996772183644',
                      second_phone: '+996550362180',
                      passport_id: '123123',
