@@ -119,5 +119,16 @@ end
 
 When(/^видит аккаунт с логином "([^"]*)"$/) do |login|
   expect(page).to have_content(login)
-  sleep(5)
+end
+
+When(/^заполняет форму$/) do |table|
+  # table is a table.hashes.keys # => [:field, :value]
+  for row in table.hashes
+    fill_in row[:field], :with => row[:value]
+  end
+  click_button('Добавить')
+end
+
+When(/^аккаунт "([^"]*)" появляется в списке аккаунтов$/) do |account|
+  expect(page).to have_content(account)
 end
