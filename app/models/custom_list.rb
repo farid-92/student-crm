@@ -8,7 +8,7 @@ class CustomList < ActiveRecord::Base
     first_col = xls.first_column
     last_row = xls.last_row
     (first_col..last_row).each do |i|
-      CustomList.create!(phone: xls.excelx_value(i, first_col), contact_list: contact_list)
+      CustomList.create!(phone: xls.cell(i, first_col), contact_list: contact_list)
     end
     return contact_list
   end

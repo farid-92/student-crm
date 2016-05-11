@@ -8,12 +8,13 @@
     <div class="two fields">
       <div class="field <%= 'error' if @sms.errors[:sender].any? %>">
         <%= f.label :sender_id %>
-        <%= f.collection_select :sender_id, Sender.all, :id, :name, { prompt: 'Выберите отправителя' }, {class: 'ui fluid dropdown' } %>
+        <%= f.collection_select :sender_id, Sender.all, :id, :name, { prompt: 'Выберите отправителя' }, {class: 'ui fluid dropdown' } %> <!--form-control пока не знаю как исправить-->
         <%= render 'shared/field_errors', object: @sms, field_name: :sender %>
       </div>
       <div class="field <%= 'error' if @sms.errors[:contact_list].any? %>">
         <%= f.label :contact_list_id %>
-        <%= f.collection_select :contact_list_id, ContactList.all, :id, :title, { prompt: 'Выберите контактный лист' }, {class: 'ui fluid dropdown' } %>
+        <%= f.collection_select :contact_list_id, ContactList.all.order(created_at: :desc), :id, :title, { prompt: 'Выберите контактный лист' }, {class: 'form-control' } %>
+
         <%= render 'shared/field_errors', object: @sms, field_name: :contact_list %>
       </div>
     </div>
