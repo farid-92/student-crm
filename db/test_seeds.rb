@@ -29,3 +29,5 @@ User.create!(name: 'Иван',
                      password: password,
                      password_confirmation: password
 )
+
+SmsServiceAccount.create!(login: 'glokzs',password: 'Dgthtlrpdtplfv', user_id: 1 )

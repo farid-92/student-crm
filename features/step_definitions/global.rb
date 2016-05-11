@@ -110,3 +110,14 @@ When(/^администратор нажимает корзину у "([^"]*)"$/
   find(:xpath, account).click
   page.driver.browser.switch_to.alert.accept
 end
+
+# sms account
+
+When(/^администратор заходит на страницу со списком аккаунтов$/) do
+  visit('/sms_service_accounts')
+end
+
+When(/^видит аккаунт с логином "([^"]*)"$/) do |login|
+  expect(page).to have_content(login)
+  sleep(5)
+end
