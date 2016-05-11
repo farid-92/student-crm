@@ -85,3 +85,24 @@ end
 When(/^он попадает на страницу с данными пользователя$/) do
   expect(page).to have_content('Бабазов Фарид')
 end
+
+When(/^администратор нажимает на карандаш у пользователя "([^"]*)"$/) do |user_name|
+  user = "//td//*[contains(text(), '" + user_name + "')]/ancestor::tr//*[@id='user_1']"
+  find(:xpath, user).click
+end
+
+When(/^изменяет имя и фамилию у пользователя на "([^"]*)"$/) do |new_user|
+  within('#edit_user_1') do
+    fill_in 'user_name', :with => 'Александр'
+    fill_in 'user_surname', :with => 'Гудов'
+  end
+  sleep(5)
+end
+
+When(/^"([^"]*)" пропадает из списка$/) do |name|
+  page.should have_no_content(name)
+end
+
+When(/^в списке появляется "([^"]*)"$/) do |new_name|
+  expect(page).to have_content(new_name)
+end
