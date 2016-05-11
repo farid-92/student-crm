@@ -74,7 +74,6 @@ end
 
 When(/^пользователь появляется в таблице пользователей$/) do
   expect(page).to have_content('Babazov Farid')
-  sleep(7)
 end
 
 When(/^администратор нажимает на "([^"]*)"$/) do |user|
@@ -96,7 +95,6 @@ When(/^изменяет имя и фамилию у пользователя н�
     fill_in 'user_name', :with => 'Александр'
     fill_in 'user_surname', :with => 'Гудов'
   end
-  sleep(5)
 end
 
 When(/^"([^"]*)" пропадает из списка$/) do |name|
@@ -105,4 +103,10 @@ end
 
 When(/^в списке появляется "([^"]*)"$/) do |new_name|
   expect(page).to have_content(new_name)
+end
+
+When(/^администратор нажимает корзину у "([^"]*)"$/) do |name|
+  account = "//td//*[contains(text(), '" + name + "')]/ancestor::tr//*[@id='delete_user_2']"
+  find(:xpath, account).click
+  page.driver.browser.switch_to.alert.accept
 end

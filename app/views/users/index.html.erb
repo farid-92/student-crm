@@ -48,7 +48,7 @@
 
           <%= link_to user_path(user),
                       data: {confirm: 'Вы действительно хотите удалить этого пользователя?'}, method: :delete do %>
-              <span class="fa fa-trash"></span>
+              <span class="fa fa-trash" id="delete_user_<%= counter %>"></span>
 
           <% end %>
 
