@@ -169,3 +169,11 @@ end
 When(/^видит отправителя "([^"]*)"$/) do |sender|
   expect(page).to have_content(sender)
 end
+
+When(/^заполняет форму создания отправителя$/) do
+  fill_in 'sender_name', :with => 'test_sender'
+  sender_xpath = "//div[contains(@class, 'field ')]//div[contains(@class, 'dropdown')]"
+  item_xpath = "//div[contains(@class, 'item')][text()='%s']"
+  find(:xpath, sender_xpath).click
+  find(:xpath, sender_xpath+item_xpath % 'glokzs').click
+end
