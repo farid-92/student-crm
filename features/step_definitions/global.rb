@@ -151,3 +151,11 @@ When(/^у аккаунта "([^"]*)" меняется пароль на новы
   # account = "//td//*[contains(text(), '" + account + "')]/ancestor::tr//*[contains(text(), '" + new_password + "')]"
   find(:xpath, account)
 end
+
+When(/^подтверждает удаление$/) do
+  page.driver.browser.switch_to.alert.accept
+end
+
+When(/^аккаунт "([^"]*)" пропадает из списка аккаунтов$/) do |account|
+  page.should have_no_content(account)
+end
