@@ -159,3 +159,13 @@ end
 When(/^аккаунт "([^"]*)" пропадает из списка аккаунтов$/) do |account|
   page.should have_no_content(account)
 end
+
+# sender
+
+When(/^администратор заходит на страницу с отправителями$/) do
+  visit('/sms_deliveries?resource_id=3')
+end
+
+When(/^видит отправителя "([^"]*)"$/) do |sender|
+  expect(page).to have_content(sender)
+end

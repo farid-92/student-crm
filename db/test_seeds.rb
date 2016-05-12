@@ -32,3 +32,7 @@ User.create!(name: 'Иван',
 
 SmsServiceAccount.create!(login: 'glokzs',password: 'Dgthtlrpdtplfv', user_id: 1 )
 SmsServiceAccount.create!(login: 'test',password: '123123123', user_id: 1 )
+
+Sender.create!(name: 'ITAttractor',sms_service_account_id: 1)
+Sender.create!(name: 'rubykurs',sms_service_account_id: 1)
+Sender.create!(name: 'webkurs.pro	',sms_service_account_id: 1)
