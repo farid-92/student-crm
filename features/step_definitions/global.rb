@@ -195,3 +195,9 @@ end
 When(/^видит в списке "([^"]*)"$/) do |item|
   expect(page).to have_content(item)
 end
+
+When(/^нажимает на "([^"]*)"$/) do |element|
+  elem = "//td//*[contains(text(), '#{element}')]"
+  find(:xpath, elem).click
+end
+

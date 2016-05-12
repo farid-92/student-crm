@@ -38,3 +38,5 @@ Sender.create!(name: 'rubykurs',sms_service_account_id: 1)
 Sender.create!(name: 'webkurs.pro	',sms_service_account_id: 1)
 
 ContactList.create!(title: 'Тестовый получатель', temp: false)
+
+RecipientDepository.create!(user_id: 1,contact_list_id: 1)
