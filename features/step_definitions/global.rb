@@ -135,6 +135,7 @@ end
 
 
 
+
 When(/^редактирует пароль$/) do
     fill_in 'sms_service_account_password', :with => '12345678'
   click_button('Добавить')
@@ -178,6 +179,7 @@ When(/^нажимает на кнопку "([^"]*)" у "([^"]*)"$/) do |button, 
   element = "//td[contains(text(), '#{element}')]/../td/a[contains(text()[last()], '#{button}')]"
   find(:xpath, element).click
 end
+
 
 When(/^редактирует данные$/) do |table|
   # table is a table.hashes.keys # => [:field, :value]
