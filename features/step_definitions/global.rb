@@ -134,10 +134,6 @@ When(/^аккаунт "([^"]*)" появляется в списке аккау�
 end
 
 
-When(/^нажимает на кнопку "([^"]*)" у аккаунта "([^"]*)"$/) do |button, account|
-  account = "//td[contains(text(), '#{account}')]/../td/a[contains(text()[last()], '#{button}')]"
-  find(:xpath, account).click
-end
 
 When(/^редактирует пароль$/) do
     fill_in 'sms_service_account_password', :with => '12345678'
@@ -176,4 +172,16 @@ When(/^заполняет форму создания отправителя$/) 
   item_xpath = "//div[contains(@class, 'item')][text()='%s']"
   find(:xpath, sender_xpath).click
   find(:xpath, sender_xpath+item_xpath % 'glokzs').click
+end
+
+When(/^нажимает на кнопку "([^"]*)" у "([^"]*)"$/) do |button, element|
+  element = "//td[contains(text(), '#{element}')]/../td/a[contains(text()[last()], '#{button}')]"
+  find(:xpath, element).click
+end
+
+When(/^редактирует данные$/) do |table|
+  # table is a table.hashes.keys # => [:field, :value]
+  for row in table.hashes
+    fill_in row[:field], :with => row[:value]
+  end
 end
