@@ -2,7 +2,7 @@
   <%= form_for @contact_list, html: { class: 'ui form' } do |f| %>
     <div class="field <%= 'error' if @contact_list.errors[:title].any? %>">
       <%= f.label :title %>
-      <%= f.text_field :title, placeholder: 'Введите имя отправителя' %>
+      <%= f.text_field :title, placeholder: 'Введите название' %>
       <%= render 'shared/field_errors', object: @contact_list, field_name: :title %>
     </div>
     <div class="field <%= 'error' if @contact_list.errors[:users].any? %>">
