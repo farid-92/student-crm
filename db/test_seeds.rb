@@ -36,3 +36,5 @@ SmsServiceAccount.create!(login: 'test',password: '123123123', user_id: 1 )
 Sender.create!(name: 'ITAttractor',sms_service_account_id: 1)
 Sender.create!(name: 'rubykurs',sms_service_account_id: 1)
 Sender.create!(name: 'webkurs.pro	',sms_service_account_id: 1)
+
+ContactList.create!(title: 'Тестовый получатель', temp: false)

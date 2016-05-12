@@ -187,3 +187,11 @@ When(/^редактирует данные$/) do |table|
     fill_in row[:field], :with => row[:value]
   end
 end
+
+When(/^администратор заходит на страницу с получателями$/) do
+  visit('/sms_deliveries?resource_id=2')
+end
+
+When(/^видит в списке "([^"]*)"$/) do |item|
+  expect(page).to have_content(item)
+end
