@@ -201,3 +201,12 @@ When(/^нажимает на "([^"]*)"$/) do |element|
   find(:xpath, elem).click
 end
 
+
+When(/^заполняет форму создания получателя$/) do
+  sender_xpath = "//div[contains(@class, 'field ')]//div[contains(@class, 'dropdown')]"
+  item_xpath = "//div[contains(@class, 'item')][text()='%s']"
+  find(:xpath, sender_xpath).click
+  find(:xpath, sender_xpath+item_xpath % 'Иванов Иван').click
+  find(:xpath, sender_xpath).click
+  fill_in 'contact_list_title', :with => 'test_contact_list'
+end
