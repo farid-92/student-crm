@@ -132,3 +132,22 @@ end
 When(/^аккаунт "([^"]*)" появляется в списке аккаунтов$/) do |account|
   expect(page).to have_content(account)
 end
+
+
+When(/^нажимает на кнопку "([^"]*)" у аккаунта "([^"]*)"$/) do |button, account|
+  account = "//td[contains(text(), '#{account}')]/../td/a[contains(text()[last()], '#{button}')]"
+  find(:xpath, account).click
+end
+
+When(/^редактирует пароль$/) do
+    fill_in 'sms_service_account_password', :with => '12345678'
+  click_button('Добавить')
+end
+
+
+When(/^у аккаунта "([^"]*)" меняется пароль на новый "([^"]*)"$/) do |account, new_password|
+  account = "//td[contains(text(), '#{account}')]/../td[contains(text(), '#{new_password}')]"
+  # account = "//td[contains(text(), '#{account}')]/../td/[contains(text()[last()], '#{button}')]"
+  # account = "//td//*[contains(text(), '" + account + "')]/ancestor::tr//*[contains(text(), '" + new_password + "')]"
+  find(:xpath, account)
+end
