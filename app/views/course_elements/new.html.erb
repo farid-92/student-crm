@@ -1,0 +1,13 @@
+<% provide(:btn, 'Создать раздатку') %>
+<div class="page-header">
+  <div class="ui breadcrumb">
+    <%= link_to 'Все курсы', root_path %>
+    <div class="divider"> / </div>
+    <%= link_to  @course.name, show_course_index_path(@course, resource: 3) %>
+    <div class="divider"> / </div>
+    <div class="active section">Создание раздатки</div>
+    <div class="divider"> / </div>
+  </div>
+  <h5 class="text-center">Создание раздатки</h5>
+</div>
+<%= render 'course_elements/course_element_form' %>

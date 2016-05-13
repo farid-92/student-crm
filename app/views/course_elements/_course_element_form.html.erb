@@ -1,0 +1,19 @@
+<div class="ui-form-width">
+<%= form_for @course_element, html: {class: 'ui equal width form'} do |f| %>
+    <%= f.hidden_field :course_id, value: @course.id %>
+    <div class="field <%= 'error' if @course_element.errors[:theme].any? %>">
+      <%= f.label :theme, 'Тема' %>
+      <%= f.text_field :theme, placeholder: 'Тема' %>
+      <%= render 'shared/field_errors', object: @course_element, field_name: :theme %>
+    </div>
+    <div class="field  <%= 'error' if @course_element.errors[:element_type].any? %>">
+      <%= f.label :element_type, 'Тип занятия' %>
+      <%= f.select :element_type, ['Лекция', 'Лабораторная', 'Контрольная'], {prompt: 'Выберите тип раздатки'}, class: 'ui dropdown'%>
+      <%= render 'shared/field_errors', object: @course_element, field_name: :element_type %>
+    </div>
+    <h6 class="ui dividing header"></h6>
+    <div class="margin-left-20">
+      <%= f.submit yield(:btn), class: 'ui primary button active' %>
+    </div>
+<% end %>
+</div>
