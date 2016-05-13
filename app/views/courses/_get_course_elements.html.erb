@@ -1,0 +1,52 @@
+<% if @course.course_elements.blank? %>
+  <i>На данный момент еще не созданы раздатки </i>
+<% else %>
+  <table class="ui selectable celled four column table">
+    <thead>
+    <tr>
+      <th><i class="fa fa-book"></i> Тема</th>
+      <th><i class="fa fa-calendar-plus-o"></i> Занятия</th>
+      <th><i class="fa fa-gear"></i> Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @course.course_elements.order(created_at: :desc).each do |course_element| %>
+      <tr>
+        <td>
+          <i class="folder icon"></i>
+          <%= link_to course_element.theme, materials_path(course_element_id: course_element.id) %>
+        </td>
+        <td>
+          <div class="ui accordion">
+            <div class="title">
+              <i class="folder icon"></i>
+              <%= link_to course_element.periods.count, '#' %>
+            </div>
+            <div class="content">
+              <% course_element.periods.each do |period| %>
+                <div class="ui list">
+                  <div class="header">&nbsp;&nbsp;&nbsp;&nbsp;<i class="file icon"></i><%= period.lesson_number %>.&nbsp;&nbsp;<%= period.title %>&nbsp;&nbsp;(<%= period.group.group_short_name %>) </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </td>
+        <td>
+          <%= link_to edit_course_element_path(course_element, course_id: course_element.course.id), class: 'btn btn-default btn-sm' do %>
+            <span class="fa fa-edit"></span>
+            Редактировать
+          <% end %>
+          <%= link_to course_element_path(course_element), class: 'btn btn-danger btn-sm',
+                      data: {confirm: "Вы уверены что хотите удалить элемент курса: #{course_element.theme}?"}, method: :delete do %>
+            <span class="fa fa-remove"></span>
+            Удалить
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <script>
+    $('.ui.accordion').accordion();
+  </script>
+<% end %>
