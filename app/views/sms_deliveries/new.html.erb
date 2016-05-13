@@ -1,4 +1,9 @@
-<% provide(:create, 'Создать рассылку') %>
+<% if params[:action] == 'new' %>
+    <% provide(:create, 'Создать рассылку') %>
+<% else %>
+    <% provide(:create, 'Переотправить') %>
+<% end %>
+
 <div class="page-header">
   <div class="ui breadcrumb">
     <%= link_to 'Рассылки', sms_deliveries_url(resource_id: 1) %>

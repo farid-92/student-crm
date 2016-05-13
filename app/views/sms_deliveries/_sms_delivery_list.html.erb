@@ -5,6 +5,7 @@
     Добавить рассылку
   <% end %>
 </div>
+
 <% if @messages.blank? %>
   <div class="notification margin-top-30">
     <i>Добавьте рассылку</i>
@@ -27,14 +28,20 @@
         <td><%= sms_delivery.title.capitalize %></td>
         <td><%= sms_delivery.contact_list.title.capitalize %></td>
         <td><%= sms_delivery.content %></td>
-        <td><%= sms_delivery.delivery_time.strftime('%Y-%m-%d-%H-%M') %></td>
+        <td><%= sms_delivery.delivery_time.strftime('%d/%m/%Y %H-%M') %></td>
         <td>
           <div class="delivery-control-btns">
-            <%= link_to edit_sms_delivery_url(sms_delivery), class: 'btn btn-sm btn-default' do %>
-              <span class="fa fa-edit"></span>     Редактировать
-            <% end %>
-            <%= link_to send_sms_path(sms_delivery), class: 'btn btn-sm btn-primary send-now-btn', id: sms_delivery.id do %>
-              <span class="fa fa-send-o"></span>     Отправить сейчас
+            <% if sms_delivery.status == false %>
+              <%= link_to edit_sms_delivery_url(sms_delivery), class: 'btn btn-sm btn-default' do %>
+                <span class="fa fa-edit"></span>     Редактировать
+              <% end %>
+              <%= link_to send_sms_path(sms_delivery), class: 'btn btn-sm btn-primary send-now-btn', id: sms_delivery.id do %>
+                <span class="fa fa-send-o"></span>     Отправить сейчас
+              <% end %>
+            <% else %>
+                <%= link_to sms_resend_path(sms_delivery), class: 'btn btn-sm btn-default' do %>
+                    <span class="fa fa-reply"></span>     Переотправить
+                <% end %>
             <% end %>
             <%= link_to sms_delivery_path(sms_delivery), method: :delete, data: {confirm: 'are you sure?'}, class: 'btn btn-sm btn-danger' do %>
               <span class="fa fa-remove"></span>     Удалить

@@ -31,9 +31,8 @@
         <div class="dropzone" id="my-awesome-dropzone" data-url="<%= import_custom_lists_path %>">
     </div>
     </div>
-    <div class="margin-left-30">
+    <div class="margin-left-30 align-center">
       <%= f.submit yield(:create), class: 'ui primary button' %>
-      <%= f.submit yield(:resend), :name => "resend[#{@sms.id}]", class: 'ui red button' unless @sms.new_record? %>
     </div>
   <% end %>
 </div>

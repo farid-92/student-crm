@@ -56,6 +56,13 @@ class SmsDeliveriesController < ApplicationController
     redirect_to sms_deliveries_url(resource_id: 1)
   end
 
+  def resend_message
+    @sms = SmsDelivery.find(params[:id])
+    @sms = SmsDelivery.new(@sms.attributes)
+    render :new
+  end
+
+
   private
 
   def get_sms_params

@@ -4,6 +4,8 @@ class SmsDelivery < ActiveRecord::Base
   belongs_to :contact_list
   belongs_to :sender
 
+  before_validation :fill_title
+
   validates :title, presence: true, length: { maximum: 70 }
   validates :content, presence: true, length: { maximum: 800 }
   validates :contact_list, presence: true
