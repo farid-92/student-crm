@@ -54,3 +54,5 @@ gem 'numbers_and_words'
 
 # Cron job
 gem 'whenever', :require => false
+
+gem 'ckeditor'
