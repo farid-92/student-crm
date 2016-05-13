@@ -1,0 +1,2 @@
+class CourseElementsController < ApplicationController
+end
