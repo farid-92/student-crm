@@ -1,0 +1,45 @@
+<div class="page-header">
+  <div class="ui breadcrumb">
+    <div class="active section">Все курсы</div>
+    <div class="divider"> / </div>
+  </div>
+  <div class="course-wrapper">
+    <h5 class="text-center">Управление</h5>
+  </div>
+</div>
+
+<div id="context2">
+
+  <div class="ui secondary menu admin-course-index course-btns-wrapper">
+    <%= link_to 'Список курсов', '#', class: 'item active', remote: true, data: {tab: 'all-courses'} %>
+    <%= link_to 'Список пользователей', '#', class: 'item', remote: true, data: {tab: 'all-students'} %>
+    <div class="course-new-resources">
+      <%= link_to '#', class: 'btn btn-default' do %> <!-- new_course_path(course_id: @course) -->
+          <span class="fa fa-plus-circle"></span>
+          Новый курс
+      <% end %>
+      <%= link_to '#', class: 'btn btn-default', id: 'new-user' do %> <!-- new_student_path(course_id: @course) -->
+          <span class="fa fa-plus-circle"></span>
+          Новый пользователь
+      <% end %>
+    </div>
+  </div>
+
+  <div class="ui tab active" data-tab="all-courses" id="all-courses">
+    <%= render 'courses/get_courses_list' %>
+  </div>
+  <div class="ui tab" data-tab="all-students" id="all-students">
+  </div>
+
+</div>
+
+<script>
+  $('#context2 .menu .item').tab({
+    context: 'parent'
+  });
+</script>
+<% if Group.all.blank? %>
+    <script>
+      $('#new-user').addClass('disabled');
+    </script>
+<% end %>

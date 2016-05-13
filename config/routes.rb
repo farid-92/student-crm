@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'users#index'
+  root 'courses#index'
 
   devise_for :users
   scope :member do
@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   resources :custom_lists do
     collection {post :import}
   end
+
+  resources :courses
 
   post 'sms_deliveries/:id/send' => 'sms_deliveries#send_message', as: 'sms_send_message'
   get 'select_objects/select_group/:id' => 'select_objects#select_group', as: 'select_groups'

@@ -2,8 +2,10 @@
 <div class="admin-mark-up">
   <div class="ui inverted top fixed menu main-menu">
     <div class="header item">
-      <span class="fa fa-university"></span>
-      &nbsp;IT Attractor Plus
+      <%= link_to root_path do %>
+        <span class="fa fa-university"></span>
+        &nbsp;IT Attractor Plus
+      <% end %>
     </div>
     <%= link_to users_path, class: 'item' do %>
         <span class="fa fa-diamond"></span>

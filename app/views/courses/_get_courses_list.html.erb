@@ -1,0 +1,35 @@
+<% if @courses.blank? %>
+  <i>На данный момент еще не созданы курсы</i>
+<% else %>
+  <table class="ui four column selectable celled table" id="admin-courses-list">
+    <thead>
+    <tr>
+      <th><i class="fa fa-bank"></i> Курсы</th>
+      <th><i class="fa fa-group"></i> Группы</th>
+      <th><i class="fa fa-book"></i> Раздатки</th>
+      <th><i class="fa fa-gear"></i> Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @courses.each do |course| %>
+      <tr>
+        <td><i class="folder icon"></i><%= link_to course.name, show_course_index_path(course.id, resource: 2) %></td>
+        <td><i class="folder icon"></i><%= link_to course.groups.count, show_course_index_path(course.id, resource: 2) %></td>
+        <td><i class="folder icon"></i><%= link_to course.course_elements.count, show_course_index_path(course, resource: 3), data: {course_id: course.id} %></td>
+        <td>
+          <%= link_to edit_course_path(course), class: 'btn btn-default btn-sm' do %>
+            <span class="fa fa-edit"></span>
+            Редактировать
+          <% end %>
+
+          <%= link_to course_path(course), class: 'btn btn-danger btn-sm',
+                      data: {confirm: "Вы уверены что хотите удалить курс: #{course.name}?"}, method: :delete do %>
+            <span class="fa fa-remove"></span>
+            Удалить
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
