@@ -15,7 +15,7 @@
     <%= link_to 'Группы курса', show_course_groups_path(@course), class: 'item', remote: true, data: {tab: 'groups'}, id: 'course-groups-link' %>
     <%= link_to 'Раздатки', get_course_elements_path(@course), class: 'item', remote: true, data: {tab: 'course-elements'}, id: 'course-elements-link' %>
     <div class="course-new-resources">
-      <%= link_to '#', class: 'btn btn-default' do %> <!--new_group_path(course_id: @course.id)-->
+      <%= link_to new_group_path(course_id: @course.id), class: 'btn btn-default' do %>
           <span class="fa fa-plus-circle"></span>
           Группа
       <% end %>
@@ -27,6 +27,7 @@
   </div>
 
   <div class="ui tab" data-tab="groups" id="course-group">
+    <%= render 'courses/groups' %>
   </div>
   <div class="ui tab" data-tab="course-elements" id="course-elements">
   </div>

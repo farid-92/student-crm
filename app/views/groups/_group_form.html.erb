@@ -1,0 +1,35 @@
+<div class="ui-form-width">
+  <%= form_for @group, html: {class: 'ui equal width form'} do |f| %>
+    <%= f.hidden_field :course_id, value: @course.id %>
+    <div class="fields">
+      <div class="field <%= 'error' if @group.errors[:name].any? %>">
+        <%= f.label :name %>
+        <%= f.text_field :name, placeholder: 'Название группы' %>
+        <%= render 'shared/field_errors', object: @group, field_name: :name %>
+      </div>
+
+      <div class="field <%= 'error' if @group.errors[:group_short_name].any? %>">
+        <%= f.label :group_short_name %>
+        <%= f.text_field :group_short_name, placeholder: 'Краткое название группы' %>
+        <%= render 'shared/field_errors', object: @group, field_name: :group_short_name %>
+      </div>
+    </div>
+    <h6 class="ui dividing header">Длительность</h6>
+    <div class="fields">
+      <div class="field">
+        <%= f.label :starts_at %>
+        <%= f.date_select :starts_at, {start_year: 2016, end_year: Date.today.year + 20, order: [:day, :month, :year]} , {class: 'ui search dropdown' } %>
+      </div>
+
+      <div class="field">
+        <%= f.label :ends_at %>
+        <%= f.date_select :ends_at, {start_year: 2016, end_year: Date.today.year + 20, order: [:day, :month, :year]} , {class: 'ui search dropdown' } %>
+      </div>
+    </div>
+    <h6 class="ui dividing header"></h6>
+    <div class="margin-left-20">
+      <%= f.submit yield(:btn), class: 'ui primary button active' %>
+    </div>
+  <% end %>
+
+</div>

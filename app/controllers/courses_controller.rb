@@ -45,10 +45,10 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @resource = params[:resource]
   end
-
-  def course_groups
-    @course = Course.find(params[:id])
-  end
+  #
+  # def course_groups
+  #   @course = Course.find(params[:id])
+  # end
 
 
 

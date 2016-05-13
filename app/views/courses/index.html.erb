@@ -14,7 +14,7 @@
     <%= link_to 'Список курсов', '#', class: 'item active', remote: true, data: {tab: 'all-courses'} %>
     <%= link_to 'Список пользователей', '#', class: 'item', remote: true, data: {tab: 'all-students'} %>
     <div class="course-new-resources">
-      <%= link_to  new_course_path(course_id: @course), class: 'btn btn-default' do %>
+      <%= link_to  new_course_path, class: 'btn btn-default' do %>
           <span class="fa fa-plus-circle"></span>
           Новый курс
       <% end %>
