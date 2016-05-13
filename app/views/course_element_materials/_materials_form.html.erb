@@ -1,0 +1,25 @@
+<div class="embedded-editor ">
+  <%= form_for @material, html: {class: 'ui equal width form'} do |f| %>
+    <%= f.hidden_field :course_element_id, value: @course_element.id %>
+    <div class="two fields">
+      <div class="field <%= 'error' if @material.errors[:title].any? %>">
+        <%= f.label :title %>
+        <%= f.text_field :title, placeholder: 'Название раздатки' %>
+        <%= render 'shared/field_errors', object: @material, field_name: :title %>
+      </div>
+      <div class="field  <%= 'error' if @material.errors[:element_type].any? %>">
+        <%= f.label :element_type %>
+        <%= f.select :element_type, ['Лекция', 'Лабораторная', 'Курсовая', 'Домашка'], {prompt: 'Выберите тип раздатки'}, class: 'ui dropdown'%>
+        <%= render 'shared/field_errors', object: @material, field_name: :element_type %>
+      </div>
+    </div>
+    <div class="field  <%= 'error' if @material.errors[:content].any? %>">
+      <%= f.label :content %>
+      <%= f.cktext_area :content, :class => 'ckeditor', :ckeditor => { :uiColor => '#FFFFFF', :height => '300px', :toolbar => 'standard', :language => 'ru'} %>
+      <%= render 'shared/field_errors', object: @material, field_name: :content %>
+    </div>
+    <div class="text-center">
+      <%= f.submit yield(:btn), class: 'ui primary button active big' %>
+    </div>
+  <% end %>
+</div>

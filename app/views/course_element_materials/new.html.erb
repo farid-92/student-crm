@@ -1,0 +1,14 @@
+<% provide(:btn, 'Создать материал') %>
+<div class="page-header">
+  <div class="ui breadcrumb">
+    <%= link_to 'Все курсы', courses_path(@course_element.course) %>
+    <div class="divider"> / </div>
+    <%= link_to  @course_element.course.name, show_course_index_path(@course_element.course, resource: 3) %>
+    <div class="divider"> / </div>
+    <%= link_to @course_element.theme, course_element_materials_path(course_element_id: @course_element.id) %>
+    <div class="divider"> / </div>
+    <div class="active section">Создание материала</div>
+    <div class="divider"> / </div>
+  </div>
+</div>
+<%= render 'course_element_materials/materials_form' %>
