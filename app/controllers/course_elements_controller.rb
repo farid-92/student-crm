@@ -34,6 +34,14 @@ class CourseElementsController < ApplicationController
     end
   end
 
+  def destroy
+    @course_element = CourseElement.find(params[:id])
+    @course_element.destroy
+    flash[:danger] = 'Вы удалили папку'
+
+    redirect_to show_course_index_url(@course_element.course, resource: 3)
+  end
+
   private
 
   def get_course_element_params
