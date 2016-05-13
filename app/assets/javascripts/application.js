@@ -17,6 +17,7 @@
 //= require semantic-ui
 //= require bootstrap-datepicker/core
 //= require dropzone
+//= require ckeditor/init
 //= require_tree .
 
 
