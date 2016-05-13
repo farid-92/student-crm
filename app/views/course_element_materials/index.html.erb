@@ -4,7 +4,7 @@
     <div class="divider"> / </div>
     <%= link_to @course_element.course.name, show_course_index_path(@course_element.course, resource: 3) %>
     <div class="divider"> / </div>
-    <div class="active section">Раздатки курса</div>
+    <div class="active section"> <%= @course_element.theme  %></div>
     <div class="divider"> / </div>
   </div>
   <h5 class="text-center">Раздатки курса</h5>
