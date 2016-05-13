@@ -20,6 +20,23 @@ class CourseElementMaterialsController < ApplicationController
     end
   end
 
+  def edit
+    @course_element = CourseElement.find(params[:course_element_id])
+    @material = CourseElementMaterial.find(params[:id])
+  end
+
+  def update
+    @material = CourseElementMaterial.find(params[:id])
+    @course_element = CourseElement.find(params[:course_element_material][:course_element_id])
+    if @material.update(get_material_params)
+      flash[:success] = 'Вы успешно отредактировали раздатку'
+
+      redirect_to course_element_materials_path(course_element_id: @course_element.id)
+    else
+      render 'edit'
+    end
+  end
+
   private
 
   def get_material_params
