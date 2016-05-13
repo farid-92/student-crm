@@ -11,11 +11,28 @@ class CourseElementsController < ApplicationController
 
       redirect_to show_course_index_url(@course_element.course, resource: 3)
     else
-      @course = @course_element.course
+      # @course = @course_element.course
       render action: 'new'
     end
   end
 
+  def edit
+    @course_element = CourseElement.find(params[:id])
+    @course = Course.find(params[:course_id])
+  end
+
+  def update
+    @course_element = CourseElement.find(params[:id])
+
+    if @course_element.update(get_course_element_params)
+      flash[:success] = 'Вы успешно отредактировали тему'
+
+      redirect_to show_course_index_url(@course_element.course, resource: 3)
+    else
+      @course = @course_element.course
+      render 'edit'
+    end
+  end
 
   private
 
