@@ -41,6 +41,11 @@ class CoursesController < ApplicationController
     redirect_to courses_url
   end
 
+  def course_index
+    @course = Course.find(params[:id])
+    @resource = params[:resource]
+  end
+
 
   private
 

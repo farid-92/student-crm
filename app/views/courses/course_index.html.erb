@@ -1,0 +1,47 @@
+<div class="page-header">
+  <div class="ui breadcrumb">
+    <%= link_to 'Все курсы', courses_path(@course) %>
+    <div class="divider"> / </div>
+    <div class="active section"><%= @course.name %></div>
+    <div class="divider"> / </div>
+  </div>
+  <div class="course-wrapper">
+    <h5 class="text-center">Курс <%= @course.name %></h5>
+  </div>
+</div>
+<div id="context2">
+
+  <div class="ui secondary menu admin-course-index course-btns-wrapper">
+    <%= link_to 'Группы курса', show_course_groups_path(@course), class: 'item', remote: true, data: {tab: 'groups'}, id: 'course-groups-link' %>
+    <%= link_to 'Раздатки', get_course_elements_path(@course), class: 'item', remote: true, data: {tab: 'course-elements'}, id: 'course-elements-link' %>
+    <div class="course-new-resources">
+      <%= link_to '#', class: 'btn btn-default' do %> <!--new_group_path(course_id: @course.id)-->
+          <span class="fa fa-plus-circle"></span>
+          Группа
+      <% end %>
+      <%= link_to '#', class: 'btn btn-default' do %> <!--new_course_element_path(course_id: @course.id)-->
+          <span class="fa fa-plus-circle"></span>
+          Раздатка
+      <% end %>
+    </div>
+  </div>
+
+  <div class="ui tab" data-tab="groups" id="course-group">
+  </div>
+  <div class="ui tab" data-tab="course-elements" id="course-elements">
+  </div>
+
+</div>
+
+<script>
+  $('#context2 .menu .item').tab({context: 'parent'});
+</script>
+<% if @resource == '3' %>
+    <script>
+      $('#course-elements-link, #course-elements').addClass('active');
+    </script>
+<% elsif @resource == '2' %>
+    <script>
+      $('#course-groups-link, #course-group').addClass('active');
+    </script>
+<% end %>
