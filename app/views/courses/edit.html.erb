@@ -1,0 +1,11 @@
+<% provide(:create, 'Редактировать курс') %>
+<div class="page-header">
+  <div class="ui breadcrumb">
+    <%= link_to 'Все курсы', courses_path(@course) %>
+    <div class="divider"> / </div>
+    <div class="active section">Редактирование курса</div>
+    <div class="divider"> / </div>
+  </div>
+  <h5 class="text-center">Редактирование курса</h5>
+</div>
+<%= render 'courses/course_form' %>
