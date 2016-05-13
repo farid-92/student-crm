@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   resources :courses
   resources :groups
+  resources :course_elements
 
   post 'sms_deliveries/:id/send' => 'sms_deliveries#send_message', as: 'sms_send_message'
   get 'select_objects/select_group/:id' => 'select_objects#select_group', as: 'select_groups'
