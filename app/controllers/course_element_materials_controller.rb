@@ -37,6 +37,14 @@ class CourseElementMaterialsController < ApplicationController
     end
   end
 
+  def destroy
+    @material = CourseElementMaterial.find(params[:id])
+    @material.destroy
+    flash[:danger] = 'Вы успешно удалили раздатку'
+
+    redirect_to :back
+  end
+
   private
 
   def get_material_params
