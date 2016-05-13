@@ -43,10 +43,12 @@ ActiveRecord::Schema.define(version: 20160511102542) do
 
   create_table "courses", force: :cascade do |t|
     t.string   "name"
-    t.date     "starts_at"
-    t.date     "ends_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "course_short_name"
+    t.string   "practical_time"
+    t.string   "theoretical_time"
+    t.string   "cost"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "custom_lists", force: :cascade do |t|

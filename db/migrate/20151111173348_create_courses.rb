@@ -2,8 +2,11 @@ class CreateCourses < ActiveRecord::Migration
   def change
     create_table :courses do |t|
       t.string :name
-      t.date :starts_at
-      t.date :ends_at
+      t.string :course_short_name
+      t.string :practical_time
+      t.string :theoretical_time
+      t.string :cost
+
 
       t.timestamps null: false
     end
