@@ -34,6 +34,14 @@ class GroupsController < ApplicationController
     end
   end
 
+  def destroy
+    @group = Group.find(params[:id])
+    @group.destroy
+    flash[:danger] = 'Вы удалили группу'
+
+    redirect_to show_course_index_path(@group.course, resource: 2)
+  end
+
   private
 
   def get_group_params
