@@ -33,6 +33,14 @@ class CoursesController < ApplicationController
     end
   end
 
+  def destroy
+    @course = Course.find(params[:id])
+    @course.destroy
+    flash[:danger] = 'Вы удалили курс'
+
+    redirect_to courses_url
+  end
+
 
   private
 
