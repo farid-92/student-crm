@@ -4,6 +4,7 @@ class CreateCourseElementMaterials < ActiveRecord::Migration
       t.string :title
       t.text :content
       t.string :element_type
+      t.references :course_element, index: true, foreign_key: true
 
       t.timestamps null: false
     end
