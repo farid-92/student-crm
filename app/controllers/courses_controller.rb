@@ -46,6 +46,11 @@ class CoursesController < ApplicationController
     @resource = params[:resource]
   end
 
+  def course_groups
+    @course = Course.find(params[:id])
+  end
+
+
 
   private
 

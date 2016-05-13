@@ -1,0 +1,38 @@
+<% if @course.groups.blank? %>
+  <i>На данный момент еще не созданы группы</i>
+<% else %>
+  <table class="ui selectable celled table" id="course-index-table">
+    <thead>
+    <tr>
+      <th><i class="fa fa-diamond"></i> Группы</th>
+      <th><i class="fa fa-group"></i> Занятия</th>
+      <th><i class="fa fa-group"></i> Блоки</th>
+      <th><i class="fa fa-hourglass-start"></i> Начало</th>
+      <th><i class="fa fa-hourglass-end"></i> Конец</th>
+      <th><i class="fa fa-gear"></i>  Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @course.groups.order(created_at: :desc).each do |group| %>
+      <tr>
+        <td><i class="folder icon"></i> <%= link_to "#{group.name}(#{group.group_short_name})", show_group_index_path(group, resource: 1) %></td>
+        <td><i class="folder icon"></i> <%= link_to group.periods.count, show_group_index_path(group, resource: 2) %></td>
+        <td><i class="folder icon"></i> <%= link_to group.study_units.count, show_group_index_path(group, resource: 3) %></td>
+        <td><%= group.starts_at %></td>
+        <td><%= group.ends_at %></td>
+        <td>
+          <%= link_to edit_group_path(group, course_id: @course.id), class: 'btn btn-default btn-sm' do %>
+            <span class="fa fa-edit"></span>
+            Редактировать
+          <% end %>
+          <%= link_to group_path(group), class: 'btn btn-danger btn-sm',
+                      data: {confirm: "Вы уверены что хотите удалить группу: #{group.name}?"}, method: :delete do %>
+            <span class="fa fa-remove"></span>
+            Удалить
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
