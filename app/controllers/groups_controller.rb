@@ -15,6 +15,25 @@ class GroupsController < ApplicationController
       render action: 'new'
     end
   end
+
+  def edit
+    @group = Group.find(params[:id])
+    @course = Course.find(params[:course_id])
+  end
+
+  def update
+    @group = Group.find(params[:id])
+
+    if @group.update(get_group_params)
+      flash[:success] = 'Вы успешно отредактировали группу'
+
+      redirect_to show_course_index_path(@group.course, resource: 2)
+    else
+      @course = @group.course
+      render action: 'edit'
+    end
+  end
+
   private
 
   def get_group_params
