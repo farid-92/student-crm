@@ -15,7 +15,7 @@
       <tr>
         <td>
           <i class="folder icon"></i>
-          <%= link_to course_element.theme, '#' %> <!--materials_path(course_element_id: course_element.id)-->
+          <%= link_to course_element.theme, course_element_materials_path(course_element_id: course_element.id) %>
         </td>
         <td>
           <i class="fa fa-file-text"></i>

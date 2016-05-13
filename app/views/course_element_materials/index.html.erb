@@ -1,0 +1,56 @@
+<div class="page-header">
+  <div class="ui breadcrumb">
+    <%= link_to 'Все курсы', root_path %>
+    <div class="divider"> / </div>
+    <%= link_to @course_element.course.name, show_course_index_path(@course_element.course, resource: 3) %>
+    <div class="divider"> / </div>
+    <div class="active section">Раздатки курса</div>
+    <div class="divider"> / </div>
+  </div>
+  <h5 class="text-center">Раздатки курса</h5>
+</div>
+<div class="materials-btn">
+  <%= link_to new_course_element_material_path(course_element_id: @course_element.id), class: 'btn btn-default' do %>
+      <span class="fa fa-file-word-o"></span>&nbsp;
+      Добавить материал
+  <% end %>
+</div>
+<div class="margin-top-30">
+  <% if @course_element.course_element_materials.blank? %>
+      <span>Нет раздаток</span>
+  <% else %>
+      <table class="ui selectable celled three column table">
+        <thead>
+        <tr>
+          <th><i class="fa fa-file-text"></i> Название</th>
+          <th><i class="fa fa-file"></i> Тип</th>
+          <th><i class="fa fa-gear"></i> Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @course_element.course_element_materials.order(created_at: :desc).each do |material| %>
+            <tr>
+              <td>
+                <i class="folder icon"></i>
+                <%= link_to material.title, course_element_material_path(material) %>
+              </td>
+              <td>
+                <%= material.element_type %>
+              </td>
+              <td>
+                <%= link_to edit_course_element_material_path(material, course_element_id: @course_element.id), class: 'btn btn-default btn-sm' do %>
+                    <span class="fa fa-edit"></span>
+                    Редактировать
+                <% end %>
+                <%= link_to course_element_material_path(material), class: 'btn btn-danger btn-sm',
+                            data: {confirm: "Вы уверены что хотите удалить: #{material.title}?"}, method: :delete do %>
+                    <span class="fa fa-remove"></span>
+                    Удалить
+                <% end %>
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+  <% end %>
+</div>
