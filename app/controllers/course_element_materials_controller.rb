@@ -1,0 +1,3 @@
+class CourseElementMaterialsController < ApplicationController
+
+end
