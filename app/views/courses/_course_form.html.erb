@@ -1,0 +1,42 @@
+<div class="ui-form-width">
+  <%= form_for @course, html: {class: 'ui equal width form'} do |f| %>
+
+    <div class="fields">
+      <div class="field <%= 'error' if @course.errors[:name].any? %>">
+        <%= f.label :name %>
+        <%= f.text_field :name, placeholder: 'Название курса' %>
+        <%= render 'shared/field_errors', object: @course, field_name: :name %>
+      </div>
+
+      <div class="field <%= 'error' if @course.errors[:name].any? %>">
+        <%= f.label :course_short_name %>
+        <%= f.text_field :course_short_name, placeholder: 'Краткое имя' %>
+        <%= render 'shared/field_errors', object: @course, field_name: :course_short_name %>
+      </div>
+    </div>
+    <div class="three fields">
+      <div class="field <%= 'error' if @course.errors[:cost].any? %>">
+        <%= f.label :cost %>
+        <%= f.text_field :cost, placeholder: 'Стоимость курса' %>
+        <%= render 'shared/field_errors', object: @course, field_name: :cost %>
+      </div>
+      <div class="field <%= 'error' if @course.errors[:practical_time].any? %>">
+        <%= f.label :practical_time %>
+        <%= f.text_field :practical_time, placeholder: 'Практика (в часах)' %>
+        <%= render 'shared/field_errors', object: @course, field_name: :practical_time %>
+      </div>
+      <div class="field <%= 'error' if @course.errors[:theoretical_time].any? %>">
+        <%= f.label :theoretical_time %>
+        <%= f.text_field :theoretical_time, placeholder: 'Теория (в часах)' %>
+        <%= render 'shared/field_errors', object: @course, field_name: :theoretical_time %>
+      </div>
+    </div>
+    <h6 class="ui dividing header"></h6>
+    <div class="ui buttons margin-left-20">
+      <%= link_to 'Вернуться к списку', courses_path, class: 'ui button' %>
+      <div class="or"></div>
+      <%= f.submit yield(:create), class: 'ui primary button active' %>
+    </div>
+
+  <% end %>
+</div>

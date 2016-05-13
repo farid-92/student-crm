@@ -29,4 +29,18 @@ Rails.application.routes.draw do
 
   get 'download_pasport/:id' => 'users#download_passport', as: 'download_passport'
 
+# COURSES
+  get 'course_index/:id' => 'courses#course_index', as: 'show_course_index'
+  get 'course_groups/:id' => 'courses#course_groups', as: 'show_course_groups'
+  get 'get_course_elements/:id' => 'courses#course_elements', as: 'get_course_elements'
+  get 'course_periods/:id' => 'courses#group_periods', as: 'show_group_periods'
+  get 'group_students/:id' => 'courses#group_index', as: 'show_group_index'
+  get 'courses_list' => 'courses#courses_list', as: 'show_courses_list'
+  get 'students_list' => 'courses#students_list', as: 'show_students_list'
+  get 'study_units_list/:id' => 'courses#group_study_units', as: 'show_group_study_units'
+  get 'get_group_students/:id' => 'courses#render_group_students', as: 'render_group_students'
+  get 'get_performance_chart/:id' => 'courses#render_performance_chart', as: 'render_performance_chart'
+  get 'get_student_homeworks_stats/:id' => 'courses#student_homeworks_data', as: 'show_student_homeworks_stats'
+
+
 end
