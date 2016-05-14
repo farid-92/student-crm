@@ -37,6 +37,10 @@ class CourseElementMaterialsController < ApplicationController
     end
   end
 
+  def show
+    @material = CourseElementMaterial.find(params[:id])
+  end
+
   def destroy
     @material = CourseElementMaterial.find(params[:id])
     @material.destroy
