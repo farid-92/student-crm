@@ -224,3 +224,8 @@ When(/^администратор заполняет поля формы$/) do |
     fill_in row[:field], :with => row[:value]
   end
 end
+
+When(/^нажимает на кнопку "([^"]*)" у курса "([^"]*)"$/) do |button, course|
+  course = "//td//a[contains(text(), '#{course}')]/../../td/a[contains(text()[last()], '#{button}')]"
+  find(:xpath, course).click
+end
