@@ -31,3 +31,7 @@ admin = User.create!(name: 'Фарид',
       email: "#{name}.#{surname}@gmail.com",
   )
 end
+
+
+Course.create!(name: 'HTML-верстальщик',course_short_name: 'HTML',
+               practical_time: 96,theoretical_time: 100,cost: 72000)

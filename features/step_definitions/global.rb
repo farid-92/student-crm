@@ -210,3 +210,17 @@ When(/^заполняет форму создания получателя$/) do
   find(:xpath, sender_xpath).click
   fill_in 'contact_list_title', :with => 'test_contact_list'
 end
+
+
+# COURSE
+
+When(/^находится на странице курсов$/) do
+  visit ('/courses')
+end
+
+When(/^администратор заполняет поля формы$/) do |table|
+  # table is a table.hashes.keys # => [:field, :value]
+  for row in table.hashes
+    fill_in row[:field], :with => row[:value]
+  end
+end

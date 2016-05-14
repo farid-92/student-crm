@@ -30,6 +30,11 @@ User.create!(name: 'Иван',
                      password_confirmation: password
 )
 
+Course.create!(name: 'HTML-верстальщик',course_short_name: 'HTML',
+               practical_time: 96,theoretical_time: 100,cost: 72000)
+
+
+
 SmsServiceAccount.create!(login: 'glokzs',password: 'Dgthtlrpdtplfv', user_id: 1 )
 SmsServiceAccount.create!(login: 'test',password: '123123123', user_id: 1 )
 
