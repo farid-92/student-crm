@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :groups
   resources :course_elements
   resources :course_element_materials
+  resources :course_element_files, only: [:show, :create, :destroy]
 
   post 'sms_deliveries/:id/send' => 'sms_deliveries#send_message', as: 'sms_send_message'
   get 'select_objects/select_group/:id' => 'select_objects#select_group', as: 'select_groups'
