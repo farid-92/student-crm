@@ -7,7 +7,6 @@
     <h5 class="text-center">Управление</h5>
   </div>
 </div>
-
 <div class="row">
   <%= link_to new_user_path, class: 'btn btn-default', id: 'new-user' do %>
       <span class="fa fa-plus-circle"></span>
@@ -15,45 +14,4 @@
   <% end %>
 </div>
 <br />
-<table class="table table-striped" id="users_table">
-  <tr>
-    <th class="align-center">№</th>
-    <th>ФИО</th>
-    <th class="align-center"></th>
-    <th><span class="fa fa-phone"></span> Основной телефон</th>
-    <th><span class="fa fa-mail-forward"></span> E-mail</th>
-    <th><span class="fa fa-skype"></span> Skype</th>
-    <th><span class="fa fa-group"></span> Группа</th>
-    <th><span class="fa fa-info-circle"></span> Курс</th>
-    <th class="align-center action"><span class="fa fa-cog"></span> Действия</th>
-
-  </tr>
-
-  <% counter = 0 %>
-  <% @users.each do |user| %>
-      <tr>
-        <td class="align-center"><%= counter += 1 %></td>
-        <td><%= link_to user.full_name, user_path(user) %></td>
-        <td>
-          <%= link_to edit_user_path(user) do %>
-              <span class="fa fa-pencil fa-fw" id="user_<%= counter %>" ></span>
-          <% end %>
-        </td>
-        <td><%= user.first_phone %></td>
-        <td><%= user.email %></td>
-        <td><%= user.skype %></td>
-        <td>Группа</td>
-        <td>Курс</td>
-        <td class="align-center">
-
-          <%= link_to user_path(user),
-                      data: {confirm: 'Вы действительно хотите удалить этого пользователя?'}, method: :delete do %>
-              <span class="fa fa-trash" id="delete_user_<%= counter %>"></span>
-
-          <% end %>
-
-        </td>
-      </tr>
-  <% end %>
-</table>
-
+<%= render 'users/user_table'  %>

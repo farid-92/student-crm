@@ -18,7 +18,7 @@
           <span class="fa fa-plus-circle"></span>
           Новый курс
       <% end %>
-      <%= link_to '#', class: 'btn btn-default', id: 'new-user' do %> <!-- new_student_path(course_id: @course) -->
+      <%= link_to new_user_path , class: 'btn btn-default', id: 'new-user' do %>
           <span class="fa fa-plus-circle"></span>
           Новый пользователь
       <% end %>
@@ -29,6 +29,7 @@
     <%= render 'courses/get_courses_list' %>
   </div>
   <div class="ui tab" data-tab="all-students" id="all-students">
+    <%= render 'users/user_table' %>
   </div>
 
 </div>
