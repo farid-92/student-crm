@@ -229,3 +229,7 @@ When(/^нажимает на кнопку "([^"]*)" у курса "([^"]*)"$/) d
   course = "//td//a[contains(text(), '#{course}')]/../../td/a[contains(text()[last()], '#{button}')]"
   find(:xpath, course).click
 end
+
+When(/^в списке пропадает "([^"]*)"$/) do |element|
+  page.should have_no_content(element)
+end
