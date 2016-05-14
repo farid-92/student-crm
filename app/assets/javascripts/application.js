@@ -20,7 +20,10 @@
 //= require ckeditor/init
 //= require_tree .
 
-
+function printpage()
+{
+    window.print();
+}
 //this function calls alert close method to close an alert
 function clearFlash() {
     $(".alert").alert('close');

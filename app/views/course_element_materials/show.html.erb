@@ -10,8 +10,9 @@
     <div class="divider"> / </div>
   </div>
 </div>
+<%= link_to 'Распечатать', ' ' , onclick: "printpage()", class: 'btn btn-default print pull-right' %>
 <div class="embedded-editor">
-  <div class="ui segment">
+  <div class="ui segment no-border">
     <%= raw@material.content %>
   </div>
 </div>
