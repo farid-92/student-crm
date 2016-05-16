@@ -28,7 +28,7 @@ module CapybaraVariablesHelper
                      'August', 'September', 'October',
                      'November', 'December'].sample
     @random_year = rand(1980...2005)
-    @gender = ['Мужской', 'Женский'].sample
+    @gender = ['Мужщина', 'Женщина'].sample
 
 
   end

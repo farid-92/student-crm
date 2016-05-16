@@ -24,6 +24,7 @@ When(/^пользователю выдается ошибка "([^"]*)"$/) do |e
 end
 
 When(/^пользователь попадает на главную страницу$/) do
+  click_link('Список пользователей')
   expect(page).to have_selector('#users_table')
   expect(page).to have_content('ФИО')
 end
