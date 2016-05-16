@@ -234,3 +234,7 @@ end
 When(/^в списке пропадает "([^"]*)"$/) do |element|
   page.should have_no_content(element)
 end
+
+When(/^видит содержимое курса$/) do
+  expect(page).to have_content('Курс HTML-верстальщик')
+end
