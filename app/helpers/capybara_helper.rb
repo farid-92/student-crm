@@ -53,23 +53,26 @@ module CapybaraHelper
   end
 
   def new_group_dates
+    variables_for_creating_new_group
+    data_for_creating_new_user
     find(:xpath, @starts_at_xpath+"//div[(@class='ui search dropdown selection')][1]").click
-    find(:xpath, @starts_at_xpath+@item_xpath % @rand_day).click
+    find(:xpath, @starts_at_xpath+@item_xpath % @random_day).click
 
     find(:xpath, @starts_at_xpath+"//div[contains(@class, 'dropdown selection')][2]").click
-    find(:xpath, @starts_at_xpath+@item_xpath % @rand_month).click
+    find(:xpath, @starts_at_xpath+@item_xpath % @random_month).click
 
     find(:xpath, @starts_at_xpath+"//div[contains(@class, 'dropdown selection')][3]").click
-    find(:xpath, @starts_at_xpath+@item_xpath % @rand_year).click
+    find(:xpath, @starts_at_xpath+@item_xpath % @random_year_for_group).click
 
     find(:xpath, @ends_at_xpath+"//div[contains(@class, 'dropdown selection')][1]").click
-    find(:xpath, @ends_at_xpath+@item_xpath % @rand_day).click
+    find(:xpath, @ends_at_xpath+@item_xpath % @random_day).click
 
     find(:xpath, @ends_at_xpath+"//div[contains(@class, 'dropdown selection')][2]").click
-    find(:xpath, @ends_at_xpath+@item_xpath % @rand_month).click
+    find(:xpath, @ends_at_xpath+@item_xpath % @random_month).click
 
     find(:xpath, @ends_at_xpath+"//div[contains(@class, 'dropdown selection')][3]").click
-    find(:xpath, @ends_at_xpath+@item_xpath % @rand_year).click
+    find(:xpath, @ends_at_xpath+@item_xpath % @random_year_for_group).click
+    find(:xpath, @ends_at_xpath+@item_xpath % @random_year_for_group).click
   end
 
 

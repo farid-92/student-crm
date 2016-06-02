@@ -27,9 +27,15 @@ module CapybaraVariablesHelper
                      'April', 'May', 'June', 'July',
                      'August', 'September', 'October',
                      'November', 'December'].sample
-    @random_year = rand(1980...2005)
+    @random_year = rand(1980...2025)
     @gender = ['Мужщина', 'Женщина'].sample
 
-
   end
+
+  def variables_for_creating_new_group
+    @starts_at_xpath = "//div[@class='fields'][2]//div[@class='field'][1]"
+    @ends_at_xpath = "//div[@class='fields'][2]//div[@class='field'][2]"
+    @random_year_for_group = rand(2015...2025)
+  end
+
 end

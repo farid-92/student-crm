@@ -238,3 +238,14 @@ end
 When(/^видит содержимое курса$/) do
   expect(page).to have_content('Курс HTML-верстальщик')
 end
+
+# Groups
+
+
+When(/^заполняет форму создания группы$/) do |table|
+  # table is a table.hashes.keys # => [:field, :value]
+  for row in table.hashes
+    fill_in row[:field], :with => row[:value]
+  end
+  new_group_dates
+end
