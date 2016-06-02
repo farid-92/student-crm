@@ -1,0 +1,83 @@
+<div class="page-header">
+  <div class="ui breadcrumb">
+    <div class="active section"><%= link_to 'Все курсы', courses_path(@group.course) %></div>
+    <div class="divider"> / </div>
+    <div class="active section"><%= link_to @group.course.name, show_course_index_path(@group.course, resource: 2) %></div>
+    <div class="divider"> / </div>
+    <div class="active section"><%= @group.name %></div>
+    <div class="divider"> / </div>
+  </div>
+  <h5 class="text-center">Группа <%= @group.name %></h5>
+</div>
+<div id="context3">
+  <div class="ui secondary menu course-btns-wrapper">
+    <%= link_to 'Список студентов', render_group_students_path(@group), class: 'item', remote: true, data: {tab: 'group-list'}, id: 'group-list-link' %>
+    <%= link_to 'Занятия', render_group_students_path(@group), class: 'item', remote: true, data: {tab: 'group-periods'}, id: 'group-periods-link' %>
+    <%= link_to 'Учебные блоки', render_group_students_path(@group), class: 'item', remote: true, data: {tab: 'group-study-units'}, id: 'group-study-units-link' %>
+    <%= link_to 'Ведомости', '#', class: 'item', remote: true, data: {tab: 'reports'}, id: 'reports' %>
+    <%= link_to 'Диаграммы', render_performance_chart_path(@group), class: 'item', remote: true, data: {tab: 'performance-chart'} %>
+    <div class="course-new-resources">
+      <%= link_to '#', class: 'btn btn-default' do %>
+        <span class="fa fa-plus-circle"></span>
+        Занятие
+      <% end %>
+      <%= link_to '#', class: 'btn btn-default' do %>
+        <span class="fa fa-plus-circle"></span>
+        Учебный блок
+      <% end %>
+    </div>
+  </div>
+  <div class="ui tab" data-tab="group-list" id="group-list">
+
+  </div>
+  <div class="ui tab" data-tab="group-periods" id="group-periods">
+
+  </div>
+  <div class="ui tab" data-tab="group-study-units" id="group-study-units">
+
+  </div>
+  <div class="ui tab" data-tab="reports" id="reports">
+    <div class="group-filters" id="admin-reports-filters">
+    </div>
+    <!--TABS-->
+    <div class="admin-reports" id="show-admin-reports">
+      <h5 class="ui dividing header">Выберите ведомость для просмотра: </h5>
+      <div id="context1">
+        <div class="ui secondary menu">
+          <a class="item active" data-tab="attendance"><strong>Посещаемость</strong></a>
+          <a class="item" data-tab="homeworks"><strong>Домашние задания</strong></a>
+        </div>
+        <div class="ui tab active" data-tab="attendance">
+          <div class="admin-reports-attendance-table" id="admin-reports-attendance-table">
+            <%# render 'admin_reports/admin_attendances_table' %>
+          </div>
+        </div>
+        <div class="ui tab" data-tab="homeworks">
+          <div class="admin-reports-homeworks-table" id="admin-reports-homeworks-table">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--TABS-->
+  </div>
+  <div class="ui tab" data-tab="performance-chart" id="performance-chart">
+    <div class="homeworks">
+    </div>
+    <div class="attendance">
+    </div>
+  </div>
+</div>
+
+<% if @resource == '1' %>
+<script>
+  $('#group-list, #group-list-link').addClass('active');
+</script>
+<% elsif @resource == '2' %>
+  <script>
+    $('#group-periods, #group-periods-link').addClass('active');
+  </script>
+<% elsif @resource == '3' %>
+  <script>
+    $('#group-study-units, #group-study-units-link').addClass('active');
+  </script>
+<% end %>

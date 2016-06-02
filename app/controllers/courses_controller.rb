@@ -51,7 +51,10 @@ class CoursesController < ApplicationController
   #   @course = Course.find(params[:id])
   # end
 
-
+  def group_index
+    @group = Group.find(params[:id])
+    @resource = params[:resource]
+  end
 
   private
 
