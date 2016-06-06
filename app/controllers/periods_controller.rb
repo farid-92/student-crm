@@ -38,6 +38,41 @@ class PeriodsController < ApplicationController
     @group = Group.find(@period.group)
   end
 
+  def edit
+    @period = Period.find(params[:id])
+    @group = Group.find(params[:group_id])
+  end
+
+  def update
+    @period = Period.find(params[:id])
+    @group = Group.find(params[:period][:group_id])
+    group_periods = Period.where(group_id: @group.id).order(:lesson_number)
+    current_period_datetime = Date.parse(params[:period][:commence_datetime])
+    if current_period_datetime.present?
+      group_periods.each do |period|
+        unless @period.commence_datetime.to_date == current_period_datetime.to_date
+          if period.commence_datetime.to_date == current_period_datetime.to_date
+            flash.now[:danger] = 'На указанную дату уже создано занятие'
+            render 'edit' and return
+          end
+        end
+      end
+    end
+
+    prev_commence_datetime = @period.commence_datetime.to_date
+    prev_lesson_number = @period.lesson_number.to_i
+
+    if @period.update(get_period_params)
+      update_periods_order(group_periods, current_period_datetime, prev_commence_datetime, prev_lesson_number)
+
+      flash[:success] = 'Вы успешно отредактировали занятие'
+
+      redirect_to show_group_index_url(@group, resource: 2)
+    else
+      render action: 'edit'
+    end
+  end
+
   private
 
   def get_period_params
