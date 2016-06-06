@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160514081948) do
+ActiveRecord::Schema.define(version: 20160602142648) do
 
   create_table "attendances", force: :cascade do |t|
     t.integer  "student_id"
@@ -112,9 +112,18 @@ ActiveRecord::Schema.define(version: 20160514081948) do
     t.datetime "commence_datetime"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.string   "lesson_number"
+    t.integer  "study_unit_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer  "course_id"
+    t.integer  "group_id"
   end
 
   add_index "periods", ["course_element_id"], name: "index_periods_on_course_element_id"
+  add_index "periods", ["course_id"], name: "index_periods_on_course_id"
+  add_index "periods", ["group_id"], name: "index_periods_on_group_id"
+  add_index "periods", ["study_unit_id"], name: "index_periods_on_study_unit_id"
 
   create_table "recipient_depositories", force: :cascade do |t|
     t.integer  "user_id"
