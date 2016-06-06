@@ -17,7 +17,7 @@
     <%= link_to 'Ведомости', '#', class: 'item', remote: true, data: {tab: 'reports'}, id: 'reports' %>
     <%= link_to 'Диаграммы', render_performance_chart_path(@group), class: 'item', remote: true, data: {tab: 'performance-chart'} %>
     <div class="course-new-resources">
-      <%= link_to '#', class: 'btn btn-default' do %>
+      <%= link_to new_period_path(group_id: @group), class: 'btn btn-default' do %>
         <span class="fa fa-plus-circle"></span>
         Занятие
       <% end %>
@@ -31,7 +31,7 @@
 
   </div>
   <div class="ui tab" data-tab="group-periods" id="group-periods">
-
+    <%= render 'courses/get_group_periods' %>
   </div>
   <div class="ui tab" data-tab="group-study-units" id="group-study-units">
 
@@ -67,7 +67,52 @@
     </div>
   </div>
 </div>
+<script>
+  $('#context3 .menu .item').tab({context: 'parent'});
+  $('#context1 .menu .item').tab({context: 'parent'});
 
+  var tabReport = $('#reports');
+
+  tabReport.click(function(){
+    $.ajax({
+      type: 'GET',
+      data: {
+        "group_id": <%= @group.id %>
+      },
+      url: "#",
+      success: function(data){
+        $('#admin-reports-filters').html(data).fadeIn(50);
+        $('#show-admin-reports').fadeIn(200);
+      }
+    })
+  });
+
+  tabReport.click(function(){
+    $.ajax({
+      type: 'GET',
+      data: {
+        "group_id": <%= @group.id %>
+      },
+      url: "/admin_reports_attendance/",
+      success: function(data){
+        $('#admin-reports-attendance-table').html(data).fadeIn(50);
+      }
+    })
+  });
+
+  tabReport.click(function(){
+    $.ajax({
+      type: 'GET',
+      data: {
+        "group_id": <%= @group.id %>
+      },
+      url: "/admin_reports_homework/",
+      success: function(data){
+        $('#admin-reports-homeworks-table').html(data).fadeIn(50);
+      }
+    })
+  });
+</script>
 <% if @resource == '1' %>
 <script>
   $('#group-list, #group-list-link').addClass('active');

@@ -1,0 +1,37 @@
+<div class="ui-form-width">
+  <%= form_for @period, html: {class: 'ui equal width form'} do |f| %>
+    <%= f.hidden_field :group_id, :value => @group.id %>
+    <div class="fields">
+      <div class="field <%= 'error' if @period.errors[:title].any? %>">
+        <%= f.label :title %>
+        <%= f.text_field :title, placeholder: 'Заголовок занятия' %>
+        <%= render 'shared/field_errors', object: @period, field_name: :title %>
+      </div>
+    </div>
+    <h6 class="ui dividing header">Дата проведения, Время проведения</h6>
+    <div class="two fields">
+      <div class="field <%= 'error' if @period.errors[:commence_datetime].any? %>">
+        <%= f.text_field :commence_datetime, data: {provide: 'datepicker', date_format: 'dd/mm/yyyy'}, placeholder: 'Выберите дату занятия'  %>
+        <%= render 'shared/field_errors', object: @period, field_name: :commence_datetime %>
+      </div>
+      <div class="field">
+        <%= f.time_select :start_time, {:default => {:hour => '19', :minute => '00'}}, {class: 'ui search dropdown'} %>&nbsp;&nbsp;-&nbsp;&nbsp;
+        <%= f.time_select :end_time, {:default => {:hour => '21', :minute => '00'}}, {class: 'ui search dropdown'} %>
+      </div>
+    </div>
+    <h6 class="ui dividing header"></h6>
+    <div class="course-elements-collapse margin-bottom-30">
+      <a class="btn btn-danger btn-sm" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        <i class="fa fa-hand-o-right"></i>
+        &nbsp;Указать раздатку
+      </a>
+    </div>
+    <div class="collapse" id="collapseExample">
+      <%= f.collection_select :course_element_id, CourseElement.where(course_id: @group.course.id), :id, :theme, {prompt: 'Выберите занятия для раздатки'}, { class: 'ui search fluid dropdown' }  %>
+    </div>
+    <h6 class="ui dividing header"></h6>
+    <div class="margin-left-20">
+      <%= f.submit yield(:btn), class: 'ui primary button active' %>
+    </div>
+  <% end %>
+</div>
