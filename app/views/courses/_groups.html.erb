@@ -16,8 +16,8 @@
     <% @course.groups.order(created_at: :desc).each do |group| %>
       <tr>
         <td><i class="folder icon"></i> <%= link_to "#{group.name}(#{group.group_short_name})", show_group_index_path(group, resource: 1) %></td>
-        <td><i class="folder icon"></i> <%= link_to '#' %></td> <!--group.periods.count, show_group_index_path(group, resource: 2)-->
-        <td><i class="folder icon"></i> <%= link_to '#' %></td> <!--group.study_units.count, show_group_index_path(group, resource: 3)-->
+        <td><i class="folder icon"></i> <%= link_to group.periods.count, show_group_index_path(group, resource: 2) %></td>
+        <td><i class="folder icon"></i> <%= link_to group.study_units.count, show_group_index_path(group, resource: 3) %></td>
         <td><%= group.starts_at.strftime('%d/%m/%Y') %></td>
         <td><%= group.ends_at.strftime('%d/%m/%Y') %></td>
         <td>

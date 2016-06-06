@@ -18,6 +18,23 @@ class StudyUnitsController < ApplicationController
     end
   end
 
+  def edit
+    @study_unit = StudyUnit.find(params[:id])
+    @group = Group.find(params[:group_id])
+  end
+
+  def update
+    @study_unit = StudyUnit.find(params[:id])
+    @group = Group.find(params[:study_unit][:group_id])
+    @study_unit.group_id = @group.id
+    if @study_unit.update(get_study_unit_params)
+      flash[:success] = 'Вы успешно отредактировали учебный блок'
+
+      redirect_to show_group_index_path(@group, resource: 3)
+    else
+      render action: 'edit'
+    end
+  end
   private
 
   def get_study_unit_params
