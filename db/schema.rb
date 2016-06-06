@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20160602142648) do
 
   create_table "attendances", force: :cascade do |t|
-    t.integer  "student_id"
+    t.integer  "user_id"
     t.integer  "period_id"
     t.boolean  "attended"
     t.datetime "created_at", null: false
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20160602142648) do
   end
 
   add_index "attendances", ["period_id"], name: "index_attendances_on_period_id"
-  add_index "attendances", ["student_id"], name: "index_attendances_on_student_id"
+  add_index "attendances", ["user_id"], name: "index_attendances_on_user_id"
 
   create_table "contact_lists", force: :cascade do |t|
     t.string   "title"
@@ -85,14 +85,14 @@ ActiveRecord::Schema.define(version: 20160602142648) do
 
   create_table "group_memberships", force: :cascade do |t|
     t.integer  "group_id"
-    t.integer  "student_id"
+    t.integer  "user_id"
     t.boolean  "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_index "group_memberships", ["group_id"], name: "index_group_memberships_on_group_id"
-  add_index "group_memberships", ["student_id"], name: "index_group_memberships_on_student_id"
+  add_index "group_memberships", ["user_id"], name: "index_group_memberships_on_user_id"
 
   create_table "groups", force: :cascade do |t|
     t.integer  "course_id"
@@ -113,7 +113,6 @@ ActiveRecord::Schema.define(version: 20160602142648) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.string   "lesson_number"
-    t.integer  "study_unit_id"
     t.datetime "start_time"
     t.datetime "end_time"
     t.integer  "course_id"
@@ -123,7 +122,6 @@ ActiveRecord::Schema.define(version: 20160602142648) do
   add_index "periods", ["course_element_id"], name: "index_periods_on_course_element_id"
   add_index "periods", ["course_id"], name: "index_periods_on_course_id"
   add_index "periods", ["group_id"], name: "index_periods_on_group_id"
-  add_index "periods", ["study_unit_id"], name: "index_periods_on_study_unit_id"
 
   create_table "recipient_depositories", force: :cascade do |t|
     t.integer  "user_id"
