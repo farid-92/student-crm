@@ -1,0 +1,27 @@
+<div class="margin-top-30">
+  <% if @period.course_element.blank? || @period.course_element.course_element_materials.blank? %>
+    <span>Нет раздаток</span>
+  <% else %>
+    <table class="ui selectable celled two column table">
+      <thead>
+      <tr>
+        <th><i class="fa fa-file-text"></i> Название</th>
+        <th><i class="fa fa-file"></i> Тип</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @period.course_element.course_element_materials.order(created_at: :desc).each do |material| %>
+        <tr>
+          <td>
+            <i class="folder icon"></i>
+            <%= link_to material.title, 'show_student_theme_materials_path(material)' %>
+          </td>
+          <td>
+            <%= material.element_type %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

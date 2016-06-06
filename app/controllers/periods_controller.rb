@@ -33,6 +33,10 @@ class PeriodsController < ApplicationController
     end
   end
 
+  def show
+    @period = Period.find(params[:id])
+    @group = Group.find(@period.group)
+  end
 
   private
 
