@@ -4,4 +4,7 @@ class Group < ActiveRecord::Base
   has_many :users, through: :group_memberships
 
   has_many :periods, dependent: :destroy
+
+  has_many :study_units
+
 end
