@@ -35,6 +35,16 @@ class StudyUnitsController < ApplicationController
       render action: 'edit'
     end
   end
+
+  def destroy
+    @group = Group.find(params[:group_id])
+    @study_unit = StudyUnit.find(params[:id])
+    @study_unit.destroy
+    flash[:danger] = 'Вы удалили учебный блок'
+
+    redirect_to show_group_index_path(@group, resource: 3)
+  end
+
   private
 
   def get_study_unit_params
