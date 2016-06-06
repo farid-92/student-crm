@@ -78,6 +78,21 @@ class PeriodsController < ApplicationController
     end
   end
 
+  def destroy
+    @period = Period.find(params[:id])
+    group = @period.group
+    upcoming_periods = []
+    current_period_datetime = Date.parse(params[:commence_datetime])
+    group.periods.each do |period|
+      upcoming_periods.push period if period.commence_datetime.to_date > current_period_datetime.to_date
+    end
+    upcoming_periods.each {|period| period.update_attribute(:lesson_number, period.lesson_number.to_i - 1) } if upcoming_periods.present?
+    @period.destroy
+    flash[:danger] = 'Вы удалили занятие'
+
+    redirect_to show_group_index_path(group, resource: 2)
+  end
+
   private
 
   def get_period_params

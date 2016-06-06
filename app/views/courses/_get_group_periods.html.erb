@@ -11,7 +11,7 @@
     </tr>
     </thead>
     <tbody>
-    <% @group.periods.order(commence_datetime: :desc).each do |period| %>
+    <% @group.periods.each do |period| %>
       <tr>
         <td><%= period.lesson_number %></td>
         <td><i class="folder icon"></i> <%= link_to period.title, period_path(period) %></td>
