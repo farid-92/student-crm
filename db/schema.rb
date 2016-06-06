@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160602142648) do
+ActiveRecord::Schema.define(version: 20160606085111) do
 
   create_table "attendances", force: :cascade do |t|
     t.integer  "user_id"
@@ -117,11 +117,13 @@ ActiveRecord::Schema.define(version: 20160602142648) do
     t.datetime "end_time"
     t.integer  "course_id"
     t.integer  "group_id"
+    t.integer  "study_unit_id"
   end
 
   add_index "periods", ["course_element_id"], name: "index_periods_on_course_element_id"
   add_index "periods", ["course_id"], name: "index_periods_on_course_id"
   add_index "periods", ["group_id"], name: "index_periods_on_group_id"
+  add_index "periods", ["study_unit_id"], name: "index_periods_on_study_unit_id"
 
   create_table "recipient_depositories", force: :cascade do |t|
     t.integer  "user_id"
@@ -166,6 +168,17 @@ ActiveRecord::Schema.define(version: 20160602142648) do
   end
 
   add_index "sms_service_accounts", ["user_id"], name: "index_sms_service_accounts_on_user_id"
+
+  create_table "study_units", force: :cascade do |t|
+    t.string   "unit"
+    t.integer  "periods_id"
+    t.integer  "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "study_units", ["group_id"], name: "index_study_units_on_group_id"
+  add_index "study_units", ["periods_id"], name: "index_study_units_on_periods_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                       default: "", null: false
