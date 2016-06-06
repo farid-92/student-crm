@@ -54,12 +54,21 @@ class CoursesController < ApplicationController
   def group_index
     @group = Group.find(params[:id])
     @resource = params[:resource]
+    get_uniq_study_units
   end
 
   private
 
   def get_course_params
     params.require(:course).permit(:name, :course_short_name, :cost, :practical_time, :theoretical_time)
+  end
+
+  def get_uniq_study_units
+    @study_units = []
+    @group.study_units.each do |study_unit|
+      @study_units.push study_unit
+    end
+    @study_units.uniq!
   end
 
 end

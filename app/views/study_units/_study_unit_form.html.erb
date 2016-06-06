@@ -1,0 +1,35 @@
+<div class="ui-form-width">
+  <%= form_for @study_unit, html: {class: 'ui equal width form'} do |f| %>
+    <%= f.hidden_field :group_id, value: @group.id %>
+    <div class="fields">
+      <div class="field <%= 'error' if @study_unit.errors[:unit].any? %>">
+        <%= f.label :unit %>
+        <%= f.text_field :unit, placeholder: 'Название учебного блока' %>
+        <%= render 'shared/field_errors', object: @study_unit, field_name: :unit %>
+      </div>
+    </div>
+    <div class="fields">
+      <% if @study_unit.new_record? %>
+        <% if @group.periods.where(study_unit_id: nil).any? %>
+          <div class="field <%= 'error' if @study_unit.errors[:periods].any? %>">
+            <%= f.label :periods %>
+            <%= f.collection_select :period_ids, Period.where(group_id: @group).order(:lesson_number).where(study_unit_id: nil), :id, :get_lesson_number_and_title, {prompt: 'Выберите занятия для учебного блока' },  {multiple: true, class: 'ui multiple fluid dropdown'}  %>
+            <%= render 'shared/field_errors', object: @study_unit, field_name: :periods %>
+          </div>
+        <% else %>
+          <span>Нет периодов для учебного блока</span>
+        <% end %>
+      <% else %>
+      <div class="field <%= 'error' if @study_unit.errors[:periods].any? %>">
+        <%= f.label :periods %>
+        <%= f.collection_select :period_ids, Period.where(group_id: @group).order(:lesson_number), :id, :get_lesson_number_and_title, {prompt: 'Выберите занятия для учебного блока' },  {multiple: true, class: 'ui multiple fluid dropdown'}  %>
+        <%= render 'shared/field_errors', object: @study_unit, field_name: :periods %>
+      </div>
+      <% end %>
+    </div>
+    <h6 class="ui dividing header"></h6>
+    <div class="margin-left-20">
+      <%= f.submit yield(:btn), class: 'ui primary button active' %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,46 @@
+<% if @study_units.empty? %>
+  <i>На данный момент нет учебных блоков</i>
+<% else %>
+<table class="ui selectable celled two column table">
+  <thead>
+  <tr>
+    <th><i class="fa fa-diamond"></i> Название</th>
+    <th><i class="fa fa-gear"></i> Действия</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @study_units.reverse.each do |study_unit| %>
+    <tr>
+      <td>
+        <div class="ui accordion">
+          <div class="title">
+            <i class="folder icon"></i>
+            <%= link_to "#{study_unit.unit} (#{study_unit.periods.count})", '#' %>
+          </div>
+          <div class="content">
+            <% study_unit.periods.each do |period| %>
+              <div class="ui list">
+                <div class="header">&nbsp;&nbsp;&nbsp;&nbsp;<i class="file icon"></i><%= period.lesson_number %>.&nbsp;&nbsp;<%= period.title %></div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </td>
+      <td>
+        <%= link_to edit_study_unit_path(study_unit, group_id: @group.id), class: 'btn btn-default btn-sm' do %>
+          <span class="fa fa-edit"></span>
+          Редактировать
+        <% end %>
+        <%= link_to study_unit_path(study_unit, group_id: @group.id), class: 'btn btn-danger btn-sm', data: {confirm: 'Вы уверены что хотите удалить учебный блок?'}, method: :delete do %>
+          <span class="fa fa-remove"></span>
+          Удалить
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<script>
+  $('.ui.accordion').accordion();
+</script>
+<% end %>

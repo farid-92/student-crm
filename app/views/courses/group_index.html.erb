@@ -21,7 +21,7 @@
         <span class="fa fa-plus-circle"></span>
         Занятие
       <% end %>
-      <%= link_to '#', class: 'btn btn-default' do %>
+      <%= link_to new_study_unit_path(group_id: @group), class: 'btn btn-default' do %>
         <span class="fa fa-plus-circle"></span>
         Учебный блок
       <% end %>
@@ -34,6 +34,7 @@
     <%= render 'courses/get_group_periods' %>
   </div>
   <div class="ui tab" data-tab="group-study-units" id="group-study-units">
+    <%= render 'courses/get_group_study_units' %>
 
   </div>
   <div class="ui tab" data-tab="reports" id="reports">
