@@ -7,6 +7,11 @@ class User < ActiveRecord::Base
   has_many :recipient_depositories
   has_many :contact_lists, through: :recipient_depositories
 
+  has_many :group_memberships
+  has_many :groups, through: :group_memberships
+
+  has_many :attendances
+  has_many :periods, through: :attendances
 
   validates :name, presence: true, length: {maximum: 250}
   validates :surname, presence: true, length: {maximum: 250}
