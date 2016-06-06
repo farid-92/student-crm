@@ -38,6 +38,11 @@ class PeriodsController < ApplicationController
     @group = Group.find(@period.group)
   end
 
+  def show_material
+    @material = CourseElementMaterial.find(params[:id])
+    @period = Period.find(params[:period_id])
+  end
+
   def edit
     @period = Period.find(params[:id])
     @group = Group.find(params[:group_id])

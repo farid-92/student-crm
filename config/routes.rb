@@ -48,4 +48,8 @@ Rails.application.routes.draw do
   get 'get_student_homeworks_stats/:id' => 'courses#student_homeworks_data', as: 'show_student_homeworks_stats'
 
 
+
+  get 'periods/:period_id/material_theme/:id' => 'periods#show_material', as: 'show_student_theme_materials'
+
+
 end

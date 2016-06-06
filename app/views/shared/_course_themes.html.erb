@@ -14,9 +14,10 @@
         <tr>
           <td>
             <i class="folder icon"></i>
-            <%= link_to material.title, 'show_student_theme_materials_path(material)' %>
+            <%= link_to material.title, show_student_theme_materials_path(material, period_id: @period) %>
           </td>
           <td>
+
             <%= material.element_type %>
           </td>
         </tr>
