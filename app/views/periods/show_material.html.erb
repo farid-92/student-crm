@@ -13,7 +13,8 @@
   <h5 class="text-center"><%= @material.title %> (<%= @material.element_type %>)</h5>
 </div>
 <div class="embedded-editor">
-  <div class="ui segment">
+  <div class="ui segment no-border">
+    <%= link_to 'Распечатать', ' ' , onclick: "printpage()", class: 'btn btn-default print pull-right' %>
     <%= raw@material.content %>
   </div>
 </div>
