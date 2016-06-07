@@ -26,8 +26,16 @@
         <td><%= user.first_phone %></td>
         <td><%= user.email %></td>
         <td><%= user.skype %></td>
-        <td>Группа</td>
-        <td>Курс</td>
+        <td>
+          <% user.groups.each do |group| %>
+              <%= group.name %>
+          <% end %>
+        </td>
+        <td>
+          <% user.groups.each do |group| %>
+              <%= group.course.name %>
+          <% end %>
+        </td>
         <td class="align-center">
 
           <%= link_to user_path(user),

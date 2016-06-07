@@ -12,14 +12,18 @@
         <tr>
           <td>Курс:</td>
           <td>
-            Курс
+            <% @user.groups.each do |group| %>
+                <%= group.course.name %>
+            <% end %>
           </td>
         </tr>
 
         <tr>
           <td>Группа: </td>
           <td>
-            Группа
+            <% @user.groups.each do |group| %>
+                <%= group.name %>
+            <% end %>
           </td>
         </tr>
 

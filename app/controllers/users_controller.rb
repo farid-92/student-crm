@@ -11,7 +11,17 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     generated_password = Devise.friendly_token.first(8)
     @user.password = generated_password
+    group_ids = params[:user][:group_ids]
+    group_ids.shift
+    if group_ids.blank?
+      flash[:danger] = 'Выберите группу для студента'
+      render 'new' and return
+    end
     if @user.save
+      group_ids.each do |group_id|
+        GroupMembership.create!(group_id: group_id, user_id: @user.id, active: true)
+      end
+      # save_to_student_dependencies(group_ids)
       flash[:notice] = 'Студент успешно добавлен'
      # UserMailer.password_email(@user, generated_password).deliver_now
 
@@ -27,13 +37,36 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    unless params[:user][:group_id].nil?
+      @group = Group.find(params[:user][:group_id])
+    end
 
-    if @user.update(user_params)
-      flash[:notice] = 'Данные успешно отредактированы!'
-      redirect_to users_path
+    group_ids = params[:user][:group_ids]
+    group_ids.shift
+    if group_ids.blank?
+      flash[:danger] = 'Выберите группу для студента'
+      render 'edit'
+      return
+    end
+    course_ids = []
+    group_ids.each do |group_id|
+      course_ids.push Group.find(group_id).course.id
+    end
+    if course_ids.uniq.length == course_ids.length
+      if @user.update(user_params)
+        group_ids.each do |group_id|
+          GroupMembership.create!(group_id: group_id, user_id: @user.id, active: true)
+        end
+        flash[:notice] = 'Данные успешно отредактированы!'
+        redirect_to users_path
+      else
+        render 'edit'
+      end
     else
+      flash.now[:danger] = 'Студент не может быть одновременно в двух группах одного курса'
       render 'edit'
     end
+
   end
 
   def show
@@ -87,6 +120,17 @@ class UsersController < ApplicationController
         :photo,
         :passport_photo,
     )
+  end
+
+  def save_to_student_dependencies(group_ids)
+    group_ids.each do |group_id|
+      group = Group.find(group_id)
+      if group.periods.exists?
+        save_to_dependencies(group)
+      else
+        break
+      end
+    end
   end
 
 

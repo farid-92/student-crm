@@ -64,6 +64,11 @@
       </div>
       <h6 class="ui dividing header">Распределение</h6>
       <div class="inline fields">
+        <%= f.label :group %>
+        <div class="field <%= 'error' if @user.errors[:group_ids].any? %>">
+          <%= f.collection_select :group_ids, Group.all, :id, :get_group_and_course, {prompt: 'Выберите группу'}, {class: 'ui fluid dropdown', multiple: true} %>
+          <span><%= render 'shared/field_errors', object: @user, field_name: :groups %></span>
+        </div>
       </div>
 
       <h6 class="ui dividing header">Прикрепление</h6>
