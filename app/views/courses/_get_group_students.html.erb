@@ -1,0 +1,57 @@
+<% if @group.users.any? %>
+  <table class="ui very basic celled table">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Имя</th>
+      <th>Телефон</th>
+      <th>Имейл</th>
+      <th>Скайп</th>
+      <th>Действия</th>
+    </tr></thead>
+    <tbody>
+    <% counter = 0 %>
+    <% @sorted_list.each do |user| %>
+      <tr>
+        <td><%= counter += 1 %></td>
+        <td>
+          <h4 class="ui image header">
+            <%= image_tag user.photo.url(:thumb), class: 'ui mini rounded image' %>
+            <div class="content">
+              <%= link_to "#{user.surname.capitalize} #{user.name.capitalize}", show_student_homeworks_stats_path(user, group_id: @group) %>
+
+                <div class="sub header">Студент</div>
+
+            </div>
+          </h4>
+        </td>
+        <td>
+          <%= user.first_phone %>
+        </td>
+        <td>
+          <%= user.email %>
+        </td>
+        <td>
+          <%= user.skype %>
+        </td>
+        <td>
+          <%= link_to user_path(user, group_id: @group.id), class: 'btn btn-default btn-sm' do %>
+            <span class="fa fa-eye"></span>
+            Посмотреть
+          <% end %>
+          <%= link_to edit_user_path(user, group_id: @group.id), class: 'btn btn-default btn-sm' do %>
+            <span class="fa fa-edit"></span>
+            Редактировать
+          <% end %>
+          <%= link_to user_path(user), class: 'btn btn-danger btn-sm', data: {confirm: 'Вы уверены что хотите удалить?'}, method: :delete do %>
+            <span class="fa fa-remove"></span>
+            Удалить
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <i>Нет студентов</i>
+<% end %>

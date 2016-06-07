@@ -54,6 +54,9 @@ class CoursesController < ApplicationController
   def group_index
     @group = Group.find(params[:id])
     @resource = params[:resource]
+    students = []
+    teachers = []
+    get_sorted_list(students, teachers)
     get_uniq_study_units
   end
 
@@ -61,6 +64,15 @@ class CoursesController < ApplicationController
 
   def get_course_params
     params.require(:course).permit(:name, :course_short_name, :cost, :practical_time, :theoretical_time)
+  end
+
+  def get_sorted_list(students, teachers)
+    @sorted_list = []
+    @group.users.each do |user|
+      students.push user # if student_access?(user)
+     # teachers.push user if teacher_access?(user)
+    end
+    @sorted_list = teachers + students
   end
 
   def get_uniq_study_units

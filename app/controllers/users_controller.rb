@@ -25,7 +25,7 @@ class UsersController < ApplicationController
       flash[:notice] = 'Студент успешно добавлен'
      # UserMailer.password_email(@user, generated_password).deliver_now
 
-      redirect_to users_path
+      redirect_to root_path
     else
       render 'new'
     end
@@ -58,7 +58,7 @@ class UsersController < ApplicationController
           GroupMembership.create!(group_id: group_id, user_id: @user.id, active: true)
         end
         flash[:notice] = 'Данные успешно отредактированы!'
-        redirect_to users_path
+        redirect_to root_path
       else
         render 'edit'
       end
@@ -92,7 +92,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    redirect_to users_path
+    redirect_to root_path
   end
 
   def download_passport
