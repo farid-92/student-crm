@@ -1,0 +1,3 @@
+class StudentHwsController < ApplicationController
+
+end
