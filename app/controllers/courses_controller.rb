@@ -74,6 +74,31 @@ class CoursesController < ApplicationController
     get_sorted_list(students, teachers)
   end
 
+  def render_performance_chart
+    @group = Group.find(params[:id])
+    students = []
+    @chart_data = []
+    @chart_attendance_data = []
+    past_periods = Period.past(@group.id)
+    @group.users.each do |user|
+      students.push user # if student_access?(user)
+    end
+    get_homeworks_data(past_periods, students)
+    get_attendance_data(past_periods, students)
+  end
+
+  def student_homeworks_data
+    @user = User.find(params[:id])
+    @student_group = Group.find(params[:group_id])
+    periods = Period.past(@student_group.id)
+    @student_homework_data = []
+    Homework.where(user_id: @user, period_id: periods).joins(:period).order('periods.commence_datetime').each do |homework|
+      period = Period.find(homework.period_id)
+      @student_homework_data.push ["#{period.title.capitalize}", homework.score.to_i]
+    end
+  end
+
+
 
   private
 
@@ -97,5 +122,25 @@ class CoursesController < ApplicationController
     end
     @study_units.uniq!
   end
+
+
+  def get_homeworks_data(past_periods, students)
+    students.each do |student|
+      student_avg_score = Homework.where(user_id: student.id, period_id: past_periods).average(:score)
+      @chart_data.push ["#{student.surname.capitalize} #{student.name.capitalize}", student_avg_score]
+    end
+  end
+
+  def get_attendance_data(past_periods, students)
+    students.each do |student|
+      @student_past_periods = Attendance.where(user_id: student.id, period_id: past_periods).count.ceil
+      @student_past_periods = 1 if @student_past_periods == 0
+      student_past_attended_periods = Attendance.where(user_id: student.id, period_id: past_periods, attended: true).count.ceil
+      attendance_percent = (student_past_attended_periods * 100) / @student_past_periods
+      attendance_percent.round.to_i
+      @chart_attendance_data.push ["#{student.surname.capitalize} #{student.name.capitalize}", attendance_percent]
+    end
+  end
+
 
 end

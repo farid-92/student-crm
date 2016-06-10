@@ -1,0 +1,6 @@
+<% if @group.users.blank? %>
+  <i>Нет студентов</i>
+<% else %>
+<h5 class="ui dividing header">Домашние задания</h5>
+<%= bar_chart @chart_data, min: 0, max: 10, id: 'homeworks-diagram', height: "600px" %>
+<% end %>

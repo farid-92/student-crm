@@ -1,0 +1,21 @@
+<div class="page-header">
+  <div class="ui breadcrumb">
+    <div class="active section"><%= link_to 'Все курсы', courses_path(@student_group.course) %></div>
+    <div class="divider"> / </div>
+    <div class="active section"><%= link_to @student_group.course.name, show_course_index_path(@student_group.course, resource: 2) %></div>
+    <div class="divider"> / </div>
+    <div class="active section"><%= link_to @student_group.name, show_group_index_path(@student_group, resource: 1) %></div>
+    <div class="divider"> / </div>
+    <div class="active section"><%= @user.surname.capitalize + ' ' + @user.name.capitalize %></div>
+    <div class="divider"> / </div>
+  </div>
+  <h5 class="text-center"><%= @user.surname.capitalize + ' ' + @user.name.capitalize %></h5>
+</div>
+<% if @student_homework_data.blank? %>
+    <span>Нет занятий или прошедших занятий</span>
+<% else %>
+    <h5 class="ui dividing header">Домашние задания</h5>
+    <div class="chart">
+      <%= bar_chart @student_homework_data, min: 0, max: 10, height: '500px' %>
+    </div>
+<% end %>
