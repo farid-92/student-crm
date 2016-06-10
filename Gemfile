@@ -56,3 +56,6 @@ gem 'numbers_and_words'
 gem 'whenever', :require => false
 
 gem 'ckeditor'
+
+
+gem 'chartkick', '~> 1.2.4'
