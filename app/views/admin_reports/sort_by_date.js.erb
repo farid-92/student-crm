@@ -1,0 +1,15 @@
+var startDate = $('#start_date');
+var endDate = $('#end_date');
+var tableAttendance = $('#admin-reports-attendance-table');
+var tableHomework = $('#admin-reports-homeworks-table');
+<% if @periods.blank? %>
+  tableAttendance.html("По вашему запросу ничего не найдено");
+  tableHomework.html("По вашему запросу ничего не найдено");
+  startDate.val("");
+  endDate.val("");
+<% else %>
+  tableAttendance.html("<%= j render 'admin_reports/admin_attendances_table' %>");
+  tableHomework.html("<%= j render 'shared/homeworks_table' %>");
+  startDate.val("");
+  endDate.val("");
+<% end %>

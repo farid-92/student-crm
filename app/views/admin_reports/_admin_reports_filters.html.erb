@@ -1,0 +1,221 @@
+<h5 class="ui dividing header">Выберите учебный блок:</h5>
+<div class="sorting-wrapper">
+  <div class="show-current-btn">
+    <%= link_to '#', class: 'ui button current-unit', id: 'admin-reports-current-unit', data: { group_id: @group.id } do %>
+      <span class="fa fa-chevron-down"></span>
+      &nbsp;Текущий
+    <% end %>
+  </div>
+  <div class="show-prev-btn">
+    <%= link_to '#', class: 'ui button', id: 'admin-reports-previous-unit', data: { group_id: @group.id } do %>
+      <span class="fa fa-chevron-left"></span>
+      &nbsp;Предыдущий
+    <% end %>
+  </div>
+  <div class="show-all">
+    <%= link_to '#', class: 'ui button primary', id: 'admin-reports-show-all-units', data: { group_id: @group.id } do %>
+    <span class="fa fa fa-filter"></span>
+      &nbsp;Показать все
+    <% end %>
+  </div>
+  <div class="sort-by-unit">
+    <div class="study-unit-select">
+      <%= select_tag 'admin_reports_study_unit', options_from_collection_for_select(@group_study_units, 'id', 'unit'), prompt: 'Выберите учебный блок', class: 'ui dropdown', data: {group_id: @group.id} %>
+    </div>
+  </div>
+  <div class="control-panel">
+    <div class="sort-selects">
+      <%= form_tag admin_reports_sort_by_date_path(@group), remote: true, method: :get, class: 'ui form'  do %>
+        <div class="two fields">
+          <div class="field custom-field">
+            <%= text_field_tag :start_date, '', data: {provide: 'datepicker', date_format: 'dd/mm/yyyy'}, placeholder: 'Выберите начало даты', id: 'admin-start-date-field' %>
+          </div>
+          <div class="field">
+            <%= text_field_tag :end_date, '', data: {provide: 'datepicker', date_format: 'dd/mm/yyyy'}, placeholder: 'Выберите конец даты', id: 'admin-end-date-field' %>
+          </div>
+          <%= submit_tag 'Показать', class: 'ui button', id: 'admin-reports-sorting-btn', data: { group_id: @group.id }  %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% if @group_study_units.blank? %>
+  <script>
+    $('#admin_reports_study_unit').addClass('disabled');
+    $('#admin-reports-current-unit').addClass('disabled');
+    $('#admin-reports-previous-unit').addClass('disabled');
+  </script>
+<% end %>
+<% if Period.where(group_id: @group).blank? %>
+  <script>
+    $('#admin-reports-sorting-btn').addClass('disabled');
+    $('#admin-reports-show-all-units').addClass('disabled');
+    $('.field').addClass('disabled');
+  </script>
+<% end %>
+<script>
+
+  // ----------- SEMANTIC UI START -----------
+  $('select.dropdown').dropdown('set selected');
+  $('.ui.checkbox').checkbox();
+  $('.ui.dropdown').dropdown();
+  // ----------- SEMANTIC UI END -----------
+
+  $(function(){
+
+    $('#admin-reports-sorting-btn').click(function(){
+      $('#admin-reports-current-unit, #admin-reports-previous-unit, #admin-reports-show-all-units').removeClass('primary');
+    });
+
+    // ---------- SHOW-ALL-START ---------------
+
+    var AdminReportsShowAll = $('#admin-reports-show-all-units');
+    AdminReportsShowAll.click(function(event){
+      event.preventDefault();
+      var groupId = $(this).attr('data-group-id');
+      $.ajax({
+        type: 'GET',
+        data: {
+          "group_id": groupId
+        },
+        url: "/admin_reports_attendance/",
+        success: function(data){
+          $('#admin-reports-attendance-table').html(data);
+          $('.admin-reports-study-unit .text').html('Выберите учебный блок');
+          $('.admin-reports-study-unit .menu .item').removeClass('active selected');
+          $('#admin-reports-show-all-units').addClass('primary');
+          $('#admin-reports-current-unit, #admin-reports-previous-unit').removeClass('primary');
+        }
+      })
+    });
+
+    AdminReportsShowAll.click(function(event){
+      event.preventDefault();
+      var groupId = $(this).attr('data-group-id');
+      $.ajax({
+        type: 'GET',
+        data: {
+          "group_id": groupId
+        },
+        url: "/admin_reports_homework/",
+        success: function(data){
+          $('#admin-reports-homeworks-table').html(data);
+        }
+      })
+    });
+
+    // ---------- SHOW-ALL-END ---------------
+
+    //  ----------- STUDY-UNITS-START -----------------
+
+    var AdminReportsStudyUnit = $('#admin_reports_study_unit');
+
+    AdminReportsStudyUnit.change(function(){
+      var studyUnitId = $(this).val();
+      var groupId = $(this).attr('data-group-id');
+      $.ajax({
+        type: "get",
+        data: {
+          "study_unit_id": studyUnitId
+        },
+        url: '/admin_reports_attendance_ed_unit/' + groupId,
+        success: function(data) {
+          $('#admin-reports-attendance-table').html(data);
+          $('#admin-reports-current-unit, #admin-reports-previous-unit, #admin-reports-show-all-units').removeClass('primary');
+        }
+      });
+    });
+
+    AdminReportsStudyUnit.change(function(){
+      var studyUnitId = $(this).val();
+      var groupId = $(this).attr('data-group-id');
+      $.ajax({
+        type: "get",
+        data: {
+          "study_unit_id": studyUnitId
+        },
+        url: '/admin_reports_homework_ed_unit/' + groupId,
+        success: function(data) {
+          $('#admin-reports-homeworks-table').html(data);
+        }
+      });
+    });
+
+    //  ----------- STUDY-UNITS-END -----------------
+
+
+    //  ----------- CURRENT-STUDY-UNIT-START -----------------
+
+    var AdminReportsCurrentUnit = $('#admin-reports-current-unit');
+
+    AdminReportsCurrentUnit.click(function(event){
+      event.preventDefault();
+      var groupId = $(this).attr('data-group-id');
+      $.ajax({
+        type: 'GET',
+        data: false,
+        url: "/admin_reports_attendance_unit/" + groupId,
+        success: function(data){
+          $('#admin-reports-attendance-table').html(data);
+          $('#admin-reports-current-unit').addClass('primary');
+          $('#admin-reports-previous-unit, #admin-reports-show-all-units').removeClass('primary');
+        }
+      })
+    });
+
+    AdminReportsCurrentUnit.click(function(event){
+      event.preventDefault();
+      var groupId = $(this).attr('data-group-id');
+      $.ajax({
+        type: 'GET',
+        data: false,
+        url: "/admin_reports_homework_unit/" + groupId,
+        success: function(data){
+          $('#admin-reports-homeworks-table').html(data);
+        }
+      })
+    });
+
+
+    //  ----------- CURRENT-STUDY-UNIT-END -----------------
+
+
+    //  ----------- PREVIOUS-STUDY-UNIT-START -----------------
+
+    var AdminReportsPrevious = $('#admin-reports-previous-unit');
+
+    AdminReportsPrevious.click(function(event){
+      event.preventDefault();
+      var groupId = $(this).attr('data-group-id');
+      $.ajax({
+        type: 'GET',
+        data: false,
+        url: "/admin_reports_attendance_previous_unit/" + groupId,
+        success: function(data){
+          $('#admin-reports-attendance-table').html(data);
+          $('#admin-reports-previous-unit').addClass('primary');
+          $('#admin-reports-show-all-units, #admin-reports-current-unit').removeClass('primary');
+        }
+      })
+    });
+
+    AdminReportsPrevious.click(function(event){
+      event.preventDefault();
+      var groupId = $(this).attr('data-group-id');
+      $.ajax({
+        type: 'GET',
+        data: false,
+        url: "/admin_reports_homework_previous_unit/" + groupId,
+        success: function(data){
+          $('#admin-reports-homeworks-table').html(data);
+        }
+      })
+    });
+
+
+
+    //  ----------- PREVIOUS-STUDY-UNIT-END -----------------
+
+  });
+
+</script>

@@ -1,0 +1,70 @@
+<% if @periods.blank? %>
+  <span>По вашему запросу ничего не найдено</span>
+<% elsif @group.users.blank? %>
+  <span>Нет студентов</span>
+<% else %>
+  <div class="group-report-table-wrapper">
+    <h5 class="ui dividing header">Курс: <%= @group.course.name %>, Группа: <%= @group.name %><%= ", Учебный блок: #{@study_unit.unit}" unless @study_unit.nil? %></h5>
+    <div class="group-report-table">
+      <div class="fio-table">
+        <table class="table table-bordered">
+          <tr class="active">
+            <td class="header-fixed-height">#</td>
+            <td class="header-fixed-height">ФИО</td>
+            <td class="attendance-quantity">Кол-во посещений</td>
+          </tr>
+          <% counter = 0 %>
+          <% @periods.each do |period| %>
+            <% period.users.where(id: @group_students).each do |student| %>
+              <% # if student?(student) %>
+                <tr>
+                  <td class="number attendance-fixed-height"><%= counter += 1 %></td>
+                  <td class="fio col-fixed-width"><%= student.name.capitalize %> <%= student.surname.capitalize %></td>
+                  <td class="attendance-quantity text-center" id="admin-attendance-student-<%= student.id %>"> <%= show_student_total_attendance(student.id) %> </td>
+                </tr>
+              <% # end %>
+            <% end %>
+            <% break %>
+          <% end %>
+        </table>
+      </div>
+
+      <div class="attendance-table">
+        <div class="attendance-table-in">
+          <table class="table table-bordered">
+            <tr class="active h_tr">
+              <% @periods.each do |period| %>
+                <td>
+                  <div class="lesson-number">
+                    Занятие#<%= period.lesson_number %>
+                  </div>
+                  <div class="datetime">
+                    <span><%= period.commence_datetime.strftime('%d.%m.%Y') %></span>
+                  </div>
+                  <div class="stats" id="attendance-stats">
+                    <span id="admin-period-attendance-<%= period.id %>"><%= show_period_attendance(@group_students, period) %></span>
+                  </div>
+                </td>
+              <% end %>
+            </tr>
+            <% @group_students.each do |student| %>
+              <tr>
+                <% student.periods.where(id: @periods).order(:commence_datetime).each do |period| %>
+                  <td class="td-fixed-width h_td align-center <%= show_next_period(student.periods, period) %> ">
+                    <div class="ui checkbox">
+                      <%= check_box_tag "period-attendance-#{period.id}", period.id, attended?(period.id, student.id), data: {user_id: student.id, group_id: @group.id}, disabled: show_disabled_toggle(period) %>
+                      <label for=""></label>
+                    </div>
+                  </td>
+                <% end %>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<script>
+  $('.ui.checkbox').checkbox();
+</script>

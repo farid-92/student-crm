@@ -1,0 +1,31 @@
+<%= render 'shared/attendance_table' %>
+<script>
+
+  $(function() {
+
+    $('.attendance-table :checkbox').change(function(){
+
+      var periodId = $(this).val();
+      var studentId = $(this).attr('data-user-id');
+      var groupId = $(this).attr('data-group-id');
+      $.ajax({
+        type: 'GET',
+        data: {
+          "user_id": studentId,
+          "period_id": periodId
+        },
+        url: '/admin_total_attendance/' + groupId,
+        success: function(data){
+          for (var i = 0; i < data.length; i++){
+            var attendanceStudentId = "#admin-attendance-student-" + data[i].user_id;
+            var periodAttendanceId = "#admin-period-attendance-" + data[i].period_id;
+            $(attendanceStudentId).html(data[i].student_quantity);
+            $(periodAttendanceId).html(data[i].attendance_quantity);
+          }
+        }
+      })
+    });
+
+  });
+
+</script>
