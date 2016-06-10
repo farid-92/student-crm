@@ -67,6 +67,14 @@ class CoursesController < ApplicationController
     get_group_students
   end
 
+  def render_group_students
+    @group = Group.find(params[:id])
+    students = []
+    teachers = []
+    get_sorted_list(students, teachers)
+  end
+
+
   private
 
   def get_course_params
