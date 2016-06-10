@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  include Report
 
   def save_to_dependencies(group)
     group.periods.each do |group_period|
