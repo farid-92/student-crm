@@ -46,10 +46,14 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @resource = params[:resource]
   end
-  #
-  # def course_groups
-  #   @course = Course.find(params[:id])
-  # end
+
+  def course_groups
+    @course = Course.find(params[:id])
+  end
+
+  def course_elements
+    @course = Course.find(params[:id])
+  end
 
   def group_index
     @group = Group.find(params[:id])
@@ -58,6 +62,9 @@ class CoursesController < ApplicationController
     teachers = []
     get_sorted_list(students, teachers)
     get_uniq_study_units
+    get_group_study_units
+    get_all_group_periods
+    get_group_students
   end
 
   private
