@@ -1,6 +1,6 @@
 module Report
 
-  def index
+  def index_rep
     teacher = current_student
     get_teacher_courses(teacher)
   end
@@ -86,7 +86,7 @@ module Report
   end
 
   def get_student_total_attendance
-    attendance = Attendance.find_by_period_id_and_student_id(params[:period_id], params[:user_id])
+    attendance = Attendance.find_by_period_id_and_user_id(params[:period_id], params[:user_id])
     student_id = params[:user_id]
     period_id = params[:period_id]
     @group = Group.find(params[:id])

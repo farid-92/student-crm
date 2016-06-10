@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :periods
   resources :study_units
 
+  get 'periods/:period_id/material_theme/:id' => 'periods#show_material', as: 'show_student_theme_materials'
   post 'sms_deliveries/:id/send' => 'sms_deliveries#send_message', as: 'sms_send_message'
   get 'select_objects/select_group/:id' => 'select_objects#select_group', as: 'select_groups'
   get 'select_objects/select_students/:id' => 'select_objects#select_students', as: 'select_students'
@@ -49,8 +50,20 @@ Rails.application.routes.draw do
   get 'get_student_homeworks_stats/:id' => 'courses#student_homeworks_data', as: 'show_student_homeworks_stats'
 
 
+#ADMIN-REPORTS
+  get 'admin_reports_filters/' => 'admin_reports#admin_reports_filters', as: 'admin_reports_filters'
+  get 'admin_reports_attendance' => 'admin_reports#attendance_report_table'
+  get 'admin_reports_homework' => 'admin_reports#homework_report_table'
+  get 'admin_reports_attendance_unit/:id' => 'admin_reports#attendance_current_study_unit'
+  get 'admin_reports_homework_unit/:id' => 'admin_reports#homework_current_study_unit'
+  get 'admin_reports_homework_previous_unit/:id' => 'admin_reports#homework_previous_study_unit'
+  get 'admin_reports_attendance_previous_unit/:id' => 'admin_reports#attendance_previous_study_unit'
+  get 'admin_reports_attendance_ed_unit/:id' => 'admin_reports#attendance_educational_unit'
+  get 'admin_reports_homework_ed_unit/:id' => 'admin_reports#homework_educational_unit'
+  get 'admin_reports_sorting_by_date/:id' => 'admin_reports#sort_by_date', as: 'admin_reports_sort_by_date'
+  get 'admin_total_attendance/:id' => 'admin_reports#get_student_total_attendance'
 
-  get 'periods/:period_id/material_theme/:id' => 'periods#show_material', as: 'show_student_theme_materials'
 
+  get 'students' => 'teacher_hws#students_index', as: 'students_by_teacher'
 
 end
