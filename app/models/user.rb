@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   has_many :attendances
   has_many :periods, through: :attendances
 
+  has_many :events
+
   validates :name, presence: true, length: {maximum: 250}
   validates :surname, presence: true, length: {maximum: 250}
   validates :gender, presence: true
