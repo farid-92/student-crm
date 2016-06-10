@@ -3,7 +3,7 @@ class CreateHomeworks < ActiveRecord::Migration
     create_table :homeworks do |t|
       t.references :course, index: true, foreign_key: true
       t.references :group, index: true, foreign_key: true
-      t.references :student, index: true, foreign_key: true
+      t.references :user, index: true, foreign_key: true
       t.references :period, index: true, foreign_key: true
       t.string :score
       t.text :feedback

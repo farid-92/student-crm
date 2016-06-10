@@ -2,7 +2,7 @@ class CreateExtraHomeworks < ActiveRecord::Migration
   def change
     create_table :extra_homeworks do |t|
       t.references :group, index: true, foreign_key: true
-      t.references :student, index: true, foreign_key: true
+      t.references :user, index: true, foreign_key: true
       t.references :period, index: true, foreign_key: true
       t.references :course, index: true, foreign_key: true
       t.references :homework, foreign_key: true
