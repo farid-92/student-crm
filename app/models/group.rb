@@ -5,6 +5,9 @@ class Group < ActiveRecord::Base
   has_many :group_memberships
   has_many :users, through: :group_memberships
 
+  has_many :extra_homeworks, dependent: :destroy
+  has_many :homeworks, dependent: :destroy
+
   has_many :periods, dependent: :destroy
 
   has_many :study_units

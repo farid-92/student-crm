@@ -7,6 +7,13 @@ class Period < ActiveRecord::Base
   has_many :attendances, dependent: :destroy
   has_many :users, through: :attendances, dependent: :destroy
 
+  has_many :homeworks, dependent: :destroy
+  has_many :users, through: :homeworks, dependent: :destroy
+
+  has_many :extra_homeworks, dependent: :destroy
+  has_many :users, through: :extra_homeworks, dependent: :destroy
+
+
   validates :title, :commence_datetime, :lesson_number, :group_id, :course_id, presence: true
   validates :lesson_number, numericality: true
 
