@@ -1,7 +1,7 @@
 <% provide(:btn, 'Создать занятие') %>
 <div class="page-header">
   <div class="ui breadcrumb">
-    <%= link_to 'Все курсы', courses_path(@group.course) %>
+    <%= link_to 'Все курсы', root_path %>
     <div class="divider"> / </div>
     <%= link_to @group.course.name, show_course_index_path(@group.course, resource: 2) %>
     <div class="divider"> / </div>
