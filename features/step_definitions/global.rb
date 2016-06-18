@@ -249,3 +249,19 @@ When(/^заполняет форму создания группы$/) do |table|
   end
   new_group_dates
 end
+
+When(/^нажимает на кнопку "([^"]*)" у группы "([^"]*)"$/) do |button, arg2|
+  group = "//td//a[contains(text(), '#{arg2}')]/../../td/a[contains(text()[last()], '#{button}')]"
+  find(:xpath, group).click
+end
+
+
+When(/^изменяет название группы на "([^"]*)"$/) do |new_group_name|
+  within('#edit_group_1') do
+    fill_in 'group_name', :with => new_group_name
+  end
+end
+
+When(/^попадает на страницу группы "([^"]*)"$/) do |group|
+  expect(page).to have_content(group)
+end

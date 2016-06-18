@@ -30,8 +30,11 @@ User.create!(name: 'Иван',
                      password_confirmation: password
 )
 
-Course.create!(name: 'HTML-верстальщик',course_short_name: 'HTML',
-               practical_time: 96,theoretical_time: 100,cost: 72000)
+
+course = Course.create!(name: 'HTML-верстальщик',course_short_name: 'HTML',
+                        practical_time: 96,theoretical_time: 100,cost: 72000)
+
+Group.create(course_id: course.id, name: 'Верстка group-1', group_short_name: 'Верстка-g1', starts_at: '20.08.2016', ends_at: '20.11.2016' )
 
 
 
