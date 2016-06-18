@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160606085111) do
+ActiveRecord::Schema.define(version: 20160610085747) do
 
   create_table "attendances", force: :cascade do |t|
     t.integer  "user_id"
@@ -83,6 +83,33 @@ ActiveRecord::Schema.define(version: 20160606085111) do
 
   add_index "custom_lists", ["contact_list_id"], name: "index_custom_lists_on_contact_list_id"
 
+  create_table "events", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "extra_homeworks", force: :cascade do |t|
+    t.integer  "group_id"
+    t.integer  "user_id"
+    t.integer  "period_id"
+    t.integer  "course_id"
+    t.integer  "homework_id"
+    t.text     "feedback"
+    t.boolean  "download_status", default: false
+    t.string   "teacher_id",      default: "f"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "extra_homeworks", ["course_id"], name: "index_extra_homeworks_on_course_id"
+  add_index "extra_homeworks", ["group_id"], name: "index_extra_homeworks_on_group_id"
+  add_index "extra_homeworks", ["period_id"], name: "index_extra_homeworks_on_period_id"
+  add_index "extra_homeworks", ["user_id"], name: "index_extra_homeworks_on_user_id"
+
   create_table "group_memberships", force: :cascade do |t|
     t.integer  "group_id"
     t.integer  "user_id"
@@ -105,6 +132,24 @@ ActiveRecord::Schema.define(version: 20160606085111) do
   end
 
   add_index "groups", ["course_id"], name: "index_groups_on_course_id"
+
+  create_table "homeworks", force: :cascade do |t|
+    t.integer  "course_id"
+    t.integer  "group_id"
+    t.integer  "user_id"
+    t.integer  "period_id"
+    t.string   "score"
+    t.text     "feedback"
+    t.datetime "deadline"
+    t.string   "teacher_id", default: "f"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "homeworks", ["course_id"], name: "index_homeworks_on_course_id"
+  add_index "homeworks", ["group_id"], name: "index_homeworks_on_group_id"
+  add_index "homeworks", ["period_id"], name: "index_homeworks_on_period_id"
+  add_index "homeworks", ["user_id"], name: "index_homeworks_on_user_id"
 
   create_table "periods", force: :cascade do |t|
     t.integer  "course_element_id"
@@ -171,14 +216,12 @@ ActiveRecord::Schema.define(version: 20160606085111) do
 
   create_table "study_units", force: :cascade do |t|
     t.string   "unit"
-    t.integer  "periods_id"
     t.integer  "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_index "study_units", ["group_id"], name: "index_study_units_on_group_id"
-  add_index "study_units", ["periods_id"], name: "index_study_units_on_periods_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                       default: "", null: false

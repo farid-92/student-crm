@@ -17,11 +17,15 @@ class UsersController < ApplicationController
       flash[:danger] = 'Выберите группу для студента'
       render 'new' and return
     end
+    course_ids = []
+    group_ids.each do |group_id|
+      course_ids.push Group.find(group_id).course.id
+    end
     if @user.save
-      group_ids.each do |group_id|
-        GroupMembership.create!(group_id: group_id, user_id: @user.id, active: true)
-      end
-      # save_to_student_dependencies(group_ids)
+      # group_ids.each do |group_id|
+      #   GroupMembership.create!(group_id: group_id, user_id: @user.id, active: true)
+      # end
+      save_to_student_dependencies(group_ids)
       flash[:notice] = 'Студент успешно добавлен'
      # UserMailer.password_email(@user, generated_password).deliver_now
 
@@ -54,9 +58,10 @@ class UsersController < ApplicationController
     end
     if course_ids.uniq.length == course_ids.length
       if @user.update(user_params)
-        group_ids.each do |group_id|
-          GroupMembership.create!(group_id: group_id, user_id: @user.id, active: true)
-        end
+        # group_ids.each do |group_id|
+        #   GroupMembership.create!(group_id: group_id, user_id: @user.id, active: true)
+        # end
+        save_to_student_dependencies(group_ids)
         flash[:notice] = 'Данные успешно отредактированы!'
         redirect_to root_path
       else
@@ -119,6 +124,7 @@ class UsersController < ApplicationController
         :passport_inn,
         :photo,
         :passport_photo,
+        :group_ids => [],
     )
   end
 
