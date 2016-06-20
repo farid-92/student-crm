@@ -75,6 +75,13 @@ Rails.application.routes.draw do
   put 'teacher_hws/create_feedback_for_extra_hw/:id' => 'teacher_hws#create_feedback_for_extra_hw',
       as: 'create_feedback_for_extra_hw'
 
+# downloads
+  get 'download/:id' => 'teacher_hws#download_hw', as: 'download_zip'
+  get 'download_extra_hw/:id' => 'teacher_hws#download_extra_hw', as: 'download_extra_hw'
+  get 'exports' => 'teacher_hws#export_all', as: 'export_all'
+
   get 'users' => 'teacher_hws#students_index', as: 'students_by_teacher'
+  get 'students_date' => 'teacher_hws#students_index_date', as: 'students_date_index'
+  get 'periods/:id' => 'teacher_hws#periods_index', as: 'periods_by_teacher'
 
 end
