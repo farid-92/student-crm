@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160620083046) do
+ActiveRecord::Schema.define(version: 20160620083351) do
 
   create_table "attendances", force: :cascade do |t|
     t.integer  "user_id"
@@ -99,10 +99,14 @@ ActiveRecord::Schema.define(version: 20160620083046) do
     t.integer  "course_id"
     t.integer  "homework_id"
     t.text     "feedback"
-    t.boolean  "download_status", default: false
-    t.string   "teacher_id",      default: "f"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.boolean  "download_status",       default: false
+    t.string   "teacher_id",            default: "f"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.string   "extra_hw_file_name"
+    t.string   "extra_hw_content_type"
+    t.integer  "extra_hw_file_size"
+    t.datetime "extra_hw_updated_at"
   end
 
   add_index "extra_homeworks", ["course_id"], name: "index_extra_homeworks_on_course_id"
