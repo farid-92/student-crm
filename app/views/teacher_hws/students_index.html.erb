@@ -1,0 +1,84 @@
+<%= render 'teacher_hws/header' %>
+<% counter = 0 %>
+<div class="student-homeworks">
+  <table class="table table-striped">
+    <tr>
+      <td align="center"><b>#</b></td>
+      <td><b>ФИО</b></td>
+      <td><b>Домашнее задание</b></td>
+      <td><b>
+        <%= link_to students_date_index_path(period_id: @period.id, group_id: @group.id) do %>
+            <span class="fa fa-sort"></span>
+            Дата отправки
+        <% end %>
+      </b></td>
+      <td><b>Рецензия 1</b></td>
+      <td><b>Результат</b></td>
+      <td align="right"><b>Исправленное д/з</b></td>
+      <td align="right"><b>Рецензия 2</b></td>
+    </tr>
+    <% @period.homeworks.where(period_id: @period.id).each do |homework| %>
+        <% # if student_homework?(homework) %>
+            <tr>
+              <td><%= counter += 1 %></td>
+              <td><%= homework.user.name.capitalize %> <%= homework.user.surname.capitalize %></td>
+              <!-- -->
+              <td>
+                <% if homework.score == '0' %>
+                    <span class="label label-danger"><i class="fa fa-remove"></i> <%= 'Не прислано' %></span>
+                <% else %>
+                    <%= link_to 'Скачать архив', download_zip_path(homework) %>
+                <% end %>
+              </td>
+              <!-- -->
+              <td>
+                <% if homework.hw_updated_at.nil? %>
+                    <%= '' %>
+                <% else %>
+                    <%= homework.hw_updated_at.strftime('%d.%m.%Y') %>
+                <% end %>
+              </td>
+              <!-- -->
+              <% if homework.score.to_i > 0 %>
+                  <% if homework.feedback.present? %>
+                      <td><%= link_to 'Редактировать', send_feedback_path(homework) %></td>
+                  <% else %>
+                      <td><%= link_to 'Написать', send_feedback_path(homework) %></td>
+                  <% end %>
+              <% else %>
+                  <td><%= '' %></td>
+              <% end %>
+              <!-- -->
+              <% if homework.score == '0' %>
+                  <td><%= '' %></td>
+              <% elsif homework.score == '1' %>
+                  <td><span class="label label-warning"><i class="fa fa-exclamation-triangle"></i> <%= 'Не проверено' %></span></td>
+              <% else %>
+                  <td><%= homework.score %></td>
+              <% end %>
+              <!-- -->
+              <td align="right">
+                <% homework.extra_homeworks.each do |extra_homework| %>
+                    <% if extra_homework.extra_hw_file_name.nil? %>
+                        <%= '' %>
+                    <% else %>
+                        <%= link_to 'Скачать архив', download_extra_hw_path(extra_homework) %>
+                    <% end %>
+                <% end %>
+              </td>
+              <% homework.extra_homeworks.each do |extra_homework| %>
+                  <% if extra_homework.extra_hw_file_name.nil? %>
+                      <td></td>
+                  <% else %>
+                      <% if extra_homework.feedback.present? %>
+                          <td align="right"><%= link_to 'Редактировать', send_extra_feedback_path(homework) %></td>
+                      <% else %>
+                          <td align="right"><%= link_to 'Написать', send_extra_feedback_path(homework) %></td>
+                      <% end %>
+                  <% end %>
+              <% end %>
+            </tr>
+        <% # end %>
+    <% end %>
+  </table>
+</div>

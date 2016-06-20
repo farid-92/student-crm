@@ -1,0 +1,12 @@
+<div class="page-header">
+  <div class="course-wrapper">
+    <h5 class="text-center">Проверка домашний заданий</h5>
+    <div class="new-course-btn">
+      <%= link_to export_all_path(period_id: @period.id, group_id: @group.id), class: 'btn btn-primary' do %>
+        <span class="fa fa-cloud-download"></span>
+        все архивы
+      <% end %>
+    </div>
+  </div>
+</div>
+<h4 class="ui dividing header">Курс: <%= @group.course.name %>, Группа: <%= @group.name %>, <%= show_deadline %></h4>
