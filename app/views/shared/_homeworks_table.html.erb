@@ -14,7 +14,7 @@
           </tr>
           <% counter = 0 %>
           <% @periods.each do |period| %>
-            <% period.users.where(id: @group_students).each do |student| %>
+            <% @group.users.where(id: @group_students).each do |student| %>
               <% # if student?(student) %>
                 <tr>
                   <td class="number"><%= counter += 1 %></td>
@@ -47,7 +47,7 @@
             </tr>
 
             <% @periods.each do |period| %>
-              <% period.users.where(id: @group_students).each do |student| %>
+              <% @group.users.where(id: @group_students).each do |student| %>
                 <tr>
                   <% student.homeworks.where(period_id: @periods).joins(:period).order('periods.commence_datetime').each do |homework| %>
                     <td class="td-fixed-height td-fixed-width align-center">

@@ -15,7 +15,7 @@
           </tr>
           <% counter = 0 %>
           <% @periods.each do |period| %>
-            <% period.users.where(id: @group_students).each do |student| %>
+            <% @group.users.where(id: @group_students).each do |student| %>
               <% # if student?(student) %>
                 <tr>
                   <td class="number attendance-fixed-height"><%= counter += 1 %></td>
@@ -47,9 +47,9 @@
                 </td>
               <% end %>
             </tr>
-            <% @group_students.each do |student| %>
+            <% @group.users.each do |student| %>
               <tr>
-                <% student.periods.where(id: @periods).order(:commence_datetime).each do |period| %>
+                <% @group.periods.where(id: @periods).order(:commence_datetime).each do |period| %>
                   <td class="td-fixed-width h_td align-center <%= show_next_period(student.periods, period) %> ">
                     <div class="ui checkbox">
                       <%= check_box_tag "period-attendance-#{period.id}", period.id, attended?(period.id, student.id), data: {user_id: student.id, group_id: @group.id}, disabled: show_disabled_toggle(period) %>

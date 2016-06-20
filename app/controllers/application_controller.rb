@@ -18,29 +18,29 @@ class ApplicationController < ActionController::Base
           attendance.save
         end
 
-        # if homeworks.blank?
-        #   homework = Homework.new(
-        #       period_id: group_period.id,
-        #       users_id: group_student.id,
-        #       course_id: group.course.id,
-        #       group_id: group.id,
-        #       score: '0',
-        #       feedback: '',
-        #       teacher_id: false
-        #   )
-        #   homework.save(validate: false)
-        #   extra_homework = ExtraHomework.new(
-        #       period_id: group_period.id,
-        #       users_id: group_student.id,
-        #       course_id: group.course.id,
-        #       homework_id: homework.id,
-        #       group_id: group.id,
-        #       feedback: '',
-        #       teacher_id: false,
-        #       download_status: false
-        #   )
-        #   extra_homework.save(validate: false)
-        # end
+        if homeworks.blank?
+          homework = Homework.new(
+              period_id: group_period.id,
+              user_id: group_student.id,
+              course_id: group.course.id,
+              group_id: group.id,
+              score: '0',
+              feedback: '',
+              teacher_id: false
+          )
+          homework.save(validate: false)
+          extra_homework = ExtraHomework.new(
+              period_id: group_period.id,
+              user_id: group_student.id,
+              course_id: group.course.id,
+              homework_id: homework.id,
+              group_id: group.id,
+              feedback: '',
+              teacher_id: false,
+              download_status: false
+          )
+          extra_homework.save(validate: false)
+        end
       end
     end
   end

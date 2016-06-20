@@ -63,7 +63,18 @@ Rails.application.routes.draw do
   get 'admin_reports_sorting_by_date/:id' => 'admin_reports#sort_by_date', as: 'admin_reports_sort_by_date'
   get 'admin_total_attendance/:id' => 'admin_reports#get_student_total_attendance'
 
+# forms for teacher`s feedback
+  get 'teacher_hws/send_feedback/:id' => 'teacher_hws#send_feedback', as: 'send_feedback'
+  get 'teacher_hws/edit_feedback/:id' => 'teacher_hws#edit_feedback', as: 'edit_feedback'
+  get 'teacher_hws/send_extra_feedback/:id' => 'teacher_hws#send_extra_feedback', as: 'send_extra_feedback'
+  get 'teacher_hws/edit_extra_feedback/:id' => 'teacher_hws#edit_extra_feedback', as: 'edit_extra_feedback'
+  get 'teacher_hws/edit_from_modal/:id' => 'teacher_hws#edit_from_modal', as: 'edit_from_modal'
 
-  get 'students' => 'teacher_hws#students_index', as: 'students_by_teacher'
+# update teacher`s feedback
+  put 'teacher_hws/create_feedback/:id' => 'teacher_hws#create_feedback', as: 'create_feedback'
+  put 'teacher_hws/create_feedback_for_extra_hw/:id' => 'teacher_hws#create_feedback_for_extra_hw',
+      as: 'create_feedback_for_extra_hw'
+
+  get 'users' => 'teacher_hws#students_index', as: 'students_by_teacher'
 
 end
