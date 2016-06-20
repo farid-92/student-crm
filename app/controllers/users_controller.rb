@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     generated_password = Devise.friendly_token.first(8)
     @user.password = generated_password
+    @user.password_txt = generated_password
     group_ids = params[:user][:group_ids]
     group_ids.shift
     if group_ids.blank?
@@ -76,9 +77,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-
-    @group = 'RoR-группа 1'
-    @course = 'Ruby on Rails'
+    @members = GroupMembership.where(user_id: @user)
+    # @group = Group.find_by_id(@members[0].group_id)
+    # @course = Course.find_by_id(@group.course_id)
+    @group = 'Группа'
+    @course = 'Курс'
     @practical_time = 500
     @theoretical_time = 780
     @educational_cost = 135000

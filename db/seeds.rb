@@ -13,7 +13,8 @@ admin = User.create!(name: 'Фарид',
                      issue_date: '20.12.2008',
                      issued_by: 'MVD 50-05',
                      password: password,
-                     password_confirmation: password
+                     password_confirmation: password,
+                     password_txt: password
 )
 
 20.times do
@@ -29,6 +30,7 @@ admin = User.create!(name: 'Фарид',
       password: password,
       password_confirmation: password,
       email: "#{name}.#{surname}@gmail.com",
+      password_txt: password
   )
 end
 
