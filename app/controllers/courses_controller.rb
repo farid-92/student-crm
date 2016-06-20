@@ -98,6 +98,11 @@ class CoursesController < ApplicationController
     end
   end
 
+  def destroy_user_from_group
+    @user = GroupMembership.find_by_group_id_and_user_id(params[:group_id], params[:user_id])
+    @user.destroy
+    redirect_to :back
+  end
 
 
   private

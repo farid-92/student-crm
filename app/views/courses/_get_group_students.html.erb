@@ -43,9 +43,13 @@
             <span class="fa fa-edit"></span>
             Редактировать
           <% end %>
-          <%= link_to user_path(user), class: 'btn btn-danger btn-sm', data: {confirm: 'Вы уверены что хотите удалить?'}, method: :delete do %>
+          <%= link_to user_path(user), class: 'btn btn-default btn-sm', data: {confirm: 'Вы уверены что хотите удалить?'}, method: :delete do %>
             <span class="fa fa-remove"></span>
             Удалить
+          <% end %>
+          <%= link_to destroy_user_from_group_path(user, group_id: @group.id), class: 'btn btn-danger btn-sm', data: {confirm: 'Вы уверены что хотите удалить пользователя из группы?'}, method: :delete do %>
+            <span class="fa fa-remove"></span>
+            Удалить из группы
           <% end %>
         </td>
       </tr>

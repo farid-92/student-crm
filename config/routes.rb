@@ -49,6 +49,7 @@ Rails.application.routes.draw do
   get 'get_performance_chart/:id' => 'courses#render_performance_chart', as: 'render_performance_chart'
   get 'get_student_homeworks_stats/:id' => 'courses#student_homeworks_data', as: 'show_student_homeworks_stats'
 
+  delete 'destroy_user_from_group/group/:group_id/user/:user_id' => 'courses#destroy_user_from_group', as: 'destroy_user_from_group'
 
 #ADMIN-REPORTS
   get 'admin_reports_filters/' => 'admin_reports#admin_reports_filters', as: 'admin_reports_filters'
@@ -80,8 +81,8 @@ Rails.application.routes.draw do
   get 'download_extra_hw/:id' => 'teacher_hws#download_extra_hw', as: 'download_extra_hw'
   get 'exports' => 'teacher_hws#export_all', as: 'export_all'
 
-  get 'users' => 'teacher_hws#students_index', as: 'students_by_teacher'
-  get 'students_date' => 'teacher_hws#students_index_date', as: 'students_date_index'
+  get 'users/group/:group_id/period/:period_id' => 'teacher_hws#students_index', as: 'students_by_teacher'
+  get 'users_date/group/:group_id/period/:period_id' => 'teacher_hws#students_index_date', as: 'students_date_index'
   get 'periods/:id' => 'teacher_hws#periods_index', as: 'periods_by_teacher'
 
 end
