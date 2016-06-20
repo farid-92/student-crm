@@ -1,0 +1,2 @@
+class TeacherHwsController < ApplicationController
+end
