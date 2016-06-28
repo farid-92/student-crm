@@ -20,7 +20,13 @@ end
 
 group :development do
   gem 'web-console', '~> 2.0'
+  gem 'capistrano',         require: false
+  gem 'capistrano-rbenv',   require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
 end
+gem 'puma'
 
 group :test do
   gem 'cucumber-rails', :require => false
@@ -29,6 +35,8 @@ group :test do
   gem 'rspec'
   gem 'selenium-webdriver'
 end
+
+
 
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
@@ -55,7 +63,12 @@ gem 'numbers_and_words'
 # Cron job
 gem 'whenever', :require => false
 
+# визивиг редактор
 gem 'ckeditor'
 
+# Календарь
+gem 'momentjs-rails'
+gem 'fullcalendar-rails'
 
+# Диаграмма
 gem 'chartkick', '~> 1.2.4'

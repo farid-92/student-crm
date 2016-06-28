@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require moment
+//= require fullcalendar
 //= require bootstrap
 //= require semantic-ui
 //= require bootstrap-datepicker/core
