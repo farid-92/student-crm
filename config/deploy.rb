@@ -1,5 +1,4 @@
 # Change these
-server '198.211.119.128' , port: 22, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:farid-92/student-crm.git'
 set :application,     'student-crm'
