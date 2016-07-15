@@ -72,10 +72,22 @@ namespace :deploy do
     end
   end
 
+  task :seed do
+    puts "\n=== Seeding Database ===\n"
+    on primary :db do
+      within current_path do
+        with rails_env: fetch(:stage) do
+          execute :rake, 'db:seed'
+        end
+      end
+    end
+  end
+
 
   before :starting,     :check_revision
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
+  after  :finishing,    :seed
   after  :finishing,    :restart
 end
 
