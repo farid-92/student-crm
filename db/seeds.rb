@@ -16,23 +16,23 @@ admin = User.create!(name: 'Фарид',
                      password_confirmation: password,
                      password_txt: password
 )
-
-20.times do
-  name = Faker::Name.first_name
-  surname = Faker::Name.last_name
-  student = User.create!(
-      name: name,
-      surname: surname,
-      gender: ['Мужчина', 'Женщина'].sample,
-      birthdate: Faker::Date.backward,
-      first_phone: '+996700123123',
-      second_phone: '+996550123321',
-      password: password,
-      password_confirmation: password,
-      email: "#{name}.#{surname}@gmail.com",
-      password_txt: password
-  )
-end
+#
+# 20.times do
+#   name = Faker::Name.first_name
+#   surname = Faker::Name.last_name
+#   student = User.create!(
+#       name: name,
+#       surname: surname,
+#       gender: ['Мужчина', 'Женщина'].sample,
+#       birthdate: Faker::Date.backward,
+#       first_phone: '+996700123123',
+#       second_phone: '+996550123321',
+#       password: password,
+#       password_confirmation: password,
+#       email: "#{name}.#{surname}@gmail.com",
+#       password_txt: password
+#   )
+# end
 
 
 Course.create!(name: 'HTML-верстальщик',course_short_name: 'HTML',
