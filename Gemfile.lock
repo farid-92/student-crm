@@ -181,6 +181,7 @@ GEM
       mime-types
       mimemagic (= 0.3.0)
     pdf-core (0.6.1)
+    pg (0.18.4)
     pkg-config (1.1.7)
     prawn (2.1.0)
       pdf-core (~> 0.6.1)
@@ -314,6 +315,7 @@ DEPENDENCIES
   momentjs-rails
   numbers_and_words
   paperclip (~> 4.3)
+  pg
   prawn
   puma
   rails (= 4.2.4)
