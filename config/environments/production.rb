@@ -35,8 +35,6 @@ Rails.application.configure do
   # yet still be able to expire them through the digest params.
   config.assets.digest = true
 
-  config.assets.css_compressor = :yui
-  config.assets.js_compressor = :yui
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
