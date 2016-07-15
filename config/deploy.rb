@@ -72,10 +72,6 @@ namespace :deploy do
     end
   end
 
-  desc 'reload the database with seed data'
-  task :seed do
-    execute "cd #{current_path}; bundle exec rake db:seed"
-  end
 
   before :starting,     :check_revision
   after  :finishing,    :compile_assets
