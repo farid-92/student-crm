@@ -1,4 +1,4 @@
-set :environment, 'development'
+set :environment, 'production'
 set :output, {:error => "log/cron_error.log", :standard => "log/cron.log"}
 
 every 1.minute do
