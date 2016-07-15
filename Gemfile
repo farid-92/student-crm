@@ -71,3 +71,6 @@ gem 'fullcalendar-rails'
 
 # Диаграмма
 gem 'chartkick', '~> 1.2.4'
+
+
+gem 'yui-compressor', '~> 0.12.0'
