@@ -36,7 +36,9 @@ group :test do
   gem 'selenium-webdriver'
 end
 
-
+group :production do
+  gem install pg
+end
 
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
