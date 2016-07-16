@@ -6,7 +6,7 @@ namespace :sms do
       if message.delivery_time <= Time.now
         message.send_message
         puts Time.now
-        puts 'I am working ! ! !'
+        puts 'I am working in ! ! !'
       else
         puts Time.now
         puts 'I am NOT working ! ! !'

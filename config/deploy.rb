@@ -22,6 +22,8 @@ set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
 
+set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
+
 ## Defaults:
 # set :scm,           :git
 # set :branch,        :master
@@ -87,7 +89,7 @@ namespace :deploy do
   before :starting,     :check_revision
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
-  after  :finishing,    :seed
+  # after  :finishing,    :seed
   after  :finishing,    :restart
 end
 
