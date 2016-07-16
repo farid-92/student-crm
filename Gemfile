@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 gem 'rails', '4.2.4'
-gem 'sqlite3'
+
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
@@ -20,13 +20,20 @@ end
 
 group :development do
   gem 'web-console', '~> 2.0'
-  gem 'capistrano',         require: false
-  gem 'capistrano-rvm',   require: false
-  gem 'capistrano-rails',   require: false
-  gem 'capistrano-bundler', require: false
-  gem 'capistrano3-puma',   require: false
+  gem 'sqlite3'
+
+  gem 'capistrano', '~> 3.5'
+  gem 'capistrano-bundler', '~> 1.1', '>= 1.1.4'
+  gem 'capistrano-rails', '~> 1.1', '>= 1.1.7'
+  gem 'capistrano-rbenv', '~> 2.0', '>= 2.0.4'
+  gem 'capistrano-passenger', require: false, github: 'capistrano/passenger'
+
 end
-gem 'puma'
+# gem 'puma'
+
+group :production do
+  gem 'pg'
+end
 
 group :test do
   gem 'cucumber-rails', :require => false
