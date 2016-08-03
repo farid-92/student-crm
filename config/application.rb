@@ -26,5 +26,6 @@ module StudentCrm
     config.time_zone = 'Almaty'
     config.active_record.default_timezone = :local
     config.active_record.time_zone_aware_attributes = false
+    config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
   end
 end

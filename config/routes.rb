@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resources :users
   end
 
+  mount Ckeditor::Engine => '/ckeditor'
+
   resources :contact_lists,
             :sms_deliveries,
             :sms_service_accounts
