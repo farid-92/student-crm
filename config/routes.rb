@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   root 'courses#index'
 
   devise_for :users
   scope :member do
     resources :users
   end
-
-  mount Ckeditor::Engine => '/ckeditor'
 
   resources :contact_lists,
             :sms_deliveries,
