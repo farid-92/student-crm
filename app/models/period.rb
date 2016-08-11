@@ -18,7 +18,7 @@ class Period < ActiveRecord::Base
   validates :lesson_number, numericality: true
 
   def self.past(group_id)
-    where('commence_datetime < ? AND group_id == ?', Time.now, group_id)
+    where('commence_datetime < ? AND group_id = ?', Time.now, group_id)
   end
 
   def get_lesson_number_and_title
