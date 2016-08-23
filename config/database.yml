@@ -25,15 +25,26 @@ test: &test
   <<: *default
   database: db/test.sqlite3
 
-production:
-  adapter: mysql2
-  database: student_crm_production
-  username: root
-  password: root
-  host: localhost
-  pool: 5
-  timeout: 5000
+#production:
+#  adapter: mysql2
+#  database: student_crm_production
+#  username: root
+#  password: root
+#  host: localhost
+#  pool: 5
+#  timeout: 5000
 
+production:
+    adapter: postgresql
+    encoding: unicode
+    database: student_crm_production
+    username: farid
+    password: 1qaz2wsx
+    host: localhost
+    pool: 5
+    timeout: 5000
+    reconnect: true
+    port: 5432
 
 cucumber:
   <<: *test
