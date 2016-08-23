@@ -26,9 +26,14 @@ test: &test
   database: db/test.sqlite3
 
 production:
-  adapter: sqlite3
+  adapter: mysql2
+  database: student_crm_production
+  username: root
+  password: root
+  host: localhost
   pool: 5
   timeout: 5000
+
 
 cucumber:
   <<: *test
