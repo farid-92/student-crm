@@ -36,6 +36,10 @@ group :test do
   gem 'selenium-webdriver'
 end
 
+group :production do
+  gem 'mysql2', '~> 0.3.20'
+end
+
 gem 'pg'
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
