@@ -94,7 +94,7 @@ class CoursesController < ApplicationController
     @student_homework_data = []
     Homework.where(user_id: @user, period_id: periods).joins(:period).order('periods.commence_datetime').each do |homework|
       period = Period.find(homework.period_id)
-      @student_homework_data.push ["#{period.title.capitalize}", homework.score.to_i]
+      @student_homework_data.push ["#{period.title.capitalize}", homework.score]
     end
   end
 

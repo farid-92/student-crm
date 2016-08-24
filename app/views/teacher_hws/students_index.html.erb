@@ -24,7 +24,7 @@
               <td><%= homework.user.name.capitalize %> <%= homework.user.surname.capitalize %></td>
               <!-- -->
               <td>
-                <% if homework.score == '0' %>
+                <% if homework.score == 0 %>
                     <span class="label label-danger"><i class="fa fa-remove"></i> <%= 'Не прислано' %></span>
                 <% else %>
                     <%= link_to 'Скачать архив', download_zip_path(homework) %>
@@ -39,7 +39,7 @@
                 <% end %>
               </td>
               <!-- -->
-              <% if homework.score.to_i > 0 %>
+              <% if homework.score > 0 %>
                   <% if homework.feedback.present? %>
                       <td><%= link_to 'Редактировать', send_feedback_path(homework) %></td>
                   <% else %>
@@ -49,9 +49,9 @@
                   <td><%= '' %></td>
               <% end %>
               <!-- -->
-              <% if homework.score == '0' %>
+              <% if homework.score == 0 %>
                   <td><%= '' %></td>
-              <% elsif homework.score == '1' %>
+              <% elsif homework.score == 1 %>
                   <td><span class="label label-warning"><i class="fa fa-exclamation-triangle"></i> <%= 'Не проверено' %></span></td>
               <% else %>
                   <td><%= homework.score %></td>

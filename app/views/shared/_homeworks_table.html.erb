@@ -51,7 +51,7 @@
                 <tr>
                   <% student.homeworks.where(period_id: @periods).joins(:period).order('periods.commence_datetime').each do |homework| %>
                     <td class="td-fixed-height td-fixed-width align-center">
-                      <% if homework.score > '1' %>
+                      <% if homework.score > 1 %>
 
                         <div>
                           <%= link_to homework.score, edit_from_modal_path(homework.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal'} unless homework.score == '0' || homework.score == '1' %>
