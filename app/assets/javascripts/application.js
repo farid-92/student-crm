@@ -20,6 +20,8 @@
 //= require bootstrap-datepicker/core
 //= require dropzone
 //= require ckeditor/init
+//= require jsapi
+//= require chartkick
 //= require_tree .
 
 function printpage()
