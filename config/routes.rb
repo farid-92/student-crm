@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   scope :member do
     resources :users
   end
+  patch 'users/:id/change' => 'users#changestatus', as: 'user_change_status'
 
   resources :contact_lists,
             :sms_deliveries,

@@ -109,6 +109,13 @@ class UsersController < ApplicationController
   end
 
 
+  def changestatus
+    user = User.find(params[:id])
+    user.update_attribute(:active, !user.active)
+    redirect_to :back
+  end
+
+
   private
 
   def user_params
@@ -141,6 +148,7 @@ class UsersController < ApplicationController
       end
     end
   end
+
 
 
 end

@@ -60,4 +60,12 @@ class User < ActiveRecord::Base
     "#{surname.capitalize} #{name.capitalize}"
   end
 
+  def active_for_authentication?
+    super && self.active?  # i.e. super && self.is_active
+  end
+
+  def inactive_message
+    "Sorry, this account has been deactivated."
+  end
+
 end
