@@ -51,8 +51,6 @@ Rails.application.routes.draw do
   get 'get_performance_chart/:id' => 'courses#render_performance_chart', as: 'render_performance_chart'
   get 'get_student_homeworks_stats/:id' => 'courses#student_homeworks_data', as: 'show_student_homeworks_stats'
 
-  delete 'destroy_user_from_group/group/:group_id/user/:user_id' => 'courses#destroy_user_from_group', as: 'destroy_user_from_group'
-
 #ADMIN-REPORTS
   get 'admin_reports_filters/' => 'admin_reports#admin_reports_filters', as: 'admin_reports_filters'
   get 'admin_reports_attendance' => 'admin_reports#attendance_report_table'
