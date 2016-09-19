@@ -28,7 +28,7 @@
         <td><%= sms_delivery.title.capitalize %></td>
         <td><%= sms_delivery.contact_list.title.capitalize %></td>
         <td><%= sms_delivery.content %></td>
-        <td><%= sms_delivery.delivery_time.strftime('%d/%m/%Y %H-%M') %></td>
+        <td><%= sms_delivery.delivery_time %></td>
         <td>
           <div class="delivery-control-btns">
             <% if sms_delivery.status == false %>

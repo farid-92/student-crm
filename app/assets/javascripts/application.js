@@ -14,10 +14,12 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require moment
+//= require moment/ru
 //= require fullcalendar
 //= require bootstrap
 //= require semantic-ui
 //= require bootstrap-datepicker/core
+//= require bootstrap-datetimepicker
 //= require dropzone
 //= require ckeditor/init
 //= require jsapi
@@ -36,3 +38,4 @@ function clearFlash() {
 var clearFlashOnReady = function () {
     setTimeout(clearFlash, 3000);
 };
+

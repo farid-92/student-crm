@@ -43,4 +43,10 @@ $(window).on('page:change', function() {
         $contactListSelectBox.val($("#sms_delivery_contact_list_id option:first").val());
     });
 
+    $("#datetimepicker").datetimepicker({
+        format: 'YYYY-MM-DD HH:mm',
+        sideBySide: true,
+        stepping: 10,
+        locale: 'ru'
+    })
 });

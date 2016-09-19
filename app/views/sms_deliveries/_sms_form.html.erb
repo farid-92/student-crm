@@ -1,18 +1,23 @@
 <div class="sms-login-form">
   <%= form_for @sms, html: { class: 'ui form' } do |f| %>
     <div class="field <%= 'error' if @sms.errors[:title].any? %>">
-      <%= f.label :title %>
+      <%= f.label :title, 'Тема' %>
       <%= f.text_field :title, placeholder: 'Введите название рассылки' %>
       <%= render 'shared/field_errors', object: @sms, field_name: :title %>
     </div>
+    <div class="field  <%= 'error' if @sms.errors[:delivery_time].any? %>" >
+      <%= f.label :delivery_time, 'Время отправки' %>
+      <%= f.text_field :delivery_time, data: {},  id: 'datetimepicker',class: 'form-control', placeholder: 'Выберите дату отправки' %>
+      <%= render 'shared/field_errors', object: @sms, field_name: :delivery_time %>
+    </div>
     <div class="two fields">
       <div class="field <%= 'error' if @sms.errors[:sender].any? %>">
-        <%= f.label :sender_id %>
+        <%= f.label :sender_id, 'Отправитель' %>
         <%= f.collection_select :sender_id, Sender.all, :id, :name, { prompt: 'Выберите отправителя' }, {class: 'ui fluid dropdown' } %> <!--form-control пока не знаю как исправить-->
         <%= render 'shared/field_errors', object: @sms, field_name: :sender %>
       </div>
       <div class="field <%= 'error' if @sms.errors[:contact_list].any? %>">
-        <%= f.label :contact_list_id %>
+        <%= f.label :contact_list_id, 'Контактный лист' %>
         <%= f.collection_select :contact_list_id, ContactList.all.order(created_at: :desc), :id, :title, { prompt: 'Выберите контактный лист' }, {class: 'form-control' } %>
 
         <%= render 'shared/field_errors', object: @sms, field_name: :contact_list %>
@@ -27,9 +32,9 @@
       <%= f.text_area :content, placeholder: 'Введите текст сообщения', id: 'text-field' %>
       <%= render 'shared/field_errors', object: @sms, field_name: :content %>
     </div>
+
     <div class="field text-area-field">
-        <div class="dropzone" id="my-awesome-dropzone" data-url="<%= import_custom_lists_path %>">
-    </div>
+        <div class="dropzone" id="my-awesome-dropzone" data-url="<%= import_custom_lists_path %>"></div>
     </div>
     <div class="margin-left-30 align-center">
       <%= f.submit yield(:create), class: 'ui primary button' %>

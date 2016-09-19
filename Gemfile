@@ -16,6 +16,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
   gem 'byebug'
+  gem 'pry'
 end
 
 group :development do
@@ -75,3 +76,6 @@ gem 'fullcalendar-rails'
 
 # Диаграмма
 gem 'chartkick', '~> 1.2.4'
+
+
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'

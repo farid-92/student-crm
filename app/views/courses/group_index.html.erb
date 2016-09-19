@@ -14,7 +14,7 @@
     <%= link_to 'Список студентов', render_group_students_path(@group), class: 'item', remote: true, data: {tab: 'group-list'}, id: 'group-list-link' %>
     <%= link_to 'Занятия', render_group_students_path(@group), class: 'item', remote: true, data: {tab: 'group-periods'}, id: 'group-periods-link' %>
     <%= link_to 'Учебные блоки', render_group_students_path(@group), class: 'item', remote: true, data: {tab: 'group-study-units'}, id: 'group-study-units-link' %>
-    <!--<%= link_to 'Ведомости', render_group_students_path(@group), class: 'item', remote: true, data: {tab: 'reports'}, id: 'reports' %>-->
+    <%= link_to 'Ведомости', render_group_students_path(@group), class: 'item', remote: true, data: {tab: 'reports'}, id: 'reports' %>
     <%= link_to 'Диаграммы', render_performance_chart_path(@group), class: 'item', remote: true, data: {tab: 'performance-chart'} %>
     <div class="course-new-resources">
       <%= link_to new_period_path(group_id: @group), class: 'btn btn-default' do %>

@@ -5,7 +5,9 @@ class SmsDeliveriesController < ApplicationController
 
   def create
     @sms = SmsDelivery.new(get_sms_params)
-    @sms.delivery_time = Time.now + 3.minutes
+    if @sms.delivery_time.nil?
+      @sms.delivery_time = Time.now + 3.minutes
+    end
     if @sms.save
       flash[:success] = 'СМС рассылка будет отправлена через 3 минуты'
       redirect_to sms_deliveries_url(resource_id: 1)
@@ -21,7 +23,6 @@ class SmsDeliveriesController < ApplicationController
   def update
     @sms = SmsDelivery.find(params[:id])
     if @sms.update(get_sms_params)
-      @sms.update_attribute(:delivery_time, Time.now + 3.minutes)
       redirect_to sms_deliveries_url(resource_id: 1)
       flash[:success] = 'Сообщение успешно отредактировано'
     else
@@ -66,7 +67,7 @@ class SmsDeliveriesController < ApplicationController
   private
 
   def get_sms_params
-    params.require(:sms_delivery).permit(:title, :content, :sender_id, :contact_list_id)
+    params.require(:sms_delivery).permit(:title, :content, :sender_id, :contact_list_id, :delivery_time)
   end
 
 end

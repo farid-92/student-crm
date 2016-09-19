@@ -1,13 +1,15 @@
-@import "bootstrap-datepicker";
+@import 'bootstrap-sprockets';
 @import "bootstrap";
+@import "bootstrap-datepicker";
+@import 'bootstrap-datetimepicker';
 @import "semantic-ui";
 @import "dropzone/dropzone";
-@import "custom";
 @import 'font-awesome';
 @import "sms_deliveries";
 @import "courses";
 @import "course_element_materials";
 @import "groups";
+@import "custom";
 
 .birth_date{
   //width: 18% ;
