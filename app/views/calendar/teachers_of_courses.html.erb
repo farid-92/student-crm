@@ -1,0 +1,21 @@
+<div class="teachers_of_courses">
+  <div class="content">
+    <div class="ui list">
+      <% @group_memberships = GroupMembership.where(group_id: @groups_array) %>
+      <% @group_memberships.each do |group_membership| %>
+          <% group_membership.user.admissions.each do |admission| %>
+              <% if admission.role.access == 'teacher' || admission.role.access == 'teacher_redactor' %>
+                  <div class="item">
+                    <div class="content" id="content-margin-left">
+                      <div class="ui checkbox">
+                        <%= check_box_tag 'teacher_events', group_membership.user.id %>
+                        <label><b><%= group_membership.user.name %> <%= group_membership.user.surname %></b></label>
+                      </div>
+                    </div>
+                  </div>
+              <% end %>
+          <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

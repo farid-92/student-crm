@@ -1,0 +1,35 @@
+<div id="event-popup">
+  <div class="ui coupled modal">
+
+    <div class="ui second modal" id="edit_period_from_modal">
+      <div class="content">
+        <div class="edit_event_from_calendar_form"></div>
+      </div>
+    </div>
+
+    <div class="ui first modal" id="calendar_modal">
+      <i class="close icon"></i>
+      <div class="header">
+        <b>Событие: <%= @event_popup.title %></b>
+      </div>
+      <div class="content">
+        <b>Дата начала:  </b><%= @event_popup.start_date.strftime('%F ') %><br>
+        <b>Дата окончания:  </b><%= @event_popup.end_date.strftime('%F ') %><br>
+        <b>Кто создал:  </b>
+        <% if signed_in_as_admin? %>
+            <br><br><%= link_to '#', class: 'btn btn-default btn-sm', id: 'edit_button' do %>
+                <span class="fa fa-edit"></span>
+                Редактировать
+            <% end %>
+            <%= link_to event_path(@event_popup.id), class: 'btn btn-danger btn-sm', style: 'margin-left: 5px;',
+                        data: {confirm: "Вы уверены что хотите удалить событие календаря: #{@event_popup.title}?"},
+                        method: :delete do %>
+                <span class="fa fa-remove"></span>
+                Удалить
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>

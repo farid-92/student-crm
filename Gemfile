@@ -37,10 +37,6 @@ group :test do
   gem 'selenium-webdriver'
 end
 
-group :production do
-  gem 'mysql2', '~> 0.3.20'
-end
-
 gem 'pg'
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
@@ -50,6 +46,7 @@ gem 'faker'
 
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'bootstrap-datepicker-rails'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 gem 'semantic-ui-sass'
 gem 'font-awesome-rails'
 
@@ -77,5 +74,3 @@ gem 'fullcalendar-rails'
 # Диаграмма
 gem 'chartkick', '~> 1.2.4'
 
-
-gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'

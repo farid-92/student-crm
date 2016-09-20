@@ -1,0 +1,14 @@
+<div class="groups_of_courses">
+    <div class="ui list">
+      <% @groups.each do |group| %>
+        <div class="item">
+          <div class="content" id="content-margin-left">
+            <div class="ui checkbox">
+              <%= check_box_tag 'events_of_groups', group.id %>
+              <label><b>Группа: <%= group.name %></b></label>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+</div>

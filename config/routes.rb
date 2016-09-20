@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :course_element_materials
   resources :course_element_files, only: [:show, :create, :destroy]
   resources :periods
+  resources :events
   resources :study_units
 
   get 'periods/:period_id/material_theme/:id' => 'periods#show_material', as: 'show_student_theme_materials'
@@ -84,5 +85,32 @@ Rails.application.routes.draw do
   get 'users/group/:group_id/period/:period_id' => 'teacher_hws#students_index', as: 'students_by_teacher'
   get 'users_date/group/:group_id/period/:period_id' => 'teacher_hws#students_index_date', as: 'students_date_index'
   get 'periods/:id' => 'teacher_hws#periods_index', as: 'periods_by_teacher'
+
+
+# Fullcalendar
+  get 'new_period_from_calendar'=> 'calendar#new_period_from_calendar'
+  get 'edit_period_from_calendar/:id' => 'calendar#edit_period_from_calendar', as: 'edit_calendar_period'
+  patch 'update_period_from_calendar/:id' => 'calendar#update_period_from_calendar'
+  post 'create_period_from_calendar' => 'calendar#create_period_from_calendar'
+  delete 'destroy_period_from_calendar/:id' => 'calendar#destroy_period_from_calendar', as: 'destroy_calendar_period'
+
+  get 'calendar/fullcalendar'
+  get 'fullcalendar_for_student' => 'calendar#fullcalendar_for_student'
+  get 'periods_json' => 'calendar#get_periods_events_in_json_format'
+  get 'periods_json_for_students' => 'calendar#periods_json_for_students'
+  get 'get_period_for_popup' => 'calendar#get_period_for_popup'
+  get 'get_event_for_popup' => 'calendar#get_event_for_popup'
+
+  get 'groups_of_courses' => 'calendar#groups_of_courses'
+  get 'teachers_of_courses' => 'calendar#teachers_of_courses'
+  get 'teacher_of_group' => 'calendar#teacher_of_group'
+
+  get 'filter_periods_by_course' => 'calendar#filter_periods_by_course'
+  get 'filter_periods_by_group' => 'calendar#filter_periods_by_group'
+  get 'filter_periods_by_teachers' => 'calendar#filter_periods_by_teachers'
+
+  get 'groups_of_course' => 'calendar#group_of_course_new_period'
+  get 'course_elements_of_course' => 'calendar#course_element_of_course_new_period'
+
 
 end

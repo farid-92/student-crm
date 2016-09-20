@@ -142,7 +142,7 @@ class UsersController < ApplicationController
     group_ids.each do |group_id|
       group = Group.find(group_id)
       if group.periods.exists?
-        save_to_dependencies(group)
+        save_to_dependencies_of_group(group)
       else
         break
       end

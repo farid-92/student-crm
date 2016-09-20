@@ -111,7 +111,7 @@ class PeriodsController < ApplicationController
     group_id = params[:period][:group_id]
     group = Group.find(group_id)
     if group.users.exists?
-      save_to_dependencies(group)
+      save_to_dependencies_of_group(group)
     end
   end
 

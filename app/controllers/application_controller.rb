@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   include Report
 
-  def save_to_dependencies(group)
+  def save_to_dependencies_of_group(group)
     group.periods.each do |group_period|
       group.users.each do |group_student|
         Homework.skip_callback(:save, :before, :set_file_name)

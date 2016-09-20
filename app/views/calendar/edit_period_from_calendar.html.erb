@@ -1,0 +1,42 @@
+<div class="ui-form-width">
+  <%= form_for @period, url: {action: 'update_period_from_calendar'}, html: {class: 'ui equal width form'} do |f| %>
+      <div class="two fields">
+        <div class="field <%= 'error' if @period.errors[:title].any? %>">
+          <%= f.label :title %>
+          <%= f.text_field :title, placeholder: 'Заголовок занятия' %>
+          <%= render 'shared/field_errors', object: @period, field_name: :title %>
+        </div>
+        <div class="field">
+          <%= f.label :course %>
+          <%= f.collection_select :course_id, Course.all, :id, :name, {prompt: 'Выберите курс'}, {class: 'ui search fluid dropdown', id: 'course_of_period'} %>
+        </div>
+      </div>
+      <h6 class="ui dividing header">Дата проведения, Время проведения</h6>
+      <div class="two fields">
+        <div class="field <%= 'error' if @period.errors[:commence_datetime].any? %>">
+          <%= f.text_field :commence_datetime, data: {provide: 'datepicker', date_format: 'dd/mm/yyyy'}, placeholder: 'Выберите дату занятия'  %>
+          <%= render 'shared/field_errors', object: @period, field_name: :commence_datetime %>
+        </div>
+        <div class="field">
+            <%= f.time_select :start_time, {:default => {:hour => '19', :minute => '00'}}, {class: 'ui search dropdown' } %>
+            <%= f.time_select :end_time, {:default => {:hour => '21', :minute => '00'}}, {class: 'ui search dropdown' } %>
+        </div>
+      </div>
+      <h6 class="ui dividing header"></h6>
+      <div class="two fields">
+        <div class="field">
+          <%= f.collection_select :course_element_id, @course.course_elements, :id, :theme, {prompt: 'Выберите элемент курса'}, { class: 'ui search fluid dropdown', id: 'course_elements_of_selected_courses' } %>
+        </div>
+        <div class="field">
+          <%= f.collection_select :group_id, @course.groups, :id, :name, {prompt: 'Выберите группу курса'}, {class: 'ui search fluid dropdown', id: 'groups_of_selected_courses'} %>
+        </div>
+      </div>
+
+      <h6 class="ui dividing header"></h6>
+      <div class="ui buttons margin-left-20">
+        <%= link_to 'Вернуться в календарь', calendar_fullcalendar_path, class: 'ui button' %>
+        <div class="or"></div>
+        <%= f.submit 'Редактировать занятие', class: 'ui positive button active' %>
+      </div>
+  <% end %>
+</div>

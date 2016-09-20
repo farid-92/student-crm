@@ -1,0 +1,33 @@
+<div class="ui-form-width">
+  <%= form_for Event.new, html: {class: 'ui equal width form'} do |f| %>
+
+      <div class="fields">
+        <div class="field <%= 'error' if Event.new.errors[:description].any? %>">
+          <%= f.label :title %>
+          <%= f.text_field :title, placeholder: 'Событие календаря' %>
+          <%= render 'shared/field_errors', object: Event.new, field_name: :title %>
+        </div>
+      </div>
+
+      <h6 class="ui dividing header">Дата и время проведения</h6>
+      <div class="fields">
+        <div class="field">
+          <%= f.datetime_select :start_date, {start_year: 2015, end_year: 2020, order: [:day, :month, :year], :default => {:hour => '19', :minute => '00'}}, {class: 'ui search dropdown'} %>
+        </div>
+      </div>
+
+      <div class="fields">
+        <div class="field">
+          <%= f.datetime_select :end_date, {start_year: 2015, end_year: 2020, order: [:day, :month, :year], :default => {:hour => '21', :minute => '00'}}, {class: 'ui search dropdown'} %>
+        </div>
+      </div>
+
+      <h6 class="ui dividing header"></h6>
+      <div class="ui buttons margin-left-20">
+        <%= link_to 'Вернуться в календарь', calendar_fullcalendar_path, class: 'ui button' %>
+        <div class="or"></div>
+        <%= f.submit yield(:btn), class: 'ui positive button active' %>
+      </div>
+
+  <% end %>
+</div>
