@@ -8,4 +8,27 @@ module ApplicationHelper
     end
     nil
   end
+
+  # Используем во вьюшках для проверки на выбранную роль в сессии
+  def student?
+    session[:current_user_role] == 'student'
+  end
+
+  def admin?
+    session[:current_user_role] == 'admin'
+  end
+
+  def teacher?
+    session[:current_user_role] == 'teacher'
+  end
+
+  def manager?
+    session[:current_user_role] == 'manager'
+  end
+
+  def techsupport?
+    session[:current_user_role] == 'techsupport'
+  end
+
+
 end
