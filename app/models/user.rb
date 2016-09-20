@@ -69,4 +69,14 @@ class User < ActiveRecord::Base
     "Sorry, this account has been deactivated."
   end
 
+  class << self #this is for ability to use "current_user" method in model
+    def current_user=(user)
+      Thread.current[:current_user] = user
+    end
+
+    def current_user
+      Thread.current[:current_user]
+    end
+  end
+
 end

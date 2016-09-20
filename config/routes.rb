@@ -113,4 +113,6 @@ Rails.application.routes.draw do
   get 'course_elements_of_course' => 'calendar#course_element_of_course_new_period'
 
 
+  patch '/choose_role', to: 'users#set_user_role', as: :choose_role
+
 end

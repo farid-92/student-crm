@@ -115,6 +115,11 @@ class UsersController < ApplicationController
     redirect_to :back
   end
 
+  def set_user_role
+    choose_role(params[:role])
+  end
+
+
 
   private
 
