@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 gem 'rails', '4.2.4'
-gem 'sqlite3'
+
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
@@ -20,14 +20,18 @@ group :development, :test do
 end
 
 group :development do
+  gem 'sqlite3'
   gem 'web-console', '~> 2.0'
-  gem 'capistrano',         require: false
-  gem 'capistrano-rvm',   require: false
-  gem 'capistrano-rails',   require: false
-  gem 'capistrano-bundler', require: false
-  gem 'capistrano3-puma',   require: false
+
+  gem 'capistrano', '~> 3.1.0'
+  gem 'capistrano-bundler', '~> 1.1.2'
+  gem 'capistrano-rails', '~> 1.1.1'
+
+# Add this if you're using rbenv
+  gem 'capistrano-rbenv', '~> 2.0'
 end
-gem 'puma'
+
+  gem 'puma'
 
 group :test do
   gem 'cucumber-rails', :require => false
@@ -37,7 +41,9 @@ group :test do
   gem 'selenium-webdriver'
 end
 
-gem 'pg'
+group :production do
+  gem 'pg'
+end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
