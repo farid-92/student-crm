@@ -75,3 +75,13 @@ end
 After do |scenario|
   DatabaseCleaner.clean
 end
+
+#
+# Before('@login') do
+#   visit('/users/sign_in')
+#   within('#new_user') do
+#     fill_in 'user[email]', :with => 'admin@gmail.com'
+#     fill_in 'user[password]', :with => '12345678'
+#   end
+#   find_button('Войти в систему').click
+# end

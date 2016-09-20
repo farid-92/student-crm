@@ -6,6 +6,13 @@ class ApplicationController < ActionController::Base
 
   include Report
 
+  rescue_from CanCan::AccessDenied do |exception|
+    respond_to do |format|
+      format.json { render nothing: true, status: :forbidden }
+      format.html { redirect_to :back, :alert => exception.message }
+    end
+  end
+
   def save_to_dependencies_of_group(group)
     group.periods.each do |group_period|
       group.users.each do |group_student|

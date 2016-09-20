@@ -44,6 +44,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'faker'
 
+# стилизация
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
@@ -73,4 +74,8 @@ gem 'fullcalendar-rails'
 
 # Диаграмма
 gem 'chartkick', '~> 1.2.4'
+
+# Для работы ролей
+gem 'cancancan'
+gem 'rolify'
 
