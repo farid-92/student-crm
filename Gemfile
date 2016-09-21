@@ -29,6 +29,7 @@ group :development do
 
 # Add this if you're using rbenv
   gem 'capistrano-rbenv', '~> 2.0'
+  gem 'capistrano-passenger', require: false, github: 'capistrano/passenger'
 end
 
   gem 'puma'

@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/capistrano/passenger.git
+  revision: 223bf12f06c79febabba61ef24eb3752ee8e8f5c
+  specs:
+    capistrano-passenger (0.2.0)
+      capistrano (~> 3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -307,6 +314,7 @@ DEPENDENCIES
   cancancan
   capistrano (~> 3.5.0)
   capistrano-bundler (~> 1.1.2)
+  capistrano-passenger!
   capistrano-rails (~> 1.1.1)
   capistrano-rbenv (~> 2.0)
   capybara
