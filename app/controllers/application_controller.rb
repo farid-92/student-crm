@@ -19,12 +19,6 @@ class ApplicationController < ActionController::Base
     root_path
   end
 
-  before_filter :set_current_user
-
-  def set_current_user
-    User.current_user = current_user
-  end
-
   # Выбираем роль по умолчанию при логине. Роль с большими полномочиями имеет больший вес
   def set_default_role
     if current_user.has_any_role? :admin
