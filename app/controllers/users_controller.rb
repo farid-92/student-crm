@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    $file = params[:user][:passport_photo]
     @user = User.new(user_params)
     generated_password = Devise.friendly_token.first(8)
     @user.password = generated_password
@@ -51,6 +52,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    $file = params[:user][:passport_photo]
     @user = User.find(params[:id])
     unless params[:user][:group_id].nil?
       @group = Group.find(params[:user][:group_id])

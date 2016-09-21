@@ -83,14 +83,17 @@ class User < ActiveRecord::Base
   end
 
   def normalized_file_name
-    extension = File.extname(self.passport_photo.original_filename)
-    user_name = self.name
-    user_surname = self.surname
-    "#{user_name}_#{user_surname}#{extension}"
+    if $file
+      extension = File.extname(self.passport_photo.original_filename)
+      user_name = self.name
+      user_surname = self.surname
+      "#{user_name}_#{user_surname}#{extension}"
+    end
   end
 
   def set_passport_file_name
     self.passport_photo_file_name = normalized_file_name
+    self.passport_photo.instance_write(:file_name, normalized_file_name)
   end
 
 
