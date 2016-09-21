@@ -12,7 +12,7 @@
         <tr>
           <td>Курс:</td>
           <td>
-            <% @user.groups.each do |group| %>
+            <% @user_groups.each do |group| %>
                 <%= group.course.name %>
             <% end %>
           </td>
@@ -21,7 +21,7 @@
         <tr>
           <td>Группа: </td>
           <td>
-            <% @user.groups.each do |group| %>
+            <% @user_groups.each do |group| %>
                 <%= group.name %>
             <% end %>
           </td>
@@ -67,7 +67,9 @@
         <tr>
           <td>Авторизация</td>
           <td>
-            Роль
+            <% @user.roles.each do |role| %>
+                <%= role.name %>
+            <% end %>
           </td>
         </tr>
         <tr>

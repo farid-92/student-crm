@@ -5,9 +5,9 @@ class ContractPdf < Prawn::Document
     @student = student
     @view = view
     @course = course
-    @practical_time = practical_time
-    @theoretical_time = theoretical_time
-    @educational_cost = educational_cost
+    @practical_time = practical_time.to_i
+    @theoretical_time = theoretical_time.to_i
+    @educational_cost = educational_cost.to_i
 
     add_font
     header

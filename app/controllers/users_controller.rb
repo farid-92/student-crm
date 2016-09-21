@@ -22,10 +22,19 @@ class UsersController < ApplicationController
     group_ids.each do |group_id|
       course_ids.push Group.find(group_id).course.id
     end
+    role_ids = params[:user][:role_ids]
+    role_ids.shift
+    role_ids.each do |role_id|
+      user_role = Role.find(role_id)
+      if user_role.name == 'student'
+        if course_ids.uniq.length != course_ids.length
+          flash.now[:danger] = 'Студент не может быть одновременно в двух группах одного курса'
+          render 'new' and return
+        end
+      end
+    end
+
     if @user.save
-      # group_ids.each do |group_id|
-      #   GroupMembership.create!(group_id: group_id, user_id: @user.id, active: true)
-      # end
       save_to_student_dependencies(group_ids)
       flash[:notice] = 'Студент успешно добавлен'
      # UserMailer.password_email(@user, generated_password).deliver_now
@@ -38,6 +47,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    @group = Group.find(params[:group_id]) unless params[:group_id].nil?
   end
 
   def update
@@ -59,9 +69,6 @@ class UsersController < ApplicationController
     end
     if course_ids.uniq.length == course_ids.length
       if @user.update(user_params)
-        # group_ids.each do |group_id|
-        #   GroupMembership.create!(group_id: group_id, user_id: @user.id, active: true)
-        # end
         save_to_student_dependencies(group_ids)
         flash[:notice] = 'Данные успешно отредактированы!'
         redirect_to root_path
@@ -77,23 +84,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @members = GroupMembership.where(user_id: @user)
-    # @group = Group.find_by_id(@members[0].group_id)
-    # @course = Course.find_by_id(@group.course_id)
-    @group = 'Группа'
-    @course = 'Курс'
-    @practical_time = 500
-    @theoretical_time = 780
-    @educational_cost = 135000
-    respond_to do |format|
-      format.html
-      format.pdf do
-        pdf = ContractPdf.new(@user, view_context, @course, @practical_time, @theoretical_time, @educational_cost)
-        send_data pdf.render, filename:
-            "договор #{@user.created_at.strftime("%d.%m.%Y")}.pdf",
-                  type: "application/pdf", disposition: "inline"
-      end
-    end
+    # @members = GroupMembership.where(user_id: @user)
+    @user_groups = @user.groups
 
   end
 
@@ -108,6 +100,17 @@ class UsersController < ApplicationController
     send_file(user.passport_photo.path)
   end
 
+  def generate_contract
+    @user = User.find(params[:id])
+    @group = Group.find(params[:group_id])
+    contract_pdf = ContractPdf.new(@user, @group, @group.course.name, @group.course.practical_time, @group.course.theoretical_time, @group.course.cost)
+
+    send_data contract_pdf.render,
+              filename: "#{@user.surname} #{@user.name}.pdf",
+              type: 'application/pdf',
+              disposition: 'inline'
+  end
+
 
   def changestatus
     user = User.find(params[:id])
@@ -118,8 +121,6 @@ class UsersController < ApplicationController
   def set_user_role
     choose_role(params[:role])
   end
-
-
 
   private
 
@@ -140,6 +141,7 @@ class UsersController < ApplicationController
         :photo,
         :passport_photo,
         :group_ids => [],
+        :role_ids => []
     )
   end
 

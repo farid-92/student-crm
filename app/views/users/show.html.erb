@@ -18,9 +18,11 @@
       <%= render 'shared/user_show_profile' %>
 
       <div class="panel-footer">
-          <%= link_to (user_path(@user.id) + ".pdf"), class: 'ui primary button' do %>
-              <span class="fa fa-file-pdf-o"></span>
-              &nbsp;Договор
+          <% @user_groups.each do |group| %>
+              <%= link_to generate_contract_path(@user, group_id: group.id), class: 'ui primary button' do %>
+                  <span class="fa fa-file-pdf-o"></span>
+                  &nbsp;Договор(<%= group.course.name %>)
+              <% end %>
           <% end %>
           <%= link_to edit_user_path(@user), class: 'ui default button' do %>
               <span class="fa fa-edit"></span>

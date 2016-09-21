@@ -39,6 +39,9 @@ Rails.application.routes.draw do
 
   get 'download_pasport/:id' => 'users#download_passport', as: 'download_passport'
 
+# STUDENTS
+  get 'generate_contract/:id' => 'users#generate_contract', as: 'generate_contract'
+
 # COURSES
   get 'course_index/:id' => 'courses#course_index', as: 'show_course_index'
   get 'course_groups/:id' => 'courses#course_groups', as: 'show_course_groups'
