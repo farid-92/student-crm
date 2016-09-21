@@ -84,9 +84,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    # @members = GroupMembership.where(user_id: @user)
     @user_groups = @user.groups
-
   end
 
   def destroy

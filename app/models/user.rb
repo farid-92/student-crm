@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  before_create :set_passport_file_name
+  before_update :set_passport_file_name
+
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -78,5 +81,18 @@ class User < ActiveRecord::Base
       Thread.current[:current_user]
     end
   end
+
+  def normalized_file_name
+    extension = File.extname(self.passport_photo.original_filename)
+    user_name = self.name
+    user_surname = self.surname
+    "#{user_name}_#{user_surname}#{extension}"
+  end
+
+  def set_passport_file_name
+    self.passport_photo_file_name = normalized_file_name
+  end
+
+
 
 end
