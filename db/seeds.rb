@@ -24,28 +24,28 @@ admin = User.create!(name: 'Фарид',
                      password_txt: password,
                      roles:[Role.find_by(name:'admin')]
 )
-#
-# 20.times do
-#   name = Faker::Name.first_name
-#   surname = Faker::Name.last_name
-#   student = User.create!(
-#       name: name,
-#       surname: surname,
-#       gender: ['Мужчина', 'Женщина'].sample,
-#       birthdate: Faker::Date.backward,
-#       first_phone: '+996700123123',
-#       second_phone: '+996550123321',
-#       passport_id: '10001203123',
-#       passport_inn: '100101020',
-#       issue_date: '20.12.2008',
-#       issued_by: 'MVD 50-05',
-#       password: password,
-#       password_confirmation: password,
-#       email: "#{name}.#{surname}@gmail.com",
-#       password_txt: password,
-#       roles: roles[0..roles.size-1]
-#   )
-# end
+
+20.times do
+  name = Faker::Name.first_name
+  surname = Faker::Name.last_name
+  student = User.create!(
+      name: name,
+      surname: surname,
+      gender: ['Мужчина', 'Женщина'].sample,
+      birthdate: Faker::Date.backward,
+      first_phone: '+996700123123',
+      second_phone: '+996550123321',
+      passport_id: '10001203123',
+      passport_inn: '100101020',
+      issue_date: '20.12.2008',
+      issued_by: 'MVD 50-05',
+      password: password,
+      password_confirmation: password,
+      email: "#{name}.#{surname}@gmail.com",
+      password_txt: password,
+      roles: roles[0..roles.size-1]
+  )
+end
 
 Course.create!(name: 'HTML-верстальщик',course_short_name: 'HTML',
                practical_time: 96,theoretical_time: 100,cost: 72000)
