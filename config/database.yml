@@ -38,7 +38,7 @@ production:
     adapter: postgresql
     encoding: unicode
     database: demo_production_db
-    username: deploy_postgres_user
+    username: postgres_user
     password: 13131313
     host: localhost
     pool: 5
