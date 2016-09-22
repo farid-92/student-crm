@@ -16,7 +16,7 @@
         <b>Дата начала:  </b><%= @event_popup.start_date.strftime('%F ') %><br>
         <b>Дата окончания:  </b><%= @event_popup.end_date.strftime('%F ') %><br>
         <b>Кто создал:  </b>
-        <% if signed_in_as_admin? %>
+        <% if admin? %>
             <br><br><%= link_to '#', class: 'btn btn-default btn-sm', id: 'edit_button' do %>
                 <span class="fa fa-edit"></span>
                 Редактировать

@@ -158,14 +158,14 @@ class CalendarController < ApplicationController
   end
 
   def get_periods_events_in_json_format
-    # current_user.admissions.each do |admission|
-    #   if admission.role.access == 'teacher' || admission.role.access == 'teacher_redactor'
+    # current_user.roles.each do |admission|
+    #   if admission.name == 'teacher' || admission.name == 'teacher_redactor'
     #     student_groups = []
     #     GroupMembership.where(user_id: current_user.id).each do |group_membership|
     #       student_groups.push group_membership.group_id
     #     end
     #     @periods = Period.where(group_id: student_groups)
-    #   elsif admission.role.access == 'admin'
+    #   elsif admission.name == 'admin'
         @periods = Period.all
     #  end
     # end

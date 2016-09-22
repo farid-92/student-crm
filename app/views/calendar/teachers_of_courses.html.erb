@@ -3,8 +3,8 @@
     <div class="ui list">
       <% @group_memberships = GroupMembership.where(group_id: @groups_array) %>
       <% @group_memberships.each do |group_membership| %>
-          <% group_membership.user.admissions.each do |admission| %>
-              <% if admission.role.access == 'teacher' || admission.role.access == 'teacher_redactor' %>
+          <% group_membership.user.roles.each do |role| %>
+              <% if role.name == 'teacher' || role.name == 'teacher_redactor' %>
                   <div class="item">
                     <div class="content" id="content-margin-left">
                       <div class="ui checkbox">

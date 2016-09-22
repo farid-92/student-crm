@@ -110,7 +110,6 @@ $(document).ready(function () {
         var selected_courses = $("#courses_list input[type=checkbox]:checked").map(function(){
             return $(this).val()
         }).get();
-        console.log(selected_courses)
         $.ajax({
             type: 'GET',
             url: '/groups_of_courses/',
