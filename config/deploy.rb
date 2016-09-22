@@ -1,8 +1,10 @@
 # config valid only for current version of Capistrano
 lock '3.5.0'
 
+set :branch, ENV['BRANCH'] if ENV['BRANCH']
 set :application, 'student'
 set :repo_url, 'git@github.com:farid-92/student-crm.git'
+
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
