@@ -35,18 +35,14 @@ test: &test
 #  timeout: 5000
 
 production:
-    adapter: postgresql
+    adapter: mysql2
     encoding: unicode
     database: demo_production_db
-    username: postgres_user
+    username: root
     password: 13131313
     host: localhost
     pool: 5
     timeout: 5000
-    reconnect: true
-    port: 5432
-    encoding: 'utf-8'
-    sslmode: 'require'
 
 cucumber:
   <<: *test

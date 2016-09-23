@@ -36,6 +36,9 @@ group :test do
   gem 'rspec'
   gem 'selenium-webdriver'
 end
+group :production do
+  gem 'mysql2'
+end
 
 gem 'pg'
 
