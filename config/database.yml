@@ -36,7 +36,6 @@ test: &test
 
 production:
     adapter: mysql2
-    encoding: utf8
     database: demo_production_db
     username: root
     password: 13131313
