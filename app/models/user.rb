@@ -5,13 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # class << self
-  #   def serialize_from_session(key,salt)
-  #     #record = to_adapter.get(key[0].to_param)
-  #     record = to_adapter.get(key[0].as_json["$oid"])
-  #     record if record && record.authenticatable_salt == salt
-  #   end
-  # end
+
 
   has_many :recipient_depositories
   has_many :contact_lists, through: :recipient_depositories
@@ -69,9 +63,9 @@ class User < ActiveRecord::Base
     "#{surname.capitalize} #{name.capitalize}"
   end
 
-  def active_for_authentication?
-    super && self.active?  # i.e. super && self.is_active
-  end
+  # def active_for_authentication?
+  #   super && self.active?  # i.e. super && self.is_active
+  # end
 
   def inactive_message
     "Sorry, this account has been deactivated."
