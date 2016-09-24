@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   class << self
     def serialize_from_session(key,salt)
       #record = to_adapter.get(key[0].to_param)
-      record = to_adapter.get(key.to_s)
+      record = to_adapter.get(key[0].as_json["$oid"])
       record if record && record.authenticatable_salt == salt
     end
   end
