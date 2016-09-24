@@ -5,13 +5,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  class << self
-    def serialize_from_session(key,salt)
-      #record = to_adapter.get(key[0].to_param)
-      record = to_adapter.get(key[0].as_json["$oid"])
-      record if record && record.authenticatable_salt == salt
-    end
-  end
+  # class << self
+  #   def serialize_from_session(key,salt)
+  #     #record = to_adapter.get(key[0].to_param)
+  #     record = to_adapter.get(key[0].as_json["$oid"])
+  #     record if record && record.authenticatable_salt == salt
+  #   end
+  # end
 
   has_many :recipient_depositories
   has_many :contact_lists, through: :recipient_depositories
