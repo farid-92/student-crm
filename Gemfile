@@ -86,5 +86,4 @@ gem 'chartkick', '~> 1.2.4'
 gem 'cancancan'
 gem 'rolify'
 
-gem 'rails_12factor', group: :production
 
