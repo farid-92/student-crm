@@ -13,163 +13,161 @@
 
 ActiveRecord::Schema.define(version: 20160920084144) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "attendances", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "period_id"
+    t.integer  "user_id",    limit: 4
+    t.integer  "period_id",  limit: 4
     t.boolean  "attended"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   add_index "attendances", ["period_id"], name: "index_attendances_on_period_id", using: :btree
   add_index "attendances", ["user_id"], name: "index_attendances_on_user_id", using: :btree
 
   create_table "ckeditor_assets", force: :cascade do |t|
-    t.string   "data_file_name",               null: false
-    t.string   "data_content_type"
-    t.integer  "data_file_size"
-    t.integer  "assetable_id"
+    t.string   "data_file_name",    limit: 255, null: false
+    t.string   "data_content_type", limit: 255
+    t.integer  "data_file_size",    limit: 4
+    t.integer  "assetable_id",      limit: 4
     t.string   "assetable_type",    limit: 30
     t.string   "type",              limit: 30
-    t.integer  "width"
-    t.integer  "height"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.integer  "width",             limit: 4
+    t.integer  "height",            limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
   create_table "contact_lists", force: :cascade do |t|
-    t.string   "title"
-    t.boolean  "temp",       default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.string   "title",      limit: 255
+    t.boolean  "temp",                   default: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
   create_table "course_element_files", force: :cascade do |t|
-    t.integer  "course_element_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.string   "file_file_name"
-    t.string   "file_content_type"
-    t.integer  "file_file_size"
+    t.integer  "course_element_id", limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "file_file_name",    limit: 255
+    t.string   "file_content_type", limit: 255
+    t.integer  "file_file_size",    limit: 4
     t.datetime "file_updated_at"
   end
 
   add_index "course_element_files", ["course_element_id"], name: "index_course_element_files_on_course_element_id", using: :btree
 
   create_table "course_element_materials", force: :cascade do |t|
-    t.string   "title"
-    t.text     "content"
-    t.string   "element_type"
-    t.integer  "course_element_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.string   "title",             limit: 255
+    t.text     "content",           limit: 65535
+    t.string   "element_type",      limit: 255
+    t.integer  "course_element_id", limit: 4
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   add_index "course_element_materials", ["course_element_id"], name: "index_course_element_materials_on_course_element_id", using: :btree
 
   create_table "course_elements", force: :cascade do |t|
-    t.integer  "course_id"
-    t.string   "theme"
-    t.string   "element_type"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "course_id",    limit: 4
+    t.string   "theme",        limit: 255
+    t.string   "element_type", limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_index "course_elements", ["course_id"], name: "index_course_elements_on_course_id", using: :btree
 
   create_table "courses", force: :cascade do |t|
-    t.string   "name"
-    t.string   "course_short_name"
-    t.string   "practical_time"
-    t.string   "theoretical_time"
-    t.string   "cost"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.string   "name",              limit: 255
+    t.string   "course_short_name", limit: 255
+    t.string   "practical_time",    limit: 255
+    t.string   "theoretical_time",  limit: 255
+    t.string   "cost",              limit: 255
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "custom_lists", force: :cascade do |t|
-    t.string   "phone"
-    t.integer  "contact_list_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "phone",           limit: 255
+    t.integer  "contact_list_id", limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "custom_lists", ["contact_list_id"], name: "index_custom_lists_on_contact_list_id", using: :btree
 
   create_table "events", force: :cascade do |t|
-    t.string   "title"
+    t.string   "title",      limit: 255
     t.datetime "start_date"
     t.datetime "end_date"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "extra_homeworks", force: :cascade do |t|
-    t.integer  "group_id"
-    t.integer  "user_id"
-    t.integer  "period_id"
-    t.integer  "course_id"
-    t.integer  "homework_id"
-    t.text     "feedback"
-    t.boolean  "download_status",       default: false
-    t.string   "teacher_id",            default: "f"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.string   "extra_hw_file_name"
-    t.string   "extra_hw_content_type"
-    t.integer  "extra_hw_file_size"
+    t.integer  "group_id",              limit: 4
+    t.integer  "user_id",               limit: 4
+    t.integer  "period_id",             limit: 4
+    t.integer  "course_id",             limit: 4
+    t.integer  "homework_id",           limit: 4
+    t.text     "feedback",              limit: 65535
+    t.boolean  "download_status",                     default: false
+    t.string   "teacher_id",            limit: 255,   default: "0"
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
+    t.string   "extra_hw_file_name",    limit: 255
+    t.string   "extra_hw_content_type", limit: 255
+    t.integer  "extra_hw_file_size",    limit: 4
     t.datetime "extra_hw_updated_at"
   end
 
   add_index "extra_homeworks", ["course_id"], name: "index_extra_homeworks_on_course_id", using: :btree
   add_index "extra_homeworks", ["group_id"], name: "index_extra_homeworks_on_group_id", using: :btree
+  add_index "extra_homeworks", ["homework_id"], name: "fk_rails_af0176b061", using: :btree
   add_index "extra_homeworks", ["period_id"], name: "index_extra_homeworks_on_period_id", using: :btree
   add_index "extra_homeworks", ["user_id"], name: "index_extra_homeworks_on_user_id", using: :btree
 
   create_table "group_memberships", force: :cascade do |t|
-    t.integer  "group_id"
-    t.integer  "user_id"
+    t.integer  "group_id",   limit: 4
+    t.integer  "user_id",    limit: 4
     t.boolean  "active"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   add_index "group_memberships", ["group_id"], name: "index_group_memberships_on_group_id", using: :btree
   add_index "group_memberships", ["user_id"], name: "index_group_memberships_on_user_id", using: :btree
 
   create_table "groups", force: :cascade do |t|
-    t.integer  "course_id"
-    t.string   "name"
-    t.string   "group_short_name"
+    t.integer  "course_id",        limit: 4
+    t.string   "name",             limit: 255
+    t.string   "group_short_name", limit: 255
     t.date     "starts_at"
     t.date     "ends_at"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   add_index "groups", ["course_id"], name: "index_groups_on_course_id", using: :btree
 
   create_table "homeworks", force: :cascade do |t|
-    t.integer  "course_id"
-    t.integer  "group_id"
-    t.integer  "user_id"
-    t.integer  "period_id"
-    t.decimal  "score"
-    t.text     "feedback"
+    t.integer  "course_id",       limit: 4
+    t.integer  "group_id",        limit: 4
+    t.integer  "user_id",         limit: 4
+    t.integer  "period_id",       limit: 4
+    t.decimal  "score",                         precision: 10
+    t.text     "feedback",        limit: 65535
     t.datetime "deadline"
-    t.string   "teacher_id",      default: "f"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.string   "hw_file_name"
-    t.string   "hw_content_type"
-    t.integer  "hw_file_size"
+    t.string   "teacher_id",      limit: 255,                  default: "0"
+    t.datetime "created_at",                                                 null: false
+    t.datetime "updated_at",                                                 null: false
+    t.string   "hw_file_name",    limit: 255
+    t.string   "hw_content_type", limit: 255
+    t.integer  "hw_file_size",    limit: 4
     t.datetime "hw_updated_at"
   end
 
@@ -179,17 +177,17 @@ ActiveRecord::Schema.define(version: 20160920084144) do
   add_index "homeworks", ["user_id"], name: "index_homeworks_on_user_id", using: :btree
 
   create_table "periods", force: :cascade do |t|
-    t.integer  "course_element_id"
-    t.string   "title"
+    t.integer  "course_element_id", limit: 4
+    t.string   "title",             limit: 255
     t.datetime "commence_datetime"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.string   "lesson_number"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "lesson_number",     limit: 255
     t.datetime "start_time"
     t.datetime "end_time"
-    t.integer  "course_id"
-    t.integer  "group_id"
-    t.integer  "study_unit_id"
+    t.integer  "course_id",         limit: 4
+    t.integer  "group_id",          limit: 4
+    t.integer  "study_unit_id",     limit: 4
   end
 
   add_index "periods", ["course_element_id"], name: "index_periods_on_course_element_id", using: :btree
@@ -198,19 +196,19 @@ ActiveRecord::Schema.define(version: 20160920084144) do
   add_index "periods", ["study_unit_id"], name: "index_periods_on_study_unit_id", using: :btree
 
   create_table "recipient_depositories", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "contact_list_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.integer  "user_id",         limit: 4
+    t.integer  "contact_list_id", limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   add_index "recipient_depositories", ["contact_list_id"], name: "index_recipient_depositories_on_contact_list_id", using: :btree
   add_index "recipient_depositories", ["user_id"], name: "index_recipient_depositories_on_user_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "resource_id"
-    t.string   "resource_type"
+    t.string   "name",          limit: 255
+    t.integer  "resource_id",   limit: 4
+    t.string   "resource_type", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -219,90 +217,90 @@ ActiveRecord::Schema.define(version: 20160920084144) do
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "senders", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "sms_service_account_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name",                   limit: 255
+    t.integer  "sms_service_account_id", limit: 4
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   add_index "senders", ["sms_service_account_id"], name: "index_senders_on_sms_service_account_id", using: :btree
 
   create_table "sms_deliveries", force: :cascade do |t|
-    t.string   "title"
-    t.text     "content"
-    t.integer  "sender_id"
-    t.integer  "contact_list_id"
-    t.boolean  "status",          default: false
+    t.string   "title",           limit: 255
+    t.text     "content",         limit: 65535
+    t.integer  "sender_id",       limit: 4
+    t.integer  "contact_list_id", limit: 4
+    t.boolean  "status",                        default: false
     t.datetime "delivery_time"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.boolean  "smart_delivery",  default: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.boolean  "smart_delivery",                default: false
   end
 
   add_index "sms_deliveries", ["contact_list_id"], name: "index_sms_deliveries_on_contact_list_id", using: :btree
   add_index "sms_deliveries", ["sender_id"], name: "index_sms_deliveries_on_sender_id", using: :btree
 
   create_table "sms_service_accounts", force: :cascade do |t|
-    t.string   "login"
-    t.string   "password"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "user_id"
+    t.string   "login",      limit: 255
+    t.string   "password",   limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "user_id",    limit: 4
   end
 
   add_index "sms_service_accounts", ["user_id"], name: "index_sms_service_accounts_on_user_id", using: :btree
 
   create_table "study_units", force: :cascade do |t|
-    t.string   "unit"
-    t.integer  "group_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "unit",       limit: 255
+    t.integer  "group_id",   limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "study_units", ["group_id"], name: "index_study_units_on_group_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                       default: "",   null: false
-    t.string   "encrypted_password",          default: "",   null: false
-    t.string   "reset_password_token"
+    t.string   "email",                       limit: 255, default: "",   null: false
+    t.string   "encrypted_password",          limit: 255, default: "",   null: false
+    t.string   "reset_password_token",        limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",               default: 0,    null: false
+    t.integer  "sign_in_count",               limit: 4,   default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
-    t.string   "name"
-    t.string   "surname"
-    t.string   "gender"
-    t.string   "first_phone"
-    t.string   "second_phone"
-    t.string   "skype"
+    t.string   "current_sign_in_ip",          limit: 255
+    t.string   "last_sign_in_ip",             limit: 255
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
+    t.string   "name",                        limit: 255
+    t.string   "surname",                     limit: 255
+    t.string   "gender",                      limit: 255
+    t.string   "first_phone",                 limit: 255
+    t.string   "second_phone",                limit: 255
+    t.string   "skype",                       limit: 255
     t.date     "birthdate"
-    t.string   "passport_id"
-    t.string   "passport_inn"
+    t.string   "passport_id",                 limit: 255
+    t.string   "passport_inn",                limit: 255
     t.date     "issue_date"
-    t.string   "issued_by"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
+    t.string   "issued_by",                   limit: 255
+    t.string   "photo_file_name",             limit: 255
+    t.string   "photo_content_type",          limit: 255
+    t.integer  "photo_file_size",             limit: 4
     t.datetime "photo_updated_at"
-    t.string   "passport_photo_file_name"
-    t.string   "passport_photo_content_type"
-    t.integer  "passport_photo_file_size"
+    t.string   "passport_photo_file_name",    limit: 255
+    t.string   "passport_photo_content_type", limit: 255
+    t.integer  "passport_photo_file_size",    limit: 4
     t.datetime "passport_photo_updated_at"
-    t.string   "password_txt"
-    t.boolean  "active",                      default: true
+    t.string   "password_txt",                limit: 255
+    t.boolean  "active",                                  default: true
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "users_roles", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "role_id"
+    t.integer "user_id", limit: 4
+    t.integer "role_id", limit: 4
   end
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree

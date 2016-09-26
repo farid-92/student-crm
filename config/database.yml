@@ -10,11 +10,10 @@ default: &default
   timeout: 5000
 
 development:
-  adapter: postgresql
-  database: crm_db
-  encoding: unicode
-  username: farid
-  password: 12345
+  adapter: mysql2
+  database: std_db
+  username: root
+  password: 13131313
   pool: 5
   timeout: 5000
 

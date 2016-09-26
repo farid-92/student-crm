@@ -43,7 +43,7 @@ admin = User.create!(name: 'Фарид',
       password_confirmation: password,
       email: "#{name}.#{surname}@gmail.com",
       password_txt: password,
-      roles: roles[0..roles.size-1]
+      roles: [Role.find_by(name:'student')]
   )
 end
 
