@@ -38,8 +38,6 @@ group :test do
 end
 group :production do
   gem 'mysql2', '~> 0.3.20'
-  gem 'therubyracer'
-  gem 'execjs'
 end
 
 gem 'pg'
