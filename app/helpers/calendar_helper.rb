@@ -2,8 +2,7 @@ module CalendarHelper
 
   def create_events_for_calendar
     events = []
-    if @periods.nil?
-    else
+    unless @periods.nil?
       @periods.each do |period|
         events.push({
                         lesson_number: period.lesson_number,
@@ -17,8 +16,7 @@ module CalendarHelper
     end
 
     @events = Event.all
-    if @events.nil?
-    else
+    unless @events.nil?
       @events.each do |calendar_event|
         events.push({
                         title: calendar_event.title,

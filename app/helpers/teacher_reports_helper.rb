@@ -1,7 +1,7 @@
 module TeacherReportsHelper
   def attended?(period_id, student_id)
-    attendance = Attendance.find_by_period_id_and_user_id(period_id, student_id)
-    if attendance.attended
+    attendance = Attendance.find_by(period_id: period_id, user_id: student_id)
+    if attendance.attended?
       true
     else
       false

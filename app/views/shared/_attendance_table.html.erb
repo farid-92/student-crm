@@ -20,7 +20,7 @@
                 <tr>
                   <td class="number attendance-fixed-height"><%= counter += 1 %></td>
                   <td class="fio col-fixed-width"><%= student.name.capitalize %> <%= student.surname.capitalize %></td>
-                  <td class="attendance-quantity text-center" id="admin-attendance-student-<%= student.id %>"> <%= show_student_total_attendance(student.id) %> </td>
+                  <td class="attendance-quantity text-center" id="admin-attendance-user-<%= student.id %>"> <%= show_student_total_attendance(student.id) %> </td>
                 </tr>
               <% # end %>
             <% end %>
