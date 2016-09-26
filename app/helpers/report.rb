@@ -1,7 +1,7 @@
 module Report
 
   def index_rep
-    teacher = current_student
+    teacher = current_user
     get_teacher_courses(teacher)
   end
 
@@ -55,7 +55,7 @@ module Report
 
     course = Course.find_by(id: course_id)
     course_groups = course.groups
-    teacher_groups = current_student.groups
+    teacher_groups = current_user.groups
 
     groups = course_groups & teacher_groups
     groups_list = []
