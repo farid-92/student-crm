@@ -12,7 +12,6 @@ default: &default
 development:
   adapter: postgresql
   database: crm_db
-  encoding: unicode
   username: farid
   password: 12345
   pool: 5
