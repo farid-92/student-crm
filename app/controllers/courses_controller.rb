@@ -2,6 +2,7 @@ class CoursesController < ApplicationController
   def index
     @courses = Course.all
     @users = User.all
+    @resource = params[:resource_id]
   end
 
   def new

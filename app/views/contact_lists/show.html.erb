@@ -19,14 +19,23 @@
     <div class="panel-body">
       <table class="table">
         <% if @custom_list.empty? %>
-          <% @contact_list.users.each do |user| %>
+            <tr>
+              <th> ФИО получателя</th>
+              <th> Номер телефона</th>
+              <th> Статус в системе</th>
+            </tr>
+            <% @contact_list.users.each do |user| %>
               <tr>
                 <td class="col-sm-3"><%= user.full_name %></td>
                 <td class="col-sm-2">
                   <%= user.first_phone %>
                 </td>
                 <td class="col-sm-1">
-
+                  <% if user.active? %>
+                      активен
+                  <% else %>
+                      не активен
+                  <% end %>
                 </td>
               </tr>
           <% end %>

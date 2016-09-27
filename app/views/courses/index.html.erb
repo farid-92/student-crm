@@ -11,8 +11,8 @@
 <div id="context2">
 
   <div class="ui secondary menu admin-course-index course-btns-wrapper">
-    <%= link_to 'Список курсов', '#', class: 'item active', remote: true, data: {tab: 'all-courses'} %>
-    <%= link_to 'Список пользователей', '#', class: 'item', remote: true, data: {tab: 'all-students'} %>
+    <%= link_to 'Список курсов', '#', class: 'item', id: 'course-link', remote: true, data: {tab: 'all-courses'} %>
+    <%= link_to 'Список пользователей', '#', class: 'item', id: 'user-link', remote: true, data: {tab: 'all-students'} %>
     <div class="course-new-resources">
       <%= link_to  new_course_path, class: 'btn btn-default' do %>
           <span class="fa fa-plus-circle"></span>
@@ -25,7 +25,7 @@
     </div>
   </div>
 
-  <div class="ui tab active" data-tab="all-courses" id="all-courses">
+  <div class="ui tab" data-tab="all-courses" id="all-courses">
     <%= render 'courses/get_courses_list' %>
   </div>
   <div class="ui tab" data-tab="all-students" id="all-students">
@@ -38,6 +38,13 @@
   $('#context2 .menu .item').tab({
     context: 'parent'
   });
+</script>
+<script>
+  <% if @resource.nil? %>
+      $('#course-link, #all-courses').addClass('active');
+  <% elsif @resource == '2' %>
+      $('#user-link, #all-students').addClass('active');
+  <% end  %>
 </script>
 <% if Group.all.blank? %>
     <script>

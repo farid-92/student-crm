@@ -40,7 +40,7 @@ class UsersController < ApplicationController
       flash[:notice] = 'Студент успешно добавлен'
      # UserMailer.password_email(@user, generated_password).deliver_now
 
-      redirect_to root_path
+      redirect_to root_path(resource_id: 2)
     else
       render 'new'
     end
@@ -73,7 +73,7 @@ class UsersController < ApplicationController
       if @user.update(user_params)
         save_to_student_dependencies(group_ids)
         flash[:notice] = 'Данные успешно отредактированы!'
-        redirect_to root_path
+        redirect_to root_path(resource_id: 2)
       else
         render 'edit'
       end
@@ -92,7 +92,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    redirect_to root_path
+    redirect_to root_path(resource_id: 2)
   end
 
   def download_passport
@@ -115,7 +115,7 @@ class UsersController < ApplicationController
   def changestatus
     user = User.find(params[:id])
     user.update_attribute(:active, !user.active)
-    redirect_to :back
+    redirect_to root_path(resource_id: 2)
   end
 
   def set_user_role
