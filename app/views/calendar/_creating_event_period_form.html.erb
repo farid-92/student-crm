@@ -1,18 +1,12 @@
 <div class="ui modal" id="dayclick_modal">
   <div class="ui pointing secondary menu" style="margin-top: 10px;">
-    <a class="item active" data-tab="period">Создание занятия</a>
-    <a class="item" data-tab="event">Создание события</a>
+    <a class="item active" data-tab="period">Создание события</a>
   </div>
 
   <div class="ui bottom attached active tab segment" data-tab="period">
     <%= render template: 'calendar/new_period_from_calendar' %>
   </div>
 
-  <div class="ui bottom attached tab segment" data-tab="event">
-    <% provide(:btn, 'Создать событие') %>
-    <%= render 'events/calendar_event_form' %>
-  </div>
 </div>
 
 <div id="period-popup"></div>
-<div id="event-popup"></div>

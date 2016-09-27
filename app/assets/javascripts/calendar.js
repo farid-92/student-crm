@@ -65,9 +65,16 @@ $(document).ready(function () {
                     }
                 },
 
-                dayClick: function() {
+                dayClick: function(date) {
                     $('.ui.modal').modal({duration: 100}).modal('show')
-                    $('.menu .item').tab()
+                    $('.menu .item').tab();
+                    date = date.format();
+                    var date_array = date.split("-");
+                    var day =  parseInt(date_array[2]);
+                    var month = parseInt(date_array[1]);
+                    var year = parseInt(date_array[0]);
+                    var selectedday =  day + '/' + month + '/' + year
+                    $("#period_commence_datetime").val(selectedday);
                 },
 
                 axisFormat: 'HH:mm',
