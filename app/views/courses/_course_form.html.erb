@@ -31,6 +31,11 @@
         <%= render 'shared/field_errors', object: @course, field_name: :theoretical_time %>
       </div>
     </div>
+    <div class="field <%= 'error' if @course.errors[:discipline_title].any? %>">
+      <%= f.label :discipline_title %>
+      <%= f.text_field :discipline_title, placeholder: 'Название дисциплины' %>
+      <%= render 'shared/field_errors', object: @course, field_name: :discipline_title %>
+    </div>
     <h6 class="ui dividing header"></h6>
     <div class="ui buttons margin-left-20">
       <%= link_to 'Вернуться к списку', courses_path, class: 'ui button' %>

@@ -7,5 +7,5 @@ class Course < ActiveRecord::Base
 
   has_many :periods, dependent: :destroy
 
-  validates :name, :course_short_name, :cost, :practical_time, :theoretical_time, presence: true
+  validates :name, :course_short_name, :cost, :practical_time, :theoretical_time,:discipline_title, presence: true
 end

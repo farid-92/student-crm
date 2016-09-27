@@ -104,7 +104,7 @@ class CoursesController < ApplicationController
   private
 
   def get_course_params
-    params.require(:course).permit(:name, :course_short_name, :cost, :practical_time, :theoretical_time)
+    params.require(:course).permit(:name, :course_short_name, :cost, :practical_time, :theoretical_time, :discipline_title)
   end
 
   def get_sorted_list(students, teachers)
