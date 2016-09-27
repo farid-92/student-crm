@@ -103,7 +103,7 @@ class UsersController < ApplicationController
   def generate_contract
     @user = User.find(params[:id])
     @group = Group.find(params[:group_id])
-    contract_pdf = ContractPdf.new(@user, @group, @group.course.name, @group.course.practical_time, @group.course.theoretical_time, @group.course.cost)
+    contract_pdf = ContractPdf.new(@user, @group)
 
     send_data contract_pdf.render,
               filename: "#{@user.surname} #{@user.name}.pdf",
