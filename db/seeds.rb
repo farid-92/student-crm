@@ -1,10 +1,8 @@
-roles = [
-    Role.create!(name: 'student'),
-    Role.create!(name: 'manager'),
-    Role.create!(name: 'teacher'),
-    Role.create!(name: 'techsupport'),
-    Role.create!(name: 'admin')
-]
+  Role.create!(name: 'student')
+  Role.create!(name: 'manager')
+  Role.create!(name: 'teacher')
+  Role.create!(name: 'techsupport')
+  Role.create!(name: 'admin')
 #creating students
 password = '12345678'
 admin = User.create!(name: 'Фарид',
