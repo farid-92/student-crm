@@ -81,7 +81,9 @@ module SmsHandler
       return phones
     else
       contact_list.users.each do |student|
-        phones.push student.first_phone
+        if student.active?
+          phones.push student.first_phone
+        end
         # puts student.phone
       end
       return phones

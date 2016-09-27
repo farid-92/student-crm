@@ -7,9 +7,11 @@ class SmsDeliveriesController < ApplicationController
     @sms = SmsDelivery.new(get_sms_params)
     if @sms.delivery_time.nil?
       @sms.delivery_time = Time.now + 3.minutes
+      flash[:success] = 'СМС рассылка будет отправлена через 3 минуты'
+    else
+      flash[:success] = "СМС рассылка будет отправлена  #{@sms.delivery_time.strftime('%d-%m-%Y в %H:%M ')}"
     end
     if @sms.save
-      flash[:success] = 'СМС рассылка будет отправлена через 3 минуты'
       redirect_to sms_deliveries_url(resource_id: 1)
     else
       flash[:danger] = 'Вы ввели некорректные данные, проверьте и попробуйте снова'
