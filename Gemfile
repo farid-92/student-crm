@@ -82,3 +82,4 @@ gem 'rolify'
 
 # Руссификация
 gem 'russian', '~> 0.6.0'
+gem 'devise-i18n'
