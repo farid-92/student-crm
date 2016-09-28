@@ -65,7 +65,7 @@ $(document).ready(function () {
                     }
                 },
 
-                dayClick: function(date) {
+                dayClick: function(date, jsEvent, view) {
                     $('.ui.modal').modal({duration: 100}).modal('show')
                     $('.menu .item').tab();
                     date = date.format();
@@ -73,8 +73,27 @@ $(document).ready(function () {
                     var day =  parseInt(date_array[2]);
                     var month = parseInt(date_array[1]);
                     var year = parseInt(date_array[0]);
-                    var selectedday =  day + '/' + month + '/' + year
+                    if(view.name == 'agendaWeek'){
+                        var full_time = date.split("T");
+                        var time_array = full_time[1].split(":");
+                        var hour = time_array[0];
+                        var minute = parseInt(time_array[1]);
+                        if(minute == 0){ minute = '00'}
+                    }
+                    else{
+                        hour = 19;
+                        minute = '00';
+                    }
+                    var selectedday =  day + '/' + month + '/' + year;
                     $("#period_commence_datetime").val(selectedday);
+                    $("#period_start_time_4i").val(hour);
+                    $("#period_start_time_5i").val(minute);
+                    $("#period_start_time_4i").siblings(".text").text(hour);
+                    $("#period_start_time_5i").siblings(".text").text(minute);
+                    $("#period_end_time_4i").val(parseInt(hour) + 2);
+                    $("#period_end_time_5i").val(minute);
+                    $("#period_end_time_4i").siblings(".text").text(parseInt(hour) + 2);
+                    $("#period_end_time_5i").siblings(".text").text(minute);
                 },
 
                 axisFormat: 'HH:mm',

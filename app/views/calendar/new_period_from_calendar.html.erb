@@ -18,8 +18,8 @@
           <%= render 'shared/field_errors', object: @period, field_name: :commence_datetime %>
         </div>
         <div class="field">
-          <%= f.time_select :start_time, {:default => {:hour => '19', :minute => '00'}}, {class: 'ui search dropdown'} %>&nbsp;&nbsp;-&nbsp;&nbsp;
-          <%= f.time_select :end_time, {:default => {:hour => '21', :minute => '00'}}, {class: 'ui search dropdown'} %>
+          <%= f.time_select :start_time, {}, {class: 'ui search dropdown'} %>&nbsp;&nbsp;-&nbsp;&nbsp;
+          <%= f.time_select :end_time, {}, {class: 'ui search dropdown'} %>
         </div>
       </div>
       <h6 class="ui dividing header"></h6>
