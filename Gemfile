@@ -80,3 +80,5 @@ gem 'chartkick', '~> 1.2.4'
 gem 'cancancan'
 gem 'rolify'
 
+# Руссификация
+gem 'russian', '~> 0.6.0'

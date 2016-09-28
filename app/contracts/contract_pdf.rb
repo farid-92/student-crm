@@ -44,7 +44,7 @@ class ContractPdf < Prawn::Document
       :inline_format => true, :leading => 2
     end
     grid([1,0], [1,5]).bounding_box do
-      text "#{Time.now.strftime("%d %B %Y")}", :align => :right,
+      text "#{Russian::strftime(Time.now, "%d %B %Y")}", :align => :right,
            :inline_format => true, :leading => 2
     end
   end
@@ -91,7 +91,7 @@ class ContractPdf < Prawn::Document
     text "3. УСЛОВИЯ ОБУЧЕНИЯ И СДАЧИ ЭКЗАМЕНОВ",
          :align => :center, :style => :bold
     move_down 15
-    text "3.1. Срок проведения занятий по <b>Учебной программе</b> с #{@group.starts_at.strftime("%d %B %Y")} по #{@group.ends_at.strftime("%d %B %Y")}.
+    text "3.1. Срок проведения занятий по <b>Учебной программе</b> с #{Russian::strftime(@group.starts_at, "%d %B %Y")} по #{Russian::strftime(@group.ends_at, "%d %B %Y")}.
 3.2. Теоретические и практические занятия <b>Студентов</b> проводятся в учебных группах не более 20 человек, согласно расписанию, утвержденному директором <b>Образовательного центра</b>.
 3.3. К итоговому экзамену <b>Образовательного центра</b> допускается <b>Студент</b>, прошедший обучение в полном    объеме, успешно    сдавший    промежуточные контрольные    <b>Учебной    программы</b>, и полностью оплативший обучение.
 3.4. <b>Студент</b>, допустивший пропуски занятий, к сдаче контрольных (экзамена) не допускается до момента отработки пропущенных занятий и сдачи всех домашних заданий.
@@ -167,8 +167,7 @@ Web: http://it-attractor-plus.com/
 
 
 Директор
-Гудов А.О.
-#{Time.now.strftime("%d.%m.%Y")}",
+Гудов А.О.",
          :inline_format => true, :leading => 2
     end
 
