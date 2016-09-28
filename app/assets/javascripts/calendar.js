@@ -113,7 +113,7 @@ $(document).ready(function () {
                 header: {
                     left: "prev,next today",
                     center: "title",
-                    right: "month,agendaWeek,agendaDay"
+                    right: "month,agendaWeek"
                 },
 
                 monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
@@ -124,8 +124,7 @@ $(document).ready(function () {
                 buttonText: {
                     today: "Сегодня",
                     month: "Месяц",
-                    week: "Неделя",
-                    day: "День"
+                    week: "Неделя"
                 }
 
             });
