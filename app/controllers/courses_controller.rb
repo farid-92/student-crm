@@ -3,6 +3,10 @@ class CoursesController < ApplicationController
     @courses = Course.all
     @users = User.all
     @resource = params[:resource_id]
+    session[:referer] = request.original_url
+    unless session[:referer].include? '?resource_id=2'
+      session[:referer] += '?resource_id=2'
+    end
   end
 
   def new
@@ -57,6 +61,7 @@ class CoursesController < ApplicationController
   end
 
   def group_index
+    session[:referer] = request.original_url
     @group = Group.find(params[:id])
     @resource = params[:resource]
     students = []

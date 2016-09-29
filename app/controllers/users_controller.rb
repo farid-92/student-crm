@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    check_group_present
   end
 
   def create
@@ -39,8 +40,7 @@ class UsersController < ApplicationController
       save_to_student_dependencies(group_ids)
       flash[:notice] = 'Студент успешно добавлен'
      # UserMailer.password_email(@user, generated_password).deliver_now
-
-      redirect_to root_path(resource_id: 2)
+        redirect_to session[:referer]
     else
       render 'new'
     end
@@ -49,6 +49,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     @group = Group.find(params[:group_id]) unless params[:group_id].nil?
+    check_group_present
   end
 
   def update
@@ -73,7 +74,7 @@ class UsersController < ApplicationController
       if @user.update(user_params)
         save_to_student_dependencies(group_ids)
         flash[:notice] = 'Данные успешно отредактированы!'
-        redirect_to root_path(resource_id: 2)
+        redirect_to session[:referer]
       else
         render 'edit'
       end
@@ -91,8 +92,9 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
+    flash[:success] = 'Студент успешно удален'
     @user.destroy
-    redirect_to root_path(resource_id: 2)
+    redirect_to session[:referer]
   end
 
   def download_passport
@@ -156,6 +158,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def check_group_present
+    if session[:referer] == root_url(resource_id: 2)
+      group_arr = []
+      @user.groups.each do |group|
+        group_arr.push group.id
+      end
+      @selected_group = group_arr
+    else
+      @selected_group = params[:group_id] || params[:group_ids] || params[:user][:group_ids]
+    end
+  end
 
 
 end

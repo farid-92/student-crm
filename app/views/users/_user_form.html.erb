@@ -26,7 +26,7 @@
       <div class="fields">
         <div class="field birth_date">
           <%= f.label :birthdate %>
-          <%= f.date_select :birthdate, {start_year: 1980, end_year: Date.today.year - 10, order: [:day, :month, :year]} , {class: 'ui search dropdown' } %>
+          <%= f.date_select :birthdate, {start_year: 1980, end_year: Date.today.year, order: [:day, :month, :year]} , {class: 'ui search dropdown' } %>
         </div>
         <div class="gender field">
           <%= f.label :gender %>
@@ -59,21 +59,21 @@
         </div>
         <div class="issue">
           <%= f.label :issue_date %>
-          <%= f.date_select :issue_date, {start_year: 1990, end_year: Date.today.year - 10, order: [:day, :month, :year]} , {class: 'ui search dropdown' } %>
+          <%= f.date_select :issue_date, {start_year: 1990, end_year: Date.today.year, order: [:day, :month, :year]} , {class: 'ui search dropdown' } %>
         </div>
       </div>
       <h6 class="ui dividing header">Распределение</h6>
       <div class="inline fields">
         <%= f.label :group %>
         <div class="field <%= 'error' if @user.errors[:group_ids].any? %>">
-          <%= f.collection_select :group_ids, Group.all, :id, :get_group_and_course, {prompt: 'Выберите группу'}, {class: 'ui fluid dropdown', multiple: true} %>
+          <%= f.collection_select :group_ids, Group.all, :id, :get_group_and_course, {prompt: 'Выберите группу',  selected: @selected_group}, {class: 'ui fluid dropdown', multiple: true} %>
           <span><%= render 'shared/field_errors', object: @user, field_name: :groups %></span>
         </div>
         <div class="field<%= 'error' if @user.errors[:role].any? %>">
           <%= f.label :role %>
           <%= hidden_field_tag 'user[role_ids][]', nil %>
           <% Role.where.not(name: 'admin').each do |role| %>
-              <div class="ui toggle checkbox margin-right-10">
+              <div class="ui toggle checkbox margin-right-30">
                 <%= label_tag dom_id(role), role.name  %>
                 <%= check_box_tag 'user[role_ids][]', role.id, @user.role_ids.include?(role.id), id: dom_id(role) %>
                 <span><%= render 'shared/field_errors', object: @user, field_name: :roles %></span>

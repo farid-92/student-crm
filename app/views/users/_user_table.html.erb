@@ -42,7 +42,7 @@
                       data: {confirm: 'Вы действительно хотите удалить этого пользователя?'}, method: :delete do %>
               <span class="fa fa-trash" id="delete_user_<%= counter %>"></span>
 
-          <% end %>
+          <% end %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <%= user.active ? link_to(image_tag('on.png', width:'70', alt:'ДА'),
                user_change_status_path(user), method: :patch) : link_to(image_tag('off.png', width:'70', alt:'НЕТ'),
                user_change_status_path(user), method: :patch) %>

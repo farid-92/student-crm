@@ -17,6 +17,10 @@
     <!--<%= link_to 'Ведомости', render_group_students_path(@group), class: 'item', remote: true, data: {tab: 'reports'}, id: 'reports' %>-->
     <%= link_to 'Диаграммы', render_performance_chart_path(@group), class: 'item', remote: true, data: {tab: 'performance-chart'} %>
     <div class="course-new-resources">
+      <%= link_to new_user_path(group_ids: @group.id ), class: 'btn btn-default' do %>
+          <span class="fa fa-plus-circle"></span>
+          Добавить студента
+      <% end %>
       <%= link_to new_period_path(group_id: @group), class: 'btn btn-default' do %>
           <span class="fa fa-plus-circle"></span>
           Занятие
