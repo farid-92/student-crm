@@ -66,7 +66,7 @@
       <div class="inline fields">
         <%= f.label :group %>
         <div class="field <%= 'error' if @user.errors[:group_ids].any? %>">
-          <%= f.collection_select :group_ids, Group.all, :id, :get_group_and_course, {prompt: 'Выберите группу',  selected: @selected_group}, {class: 'ui fluid dropdown', multiple: true} %>
+          <%= f.collection_select :group_ids, Group.where.not("ends_at <= '#{Date.today}'"), :id, :get_group_and_course, {prompt: 'Выберите группу',  selected: @selected_group}, {class: 'ui fluid dropdown', multiple: true} %>
           <span><%= render 'shared/field_errors', object: @user, field_name: :groups %></span>
         </div>
         <div class="field<%= 'error' if @user.errors[:role].any? %>">
