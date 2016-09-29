@@ -1,5 +1,6 @@
 include CapybaraHelper
 include CapybaraVariablesHelper
+# require 'bootstrap-datepicker-rails'
 
 # Login
 When(/^пользователь зашел на логин страницу$/) do
@@ -264,4 +265,61 @@ end
 
 When(/^попадает на страницу группы "([^"]*)"$/) do |group|
   expect(page).to have_content(group)
+end
+
+When(/^администратор заходить на страницу СМС рассылок$/) do
+  visit('/sms_deliveries?resource_id=1')
+end
+#
+When(/^заполняет поля формы рассылок$/) do
+
+  within('#new_sms_delivery') do
+    fill_in 'sms_delivery_title', :with => 'Event'
+    fill_in 'sms_delivery[delivery_time]', :with => ''
+    page.execute_script("$('#datetimepicker').val('29-10-2016 15:00')")
+    find(:xpath, '/html/body/div[3]').click
+    xpath_1 = "//div[contains(text(), 'Выберите отправителя')]"
+    find(:xpath, xpath_1).click
+    xpath_2 = "//div[contains(text(), 'ITAttractor')]"
+    find(:xpath, xpath_2).select_option
+    xpath_contact_list = "//*[contains(text(), 'Выберите контактный лист')]"
+    find(:xpath, xpath_contact_list).click
+    xpath_contact_list_2 = "//*[contains(text(), 'Тестовый получатель')]"
+    find(:xpath, xpath_contact_list_2).select_option
+
+    fill_in 'sms_delivery[content]', :with => 'Test test. колега предупредите если пришло'
+
+  end
+end
+
+When(/^нажимает на кнопку "([^"]*)" у рассылки "([^"]*)"$/) do |button, title|
+  delivery = "//td[contains(text(), '#{title}')]/following-sibling::td//div/a[contains(text()[last()], '#{button}')]"
+  # delivery = '//*[@id="sms-tab"]/table/tbody/tr/td[5]/div/a[1]'
+  find(:xpath, delivery).click
+end
+
+#//td[contains(text(), 'вапывп')]/following-sibling::td//div/a[contains(text()[last()], 'Редактировать')]
+
+When(/^изменяет название рассылки на "([^"]*)"$/) do |arg|
+  fill_in 'sms_delivery[delivery_time]', :with => ''
+  page.execute_script("$('#datetimepicker').val('#{arg}')")
+end
+
+When(/^заполняет поля формы рассылок без даты отправки$/) do
+  within('#new_sms_delivery') do
+    fill_in 'sms_delivery_title', :with => 'Event'
+
+    find(:xpath, '/html/body/div[3]').click
+    xpath_1 = "//div[contains(text(), 'Выберите отправителя')]"
+    find(:xpath, xpath_1).click
+    xpath_2 = "//div[contains(text(), 'ITAttractor')]"
+    find(:xpath, xpath_2).select_option
+    xpath_contact_list = "//*[contains(text(), 'Выберите контактный лист')]"
+    find(:xpath, xpath_contact_list).click
+    xpath_contact_list_2 = "//*[contains(text(), 'Тестовый получатель')]"
+    find(:xpath, xpath_contact_list_2).select_option
+
+    fill_in 'sms_delivery[content]', :with => 'Test test. колега предупредите если пришло'
+
+  end
 end

@@ -41,10 +41,12 @@ Group.create(course_id: course.id, name: 'Верстка group-1', group_short_n
 SmsServiceAccount.create!(login: 'glokzs',password: 'Dgthtlrpdtplfv', user_id: 1 )
 SmsServiceAccount.create!(login: 'test',password: '123123123', user_id: 1 )
 
-Sender.create!(name: 'ITAttractor',sms_service_account_id: 1)
+test_sender = Sender.create!(name: 'ITAttractor',sms_service_account_id: 1)
 Sender.create!(name: 'rubykurs',sms_service_account_id: 1)
 Sender.create!(name: 'webkurs.pro	',sms_service_account_id: 1)
 
-ContactList.create!(title: 'Тестовый получатель', temp: false)
+test_contacts = ContactList.create!(title: 'Тестовый получатель', temp: false)
 
 RecipientDepository.create!(user_id: 1,contact_list_id: 1)
+
+SmsDelivery.create!(title: 'Test delivery', content: 'Testing sms deliveries', sender: test_sender, contact_list: test_contacts, delivery_time: 10.days.from_now)
