@@ -8,20 +8,20 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :recipient_depositories
-  has_many :contact_lists, through: :recipient_depositories
+  has_many :recipient_depositories, dependent: :destroy
+  has_many :contact_lists, through: :recipient_depositories, dependent: :destroy
 
-  has_many :group_memberships
-  has_many :groups, through: :group_memberships
+  has_many :group_memberships, dependent: :destroy
+  has_many :groups, through: :group_memberships, dependent: :destroy
 
-  has_many :attendances
-  has_many :periods, through: :attendances
+  has_many :attendances, dependent: :destroy
+  has_many :periods, through: :attendances, dependent: :destroy
 
-  has_many :homeworks
-  has_many :periods, through: :homeworks
+  has_many :homeworks, dependent: :destroy
+  has_many :periods, through: :homeworks, dependent: :destroy
 
-  has_many :extra_homeworks
-  has_many :periods, through: :extra_homeworks
+  has_many :extra_homeworks, dependent: :destroy
+  has_many :periods, through: :extra_homeworks, dependent: :destroy
 
 
   has_many :events
