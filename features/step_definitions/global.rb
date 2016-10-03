@@ -272,11 +272,10 @@ When(/^администратор заходить на страницу СМС 
 end
 #
 When(/^заполняет поля формы рассылок$/) do
-
   within('#new_sms_delivery') do
     fill_in 'sms_delivery_title', :with => 'Event'
     fill_in 'sms_delivery[delivery_time]', :with => ''
-    page.execute_script("$('#datetimepicker').val('29-10-2016 15:00')")
+    page.execute_script("$('#datetimepicker').val('2020-12-12 15:00')")
     find(:xpath, '/html/body/div[3]').click
     xpath_1 = "//div[contains(text(), 'Выберите отправителя')]"
     find(:xpath, xpath_1).click
@@ -286,19 +285,14 @@ When(/^заполняет поля формы рассылок$/) do
     find(:xpath, xpath_contact_list).click
     xpath_contact_list_2 = "//*[contains(text(), 'Тестовый получатель')]"
     find(:xpath, xpath_contact_list_2).select_option
-
     fill_in 'sms_delivery[content]', :with => 'Test test. колега предупредите если пришло'
-
   end
 end
 
 When(/^нажимает на кнопку "([^"]*)" у рассылки "([^"]*)"$/) do |button, title|
   delivery = "//td[contains(text(), '#{title}')]/following-sibling::td//div/a[contains(text()[last()], '#{button}')]"
-  # delivery = '//*[@id="sms-tab"]/table/tbody/tr/td[5]/div/a[1]'
   find(:xpath, delivery).click
 end
-
-#//td[contains(text(), 'вапывп')]/following-sibling::td//div/a[contains(text()[last()], 'Редактировать')]
 
 When(/^изменяет название рассылки на "([^"]*)"$/) do |arg|
   fill_in 'sms_delivery[delivery_time]', :with => ''
@@ -308,7 +302,6 @@ end
 When(/^заполняет поля формы рассылок без даты отправки$/) do
   within('#new_sms_delivery') do
     fill_in 'sms_delivery_title', :with => 'Event'
-
     find(:xpath, '/html/body/div[3]').click
     xpath_1 = "//div[contains(text(), 'Выберите отправителя')]"
     find(:xpath, xpath_1).click
@@ -318,8 +311,21 @@ When(/^заполняет поля формы рассылок без даты �
     find(:xpath, xpath_contact_list).click
     xpath_contact_list_2 = "//*[contains(text(), 'Тестовый получатель')]"
     find(:xpath, xpath_contact_list_2).select_option
-
     fill_in 'sms_delivery[content]', :with => 'Test test. колега предупредите если пришло'
+  end
+end
 
+When(/^заполняет поля формы выбирая контакты с файла$/) do
+  within('#new_sms_delivery') do
+    fill_in 'sms_delivery_title', :with => 'Event'
+    fill_in 'sms_delivery[delivery_time]', :with => ''
+    page.execute_script("$('#datetimepicker').val('2020-12-12 15:00')")
+    find(:xpath, '/html/body/div[3]').click
+    xpath_1 = "//div[contains(text(), 'Выберите отправителя')]"
+    find(:xpath, xpath_1).click
+    xpath_2 = "//div[contains(text(), 'ITAttractor')]"
+    find(:xpath, xpath_2).select_option
+    fill_in 'sms_delivery[content]', :with => 'Test test. колега предупредите если пришло'
+    drop_in_dropzone(Rails.root + 'public/files_for_testing/contacts.xlsx')
   end
 end
