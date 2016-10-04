@@ -64,9 +64,52 @@ $(document).ready(function () {
                         });
                     }
                 },
-
                 dayClick: function(date, jsEvent, view) {
-                    $('.ui.modal').modal({duration: 100}).modal('show')
+                    //Resets form input fields
+                    $('.ui.form').trigger("reset");
+                    //Resets form error messages
+                    $('.ui.form .field.error').removeClass( "error" );
+                    $('.ui.form.error').removeClass( "error" );
+                    $('.ui.modal').modal('show').modal({
+                            onApprove : function() {
+                                //Submits the semantic ui form
+                                //And pass the handling responsibilities to the form handlers, e.g. on form validation success
+                                $('.ui.form').submit();
+                                //Return false as to not close modal dialog
+                                return false;
+                            },
+                        });
+                    $('.ui.form').form({
+                        fields: {
+                            'period[course_id]': {
+                                identifier : 'period[course_id]',
+                                rules: [
+                                    {
+                                        type   : 'empty',
+                                        prompt : 'Курс не может быть пустым'
+                                    }
+                                ]
+                            },
+                            'period[group_id]': {
+                                identifier : 'period[group_id]',
+                                rules: [
+                                    {
+                                        type   : 'empty',
+                                        prompt : 'Поле не может быть пустым'
+                                    }
+                                ]
+                            },
+                        },
+                        inline : true,
+                        on     : 'blur',
+                        onSuccess : function()
+                        {
+                            //Hides modal on validation success
+                            alert("Valid Submission, modal will close.");
+                            $('.ui.modal').modal('hide');
+                        },
+                    });
+
                     $('.menu .item').tab();
                     date = date.format();
                     var date_array = date.split("-");

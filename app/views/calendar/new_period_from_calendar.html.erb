@@ -1,10 +1,9 @@
 <div class="ui-form-width">
-  <%= form_for @period, url: {action: "create_period_from_calendar"}, html: {class: 'ui equal width form'} do |f| %>
+  <%= form_for @period, url: {action: "create_period_from_calendar"}, html: {class: 'ui equal width form '} do |f| %>
       <div class="two fields">
-        <div class="field <%= 'error' if @period.errors[:title].any? %>">
+        <div class="field">
           <%= f.label :title %>
           <%= f.text_field :title, placeholder: 'Заголовок занятия' %>
-          <%= render 'shared/field_errors', object: @period, field_name: :title %>
         </div>
         <div class="field">
           <%= f.label :course %>
