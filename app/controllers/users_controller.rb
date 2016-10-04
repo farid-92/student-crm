@@ -84,6 +84,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    session[:referer] = request.original_url
     @user = User.find(params[:id])
     @user_groups = @user.groups
   end
@@ -157,7 +158,7 @@ class UsersController < ApplicationController
   end
 
   def check_group_present
-    if session[:referer] == root_url(resource_id: 2)
+    if session[:referer] == root_url(resource_id: 2) || user_url(params[:id])
       group_arr = []
       @user.groups.each do |group|
         group_arr.push group.id

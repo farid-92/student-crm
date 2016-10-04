@@ -3,13 +3,10 @@
   <div class="ui breadcrumb">
     <div class="section"><%= link_to 'Все курсы', root_path %></div>
     <div class="divider"> / </div>
-    <% unless session[:referer] == root_url(resource_id: 2) %>
-        <% group =  Group.find(@selected_group) %>
-        <div class="section"><%= link_to group.course.name ,show_course_index_path(group.course, resource: 2) %></div>
-        <div class="divider"> / </div>
-        <div class="section"><%= link_to group.name ,show_group_index_path(group, resource: 1) %></div>
-        <div class="divider"> / </div>
-    <% end %>
+    <div class="section"><%= link_to @user.groups[0].course.name ,show_course_index_path( @user.groups[0].course, resource: 2) %></div>
+    <div class="divider"> / </div>
+    <div class="section"><%= link_to  @user.groups[0].name ,show_group_index_path( @user.groups[0], resource: 1) %></div>
+    <div class="divider"> / </div>
     <div class="active section">Редактирование пользователя</div>
     <div class="divider"> / </div>
   </div>
