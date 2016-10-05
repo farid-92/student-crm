@@ -86,8 +86,10 @@ class User < ActiveRecord::Base
   end
 
   def set_passport_file_name
-    self.passport_photo_file_name = normalized_file_name
-    self.passport_photo.instance_write(:file_name, normalized_file_name)
+    unless $file.nil?
+      self.passport_photo_file_name = normalized_file_name
+      self.passport_photo.instance_write(:file_name, normalized_file_name)
+    end
   end
 
 
