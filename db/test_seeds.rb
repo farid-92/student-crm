@@ -1,4 +1,11 @@
 password = '12345678'
+
+
+course = Course.create!(name: 'HTML-верстальщик',course_short_name: 'HTML',
+                        practical_time: 96,theoretical_time: 100,cost: 72000, discipline_title: 'html-верстка веб-сайтов')
+
+group = Group.create!(course_id: course.id, name: 'Верстка group-1', group_short_name: 'Верстка-g1', starts_at: '20.08.2016', ends_at: '20.11.2016' )
+
 admin = User.create!(name: 'Фарид',
                      surname: 'Бабазов',
                      skype: 'farid.babazov',
@@ -12,29 +19,27 @@ admin = User.create!(name: 'Фарид',
                      issue_date: '20.12.2008',
                      issued_by: 'MVD 50-05',
                      password: password,
-                     password_confirmation: password
+                     password_confirmation: password,
+                     group_ids: group.id
 )
 User.create!(name: 'Иван',
-                     surname: 'Иванов',
-                     skype: 'ivan',
-                     email: 'ivan@gmail.com',
-                     birthdate: '06.11.1992',
-                     gender: 'Мужчина',
-                     first_phone: '+996772183644',
-                     second_phone: '+996550362180',
-                     passport_id: '123123',
-                     passport_inn: '100101020',
-                     issue_date: '20.12.2008',
-                     issued_by: 'MVD 50-05',
-                     password: password,
-                     password_confirmation: password
+             surname: 'Иванов',
+             skype: 'ivan',
+             email: 'ivan@gmail.com',
+             birthdate: '06.11.1992',
+             gender: 'Мужчина',
+             first_phone: '+996772183644',
+             second_phone: '+996550362180',
+             passport_id: '123123',
+             passport_inn: '100101020',
+             issue_date: '20.12.2008',
+             issued_by: 'MVD 50-05',
+             password: password,
+             password_confirmation: password,
+             group_ids: group.id
 )
 
 
-course = Course.create!(name: 'HTML-верстальщик',course_short_name: 'HTML',
-                        practical_time: 96,theoretical_time: 100,cost: 72000, discipline_title: 'html-верстка веб-сайтов')
-
-Group.create(course_id: course.id, name: 'Верстка group-1', group_short_name: 'Верстка-g1', starts_at: '20.08.2016', ends_at: '20.11.2016' )
 
 
 

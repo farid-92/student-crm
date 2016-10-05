@@ -46,6 +46,9 @@ module CapybaraHelper
     # find(:xpath, "//div[contains(@class, 'menu transition visible')]//div[contains(@class, 'item')][1]").click
     # find(:xpath, @student_role_xpath).click
 
+    find(:xpath, @user_group_xpath).click
+    find(:xpath, @user_group_select_xpath).click
+
     attach_file('user[photo]', File.join(Rails.root, '/app/assets/images/test-photo.jpg'))
     attach_file('user[passport_photo]', File.join(Rails.root, '/app/assets/images/test-archive.zip'))
 
@@ -72,7 +75,25 @@ module CapybaraHelper
 
     find(:xpath, @ends_at_xpath+"//div[contains(@class, 'dropdown selection')][3]").click
     find(:xpath, @ends_at_xpath+@item_xpath % @random_year_for_group).click
-    find(:xpath, @ends_at_xpath+@item_xpath % @random_year_for_group).click
+    # find(:xpath, @ends_at_xpath+@item_xpath % @random_year_for_group).click
+  end
+
+  def drop_in_dropzone(file_path)
+    # Generate a fake input selector
+    page.execute_script <<-JS
+    fakeFileInput = window.$('<input/>').attr(
+      {id: 'fakeFileInput', type:'file', name: 'fake_input'}
+    ).appendTo('#new_sms_delivery');
+    JS
+    # Attach the file to the fake input selector
+    attach_file('fakeFileInput', file_path)
+    # Add the file to a fileList array
+    page.execute_script("var fileList = [fakeFileInput.get(0).files[0]]")
+    # Trigger the fake drop event
+    page.execute_script <<-JS
+      var e = jQuery.Event('drop', { dataTransfer : { files : [fakeFileInput.get(0).files[0]] } });
+      $('#my-awesome-dropzone')[0].dropzone.listeners[0].events.drop(e);
+    JS
   end
 
 

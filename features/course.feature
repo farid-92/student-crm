@@ -14,6 +14,7 @@
       | course_cost  | 13500 |
       | course_practical_time  | 108 |
       | course_theoretical_time  | 500 |
+      | course_discipline_title         | Programming |
     И нажимает на кнопку "Создать курс"
     То видит в списке "Ruby on rails - Разработчик"
 
