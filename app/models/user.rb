@@ -59,6 +59,16 @@ class User < ActiveRecord::Base
     image/png
   }
 
+ # these two methods should be deleted in production use
+  #*********************************************
+  def email_required?
+    false
+  end
+
+  def email_changed?
+    false
+  end
+  # *********************************************
 
   def full_name
     "#{surname.capitalize} #{name.capitalize}"
