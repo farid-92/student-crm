@@ -8,13 +8,13 @@
     И находится на странице курсов
     Если нажимает на ссылку "Новый курс"
     И администратор заполняет поля формы
-      | field          | value       |
-      | course_name     | Ruby on rails - Разработчик|
-      | course_course_short_name  | Rubyist |
-      | course_cost  | 13500 |
-      | course_practical_time  | 108 |
-      | course_theoretical_time  | 500 |
-      | course_discipline_title         | Programming |
+      | field                     | value                       |
+      | course_name               | Ruby on rails - Разработчик |
+      | course_course_short_name  | Rubyist                     |
+      | course_cost               | 13500                       |
+      | course_practical_time     | 108                         |
+      | course_theoretical_time   | 500                         |
+      | course_discipline_title   | Programming                 |
     И нажимает на кнопку "Создать курс"
     То видит в списке "Ruby on rails - Разработчик"
 
@@ -23,12 +23,13 @@
     И находится на странице курсов
     Если нажимает на кнопку "Редактировать" у курса "HTML-верстальщик"
     И редактирует данные
-      | field          | value       |
-      | course_name     | Python - Разработчик|
-      | course_course_short_name  | Python |
-      | course_cost  | 90000 |
-      | course_practical_time  | 72 |
-      | course_theoretical_time  | 300 |
+      | field                     | value                 |
+      | course_name               | Python - Разработчик  |
+        | course_course_short_name  | Python              |
+      | course_cost               | 90000                 |
+      | course_practical_time     | 72                    |
+      | course_theoretical_time   | 300                   |
+      | course_discipline_title   | Верстка html - сайтов |
     И нажимает на кнопку "Редактировать курс"
     То видит в списке "Python - Разработчик"
 

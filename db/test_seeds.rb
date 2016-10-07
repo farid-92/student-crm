@@ -2,9 +2,11 @@ password = '12345678'
 
 
 course = Course.create!(name: 'HTML-верстальщик',course_short_name: 'HTML',
-                        practical_time: 96,theoretical_time: 100,cost: 72000, discipline_title: 'html-верстка веб-сайтов')
+                        practical_time: 96,theoretical_time: 100,cost: 72000,
+                        discipline_title: 'html-верстка веб-сайтов')
 
-group = Group.create!(course_id: course.id, name: 'Верстка group-1', group_short_name: 'Верстка-g1', starts_at: '20.08.2016', ends_at: '20.11.2016' )
+group = Group.create!(course_id: course.id, name: 'Верстка group-1', group_short_name: 'Верстка-g1',
+                      starts_at: '20.08.2016', ends_at: '20.11.2016' )
 
 admin = User.create!(name: 'Фарид',
                      surname: 'Бабазов',
@@ -54,4 +56,5 @@ test_contacts = ContactList.create!(title: 'Тестовый получател�
 
 RecipientDepository.create!(user_id: 1,contact_list_id: 1)
 
-SmsDelivery.create!(title: 'Test delivery', content: 'Testing sms deliveries', sender: test_sender, contact_list: test_contacts, delivery_time: 10.days.from_now)
+SmsDelivery.create!(title: 'Test delivery', content: 'Testing sms deliveries',
+                    sender: test_sender, contact_list: test_contacts, delivery_time: 10.days.from_now)
