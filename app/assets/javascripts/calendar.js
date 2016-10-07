@@ -81,6 +81,15 @@ $(document).ready(function () {
                         });
                     $('.ui.form').form({
                         fields: {
+                            'period[title]': {
+                                identifier : 'period[title]',
+                                rules: [
+                                    {
+                                        type   : 'empty',
+                                        prompt : 'Поле не может быть пустым'
+                                    }
+                                ]
+                            },
                             'period[course_id]': {
                                 identifier : 'period[course_id]',
                                 rules: [
@@ -105,7 +114,6 @@ $(document).ready(function () {
                         onSuccess : function()
                         {
                             //Hides modal on validation success
-                            alert("Valid Submission, modal will close.");
                             $('.ui.modal').modal('hide');
                         },
                     });

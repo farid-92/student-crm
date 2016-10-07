@@ -40,6 +40,7 @@ class UsersController < ApplicationController
      # UserMailer.password_email(@user, generated_password).deliver_now
         redirect_to session[:referer]
     else
+      check_group_present
       render 'new'
     end
   end
@@ -74,9 +75,11 @@ class UsersController < ApplicationController
         flash[:notice] = 'Данные успешно отредактированы!'
         redirect_to session[:referer]
       else
+        check_group_present
         render 'edit'
       end
     else
+      check_group_present
       flash.now[:danger] = 'Студент не может быть одновременно в двух группах одного курса'
       render 'edit'
     end
@@ -158,14 +161,25 @@ class UsersController < ApplicationController
   end
 
   def check_group_present
-    if session[:referer] == root_url(resource_id: 2) || user_url(params[:id])
-      group_arr = []
-      @user.groups.each do |group|
-        group_arr.push group.id
-      end
-      @selected_group = group_arr
-    else
-      @selected_group = params[:group_id] || params[:group_ids] || params[:user][:group_ids]
+    case session[:referer]
+      when root_url(resource_id: 2)
+        group_arr = []
+        @user.groups.each do |group|
+          group_arr.push group.id
+        end
+        @selected_group = group_arr
+      else
+        if params[:group_ids].present?
+          @selected_group =  params[:group_ids]
+        elsif @user.present?
+          @selected_group =  @user.groups.map{ |x| x.id}
+        elsif params[:group_id].present?
+          @selected_group =  params[:group_id]
+        elsif params[:user][:group_ids].present?
+          @selected_group =  params[:user][:group_ids]
+        else
+          @selected_group =  []
+        end
     end
   end
 
