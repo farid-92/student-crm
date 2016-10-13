@@ -46,7 +46,11 @@ admin = User.create!(name: 'Фарид',
 end
 
 Course.create!(name: 'HTML-верстальщик',course_short_name: 'HTML',
-               practical_time: 96,theoretical_time: 100,cost: 72000)
+               practical_time: 96,theoretical_time: 100,cost: 72000,
+               discipline_title: 'html-верстка веб-сайтов'
+)
 
 Course.create!(name: 'Ruby on Rails - разработчик',course_short_name: 'RoR',
-               practical_time:98 ,theoretical_time: 98, cost: 135000)
+               practical_time:98 ,theoretical_time: 98, cost: 135000,
+               discipline_title: 'Программирование RoR'
+)

@@ -74,9 +74,8 @@ When(/^нажимает на кнопку "([^"]*)"$/) do |button_name|
   click_button(button_name)
 end
 
-When(/^пользователь появляется в таблице пользователей$/) do
-  sleep 10
-  expect(page).to have_content('Babazov Farid')
+When(/^пользователь "([^"]*)" появляется в таблице пользователей$/) do |arg|
+  expect(page).to have_content(arg)
 end
 
 When(/^администратор нажимает на "([^"]*)"$/) do |user|
@@ -332,3 +331,28 @@ When(/^заполняет поля формы выбирая контакты с
     drop_in_dropzone(Rails.root + 'public/files_for_testing/contacts.xlsx')
   end
 end
+
+When(/^нажимает на кнопку добавления студента "([^"]*)"$/) do |arg|
+  button = '//*[@id="context3"]/div[1]/div/a[1]'
+  find(:xpath, button).click
+  sleep 10
+end
+
+When(/^видит в форме выбранным группу "([^"]*)"$/) do |arg|
+  within('#new_user') do
+    expect(page).to have_content(arg)
+  end
+end
+
+When(/^заполняет форму пропуская поле группы$/) do
+  within('#new_user') do
+    data_for_creating_new_user
+    fill_in 'user_name', :with => 'Jane'
+    fill_in 'user_surname', :with => 'Doe'
+    fill_in 'user_email', :with => 'jane.doe@gmail.com'
+    fill_in 'user_skype', :with => 'jane.doe'
+
+    create_new_user(group_selected = true)
+  end
+end
+
